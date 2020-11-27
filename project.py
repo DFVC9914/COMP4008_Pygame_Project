@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 19 09:24:39 2020
-
-Lecture 24:  Pygame II
 based on code by pszit
-@author: psztxa
+@author: Chao Cui
 """
 
 import pygame
