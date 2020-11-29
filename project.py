@@ -42,7 +42,7 @@ class Game_Role():
         pygame.display.flip()
     
     def Jump(self):
-        Jump_Sounds.play()
+        Jump_Sound.play()
         self.Jump_Control = True
     
     def Move(self) :   
@@ -59,7 +59,8 @@ class Game_Role():
 pygame.init()
 pygame.mixer.init()
 # The sounds of the game
-Jump_Sounds = pygame.mixer.Sound("Sounds/Jump.mp3")
+Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
+Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
 # creating the display with WIDTH and HEIGHT
 Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 # Set the title of the game
@@ -71,7 +72,9 @@ Role = Game_Role(10,250,Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
 Bg = Game_Map(0,0,"Images/background.jpg")
 
-event = pygame.event.poll()
+
+
+Game_Run_Sound.play()
 while True:
     Bg.Map_Move()
     Role.Move()
