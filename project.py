@@ -11,6 +11,7 @@ Images_Path = os.getcwd()
 # Global variables
 Screen_Width = 1000
 Screen_Height = 443
+Score = 0
 Fps = 20
 
 
@@ -29,7 +30,7 @@ class Game_Map() :
             self.x -= 10  
         Screen.blit(pygame.image.load(os.path.join(self.Background_Image)).convert_alpha(), (self.x, self.y))
 
-#  
+#  The role of the game
 class Game_Role():
     def __init__(self,x,y,Role_Image) :  
         # self.rect=pygame.Rect(0,0,0,0)
@@ -42,7 +43,7 @@ class Game_Role():
         pygame.display.flip()
     
     def Jump(self):
-        Jump_Sounds.play()
+        Jump_Sound.play()
         self.Jump_Control = True
     
     def Move(self) :   
@@ -55,11 +56,13 @@ class Game_Role():
             self.y += 5
             if self.y == 250 :
                 return self.y
+            
 # Initialising pygame
 pygame.init()
 pygame.mixer.init()
 # The sounds of the game
-Jump_Sounds = pygame.mixer.Sound("Sounds/Jump.mp3")
+Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
+Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
 # creating the display with WIDTH and HEIGHT
 Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 # Set the title of the game
@@ -72,6 +75,7 @@ Fps_Flash = pygame.time.Clock()
 Bg = Game_Map(0,0,"Images/background.jpg")
 
 event = pygame.event.poll()
+Game_Run_Sound.play()
 while True:
     Bg.Map_Move()
     Role.Move()
@@ -80,7 +84,7 @@ while True:
             pygame.quit()# for the rest of the people with windows or Linux
             os._exit(0) # for Mac users.
         elif event.type == pygame.KEYDOWN :
-            if event.key == pygame.K_UP or pygame.K_w or pygame.K_SPACE :
+            if event.key == pygame.K_SPACE or event.key == pygame.K_UP or event.key == pygame.K_w  :
                 Role.Jump()
     pygame.display.flip()      
     Fps_Flash.tick(Fps)
