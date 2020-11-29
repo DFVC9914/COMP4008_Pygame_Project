@@ -30,13 +30,6 @@ class Game_Map() :
         Screen.blit(pygame.image.load(os.path.join(self.image)).convert(), (self.x, self.y))
 
 # 
-class Game_Role():
-    def __init__(self) :
-        self.rect = pygame.Rect(0, 0, 0, 0)  # 小恐龙矩形图片的初始化,Rect(left,top,width,height)
-        self.jumpHeight = 130
-        self.jumpState = False  # 跳跃状态，true为跳跃
-        self.lowest_y = 140  # 最低坐标
-        self.jumpValue = 0  # 跳跃增变量
 
 # Initialising pygame
 pygame.init()
