@@ -2,145 +2,61 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 19 09:24:39 2020
-based on code by pszit
 @author: Chao Cui
 """
 
 import pygame
 import os
-
+Images_Path = os.getcwd()
 # Global variables
-WIDTH = 1200
-HEIGHT = 600
-BORDER = 40
-VELOCITY = 40
-FRAMERATE = 50
-
-# define my classes
-
-class Ball:
-    RADIUS=20
-    
-    def __init__(self,x,y,vx,vy):
-        self.x=x
-        self.y=y
-        self.vx=vx
-        self.vy=vy
-        self.moving = False
-
-    def show(self,colour):
-        global screen
-        pygame.draw.circle(screen, colour, (self.x,self.y),self.RADIUS)
-    
-    def move(self):
-        global fg_color,bg_color,paddle, points, lives
-        
-        if not self.moving :
-            return
-        new_x = self.x+self.vx
-        new_y = self.y+self.vy
-        if new_x < BORDER+Ball.RADIUS:
-            self.vx = -self.vx
-            pong.play()
-        elif new_y < BORDER+Ball.RADIUS or new_y > HEIGHT-BORDER-Ball.RADIUS :
-            self.vy = -self.vy
-            pong.play()
-        elif new_x > WIDTH-Paddle.WIDTH-self.RADIUS : 
-            if abs(self.y-paddle.y) <= Paddle.HEIGHT//2 :
-                self.vx = -self.vx # gain a point
-                points += 1
-                pong.play()
-            else :
-                self.moving = False # lost ball
-                lives -= 1
-        else:
-            self.show(bg_color)
-            self.x = new_x
-            self.y = new_y
-            self.show(fg_color)
-        
-class Paddle:
-    
-    HEIGHT = 100
-    WIDTH = 20
-    
-    def __init__(self,y) :
+Screen_Width = 500
+Screen_Height = 200
+Fps = 15
+   
+# The background of the game
+class Game_Map() :
+    def __init__(self,x,y,image):
+        self.x = x
         self.y = y
+        self.image = image
 
-    def show(self,colour) :
-        global screen
-        
-        pygame.draw.rect(screen,colour, 
-                         pygame.Rect(WIDTH-self.WIDTH,
-                                     self.y-self.HEIGHT//2,
-                                     self.WIDTH,self.HEIGHT))
-        
-    def update(self) :
-        global fg_color
-        new_y = pygame.mouse.get_pos()[1]
-        if new_y >= BORDER+self.HEIGHT//2 \
-           and new_y <= HEIGHT-BORDER-self.HEIGHT//2 :
-            self.show(bg_color)
-            self.y = new_y
-            self.show(fg_color)
+    def Map_Move(self):
+        if self.x < -(Screen_Width-10) :  
+            self.x = Screen_Width   
+        else:
+            self.x -= 10  
 
-def show(text) :
-    myFont = pygame.font.SysFont(pygame.font.get_default_font(),40)
-    surf = myFont.render(text,False,bg_color,fg_color)
-    screen.blit(surf,(0,0))
+    def Map_Update(self):
+        Screen.blit(pygame.image.load(os.path.join(self.image)).convert(), (self.x, self.y))
 
-# initialising pygame
-pygame.init()
-
-pong = pygame.mixer.Sound("pong.wav")
-
-lives = 3
-points = 0
-
-clock = pygame.time.Clock()
-
-# creating the display with WIDTH and HEIGHT
-screen = pygame.display.set_mode((WIDTH,HEIGHT))
-
-# Fill the background of the object (Surface)
-bg_color = pygame.Color("blue")
-fg_color = pygame.Color("white")
-
-screen.fill(bg_color)
-
-# Drawing the walls
-pygame.draw.rect(screen,fg_color, pygame.Rect(0,0,WIDTH,BORDER))
-pygame.draw.rect(screen,fg_color, pygame.Rect(0,HEIGHT-BORDER,WIDTH,BORDER))
-pygame.draw.rect(screen,fg_color, pygame.Rect(0,0,BORDER,HEIGHT))
-
-# draw a ball
-# RADIUS = 20
 # 
-ball = Ball(WIDTH-Ball.RADIUS-Paddle.WIDTH,HEIGHT//2,-VELOCITY,-VELOCITY)
-ball.show(fg_color)
+class Game_Role():
+    def __init__(self) :
+        self.rect = pygame.Rect(0, 0, 0, 0)  # 小恐龙矩形图片的初始化,Rect(left,top,width,height)
+        self.jumpHeight = 130
+        self.jumpState = False  # 跳跃状态，true为跳跃
+        self.lowest_y = 140  # 最低坐标
+        self.jumpValue = 0  # 跳跃增变量
 
-# paddle
+# Initialising pygame
+pygame.init()
+# creating the display with WIDTH and HEIGHT
+Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
+# Set the title of the game
+pygame.display.set_caption("CWG's Game")
+Fps_Flash = pygame.time.Clock()
+bg1 = Game_Map(0, 20,"1.png")
+bg2 = Game_Map(500, 20,"2.png")
 
-paddle = Paddle(HEIGHT//2)
-paddle.show(fg_color)
-
-# This while loop awaits for events... Whenever the user closes the window 
-# (that's a QUIT event) the loop will break
-while lives > 0:
-    show(F"lives = {lives} , points = {points}")
-    e = pygame.event.poll()
-    if e.type == pygame.QUIT:
-        break
-    elif e.type == pygame.MOUSEBUTTONDOWN :
-        ball.moving = True
-
-    # Every time we draw something on a surface... we need to flip it on the screen.
-    pygame.display.flip()
-    ball.move()
-    paddle.update()
-    clock.tick(FRAMERATE)
-    
-print(F"You got : {points}")
-
-pygame.quit() # for the rest of the people with windows or Linux
-os._exit(0) # for Mac users.
+event = pygame.event.poll()
+while True:
+    bg1.Map_Update()
+    bg1.Map_Move()
+    bg2.Map_Update()
+    bg2.Map_Move()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT :
+            pygame.quit()# for the rest of the people with windows or Linux
+            os._exit(0) # for Mac users.
+    pygame.display.flip()      
+    Fps_Flash.tick(Fps)
