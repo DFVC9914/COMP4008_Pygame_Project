@@ -16,11 +16,11 @@ Fps = 20
 
 
 # the star interface
-def Star_Interface :
+def Star_Interface() :
     pass
 # the end interface
-def End_Interface :
-    
+def End_Interface() :
+    pass
 # The background of the game
 class Game_Map() :
     def __init__(self,x,y,Background_Image):
