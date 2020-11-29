@@ -15,7 +15,12 @@ Score = 0
 Fps = 20
 
 
-#    
+# the star interface
+def Star_Interface :
+    pass
+# the end interface
+def End_Interface :
+    
 # The background of the game
 class Game_Map() :
     def __init__(self,x,y,Background_Image):
@@ -56,7 +61,15 @@ class Game_Role():
             self.y += 5
             if self.y == 250 :
                 return self.y
-            
+# Reward items (optional)
+class Items() :
+    pass
+# Obstacle collision
+class Barriers() :
+    pass
+# Scoring system
+class Score() :
+    pass
 # Initialising pygame
 pygame.init()
 pygame.mixer.init()
