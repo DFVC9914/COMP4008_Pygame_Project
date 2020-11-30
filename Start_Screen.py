@@ -1,10 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Nov 29 09:24:39 2020
+@author: NANDI GUO
+"""
+
 import pygame,sys,os
 pygame.init()
-Width,Height = 780,366
-Orange = 255,89,0
-White = 255,255,255
-Blue = 0,238,255
+Width,Height = (780,366)
+Orange = (255,89,0)
+White = (255,255,255)
+Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
+
 pygame.display.set_caption("Start Screen")
 background = pygame.image.load("Images/Start_Background.jpg")
 how_to_play = pygame.image.load("Images/555.png")
@@ -12,9 +20,7 @@ font = pygame.font.Font(pygame.font.get_default_font(), 32)
 bgm_sound = pygame.mixer.Sound("Sounds/bgm1.mp3")
 bgm_sound.play()
 
-
 class Button():
-
     def __init__(self, text, color, x=None, y=None, **kwargs):
 
         self.surf = font.render(text, True, color)
@@ -50,12 +56,11 @@ def Secondscreen():
     pygame.display.set_caption("Game Introduction") 
     pygame.display.update()
 
-
 def Firstscreen():
     b1x,b1y=None,90
     b2x,b2y=None,150 
     b3x,b3y=None,210
-    #b4x,b4y=None,270
+    
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
@@ -91,6 +96,7 @@ def Firstscreen():
             play_button = Button('Play', Blue, b1x, b1y, center_x=True)                        
         else:            
             play_button = Button('Play', Orange, b1x, b1y, center_x=True)
+            
         if exit_button.check_click(pygame.mouse.get_pos()):
             exit_button = Button('Quit', Blue, b2x, b2y, center_x=True)
         else:           
@@ -117,6 +123,8 @@ def Firstscreen():
             if play_button.check_click(pygame.mouse.get_pos()):
                 import Main_Game
                 pygame.quit()
+                sys.exit()
+                os.quit
                 break
 
             if exit_button.check_click(pygame.mouse.get_pos()):
@@ -126,8 +134,6 @@ def Firstscreen():
                 break
 
             if introduction_button.check_click(pygame.mouse.get_pos()):            
-                Secondscreen()
-                #back_button = Button('Back', Orange, b4x, b4y, center_x=True)
-                #back_button.display()
-
+                Secondscreen()                
+            
 Firstscreen()
