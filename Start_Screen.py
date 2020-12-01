@@ -121,6 +121,7 @@ def Firstscreen():
         if pygame.mouse.get_pressed()[0]:
 
             if play_button.check_click(pygame.mouse.get_pos()):
+                bgm_sound.stop()
                 import Main_Game
                 pygame.quit()
                 sys.exit()
