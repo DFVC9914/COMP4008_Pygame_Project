@@ -133,7 +133,13 @@ def Firstscreen():
                 os.quit
                 break
 
-            if introduction_button.check_click(pygame.mouse.get_pos()):            
-                Secondscreen()                
+            if introduction_button.check_click(pygame.mouse.get_pos()):
+                #Secondscreen()
+                bgm_sound.stop()
+                import How_to_play.py
+                sys.exit()
+                os.quit
+                break
+                
             
 Firstscreen()
