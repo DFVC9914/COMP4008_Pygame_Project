@@ -2,7 +2,7 @@
 """
 Created on Tue Dec  1 22:09:30 2020
 
-@author: 90730
+@author: NANDI GUO
 """
 
 import pygame,sys,os
