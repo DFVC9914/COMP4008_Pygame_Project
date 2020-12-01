@@ -50,13 +50,11 @@ class Button():
             return False
         
 def How_screen():
+    
     b1x,b1y=None,5
 
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
-
-    title = font.render('CWG-RUNNING GAME', True, White)
-    screen.blit(title, (Width//2 - title.get_width()//2, 10))
     
     play_button = Button('Start Game', Orange, b1x, b1y, center_x=True)
     play_button.display()
