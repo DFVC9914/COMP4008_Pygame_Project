@@ -7,17 +7,20 @@ Created on Tue Dec  1 22:09:30 2020
 
 import pygame,sys,os
 pygame.init()
-Width,Height = (780,366)
+Width,Height = (813,409)
 Orange = (255,89,0)
 White = (255,255,255)
 Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
 
 pygame.display.set_caption("How_to_play")
-background = pygame.image.load("Images/555.png")
+background = pygame.image.load("Images/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 25)
 screen.blit(background, (0,0))
 pygame.display.update()
+
+bgm2_sound = pygame.mixer.Sound("Sounds/bgm2.mp3")
+bgm2_sound.play()
 
 class Button():
     
@@ -84,7 +87,7 @@ def How_screen():
                             
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
-                
+                bgm2_sound.stop()
                 import Main_Game.py
                 pygame.quit()
                 sys.exit()
