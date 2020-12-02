@@ -1,5 +1,5 @@
 
-import pygame,os
+import pygame,os,sys
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -7,8 +7,6 @@ import pygame,os
 Created on Sun Nov 29 09:24:39 2020
 @author: NANDI GUO
 """
-
-import pygame,sys,os
 
 pygame.init()
 Width,Height = (780,366)
@@ -70,7 +68,7 @@ def Firstscreen():
     def Ourname():
             global font
             aut = pygame.font.Font(pygame.font.get_default_font(), 15)
-            author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\                                                                    \
+            author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU                                                                    \
                         Version 1.0', True, White)
             screen.blit(author, (10, 340))
 
