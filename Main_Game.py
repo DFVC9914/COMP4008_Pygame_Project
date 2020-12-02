@@ -5,7 +5,7 @@ Created on Thu Nov 19 09:24:39 2020
 @author: Chao Cui
 """
 
-import pygame,os,sys,random
+import pygame,os,random
 
 Images_Path = os.getcwd()
 # Global variables

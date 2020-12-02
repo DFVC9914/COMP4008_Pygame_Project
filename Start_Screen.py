@@ -1,4 +1,4 @@
-import pygame,sys,os
+import pygame,os
 pygame.init()
 Width,Height = 780,366
 Orange = 255,89,0
@@ -117,12 +117,12 @@ def Firstscreen():
             if play_button.check_click(pygame.mouse.get_pos()):
                 import Main_Game
                 pygame.quit()
+                os._exit(0)
                 break
 
             if exit_button.check_click(pygame.mouse.get_pos()):
                 pygame.quit()
-                sys.exit()
-                os.quit
+                os._exit(0)
                 break
 
             if introduction_button.check_click(pygame.mouse.get_pos()):            
