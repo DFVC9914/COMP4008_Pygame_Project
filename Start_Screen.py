@@ -1,3 +1,6 @@
+
+import pygame,os
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -6,6 +9,7 @@ Created on Sun Nov 29 09:24:39 2020
 """
 
 import pygame,sys,os
+
 pygame.init()
 Width,Height = (780,366)
 Orange = (255,89,0)
@@ -59,16 +63,14 @@ def Secondscreen():
 def Firstscreen():
     b1x,b1y=None,90
     b2x,b2y=None,150 
-    b3x,b3y=None,210
-    
+    b3x,b3y=None,210  
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
     def Ourname():
             global font
             aut = pygame.font.Font(pygame.font.get_default_font(), 15)
-            author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\
-                                                                    \
+            author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\                                                                    \
                         Version 1.0', True, White)
             screen.blit(author, (10, 340))
 
@@ -124,23 +126,18 @@ def Firstscreen():
                 bgm_sound.stop()
                 import Main_Game
                 pygame.quit()
-                sys.exit()
-                os.quit
+                os._exit(0)
                 break
 
             if exit_button.check_click(pygame.mouse.get_pos()):
                 pygame.quit()
-                sys.exit()
-                os.quit
+                os._exit(0)
                 break
 
             if introduction_button.check_click(pygame.mouse.get_pos()):
                 #Secondscreen()
                 bgm_sound.stop()
                 import How_to_play.py
-                sys.exit()
-                os.quit
-                break
-                
-            
+                os._exit(0)
+                break            
 Firstscreen()

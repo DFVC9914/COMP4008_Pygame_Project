@@ -5,14 +5,15 @@ Created on Thu Nov 19 09:24:39 2020
 @author: Chao Cui
 """
 
-import pygame,os,sys,random
+import pygame,os,random
 
 Images_Path = os.getcwd()
 # Global variables
 Screen_Width = 1000
 Screen_Height = 443
+Jump_Speed = 6
 Fps = 20
-
+Game_Over = False 
 # The background of the game
 class Game_Map() :
     def __init__(self,x,y,Background_Image):
@@ -30,26 +31,25 @@ class Game_Map() :
 #  
 class Game_Role():
     def __init__(self,Role_Image) :  
-        self.rect=pygame.Rect(10,250,0,0)
+        self.rect = pygame.Rect(10,250,0,0)
         self.Role_Image = Role_Image
-        self.Jump_Height = 150
-        self.Jump_Start_Position = 250
+        self.Jump_Height = 120
+        self.Jump_Start_Position = self.rect.y
         self.Jump_Control = False
-        Screen.blit(pygame.image.load(os.path.join(self.Role_Image[0])).convert_alpha(), (self.rect.x,self.rect.y))
-        pygame.display.flip()
-    
+        self.Image = pygame.image.load(self.Role_Image[0]).convert_alpha()
+        self.rect.size = self.Image.get_size()
     def Jump(self):
         Jump_Sound.play()
         self.Jump_Control = True
     
     def Move(self) :   
-        Screen.blit(pygame.image.load(os.path.join(self.Role_Image[0])).convert_alpha(), (self.rect.x, self.rect.y))
+        Screen.blit(self.Image , (self.rect.x, self.rect.y))
         if self.Jump_Control == True:
-            self.rect.y -= 5
-            if self.rect.y == self.Jump_Height :
+            self.rect.y -= Jump_Speed
+            if self.rect.y <= self.Jump_Height :
                 self.Jump_Control = False
         if self.Jump_Control == False and self.rect.y != self.Jump_Start_Position :
-            self.rect.y += 5
+            self.rect.y += Jump_Speed
             if self.rect.y == self.Jump_Start_Position :
                 return self.rect.y
 
@@ -62,11 +62,13 @@ class Barriers() :
             self.Image = pygame.image.load(self.Barriers_Images[0]).convert_alpha()
         else:
             self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
-
+        self.rect.size = self.Image.get_size()
     def Move(self):
         self.rect.x -= 10
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
-        
+
+class Score() :
+        pass
 # Initialising pygame
 pygame.init()
 pygame.mixer.init()
@@ -90,24 +92,29 @@ Barriers_Time = 0
 List = []
 Game_Run_Sound.play()
 while True:
-    Bg.Map_Move()
-    Role.Move()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT :
-            pygame.quit()# for the rest of the people with windows or Linux
-            os._exit(0) # for Mac users.
-        elif event.type == pygame.KEYDOWN :
-            if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
-                Role.Jump()
+    if Game_Over == False : 
+        Bg.Map_Move()
+        Role.Move()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT :
+                pygame.quit()# for the rest of the people with windows or Linux
+                # os._exit(0) # for Mac users.
+            elif event.type == pygame.KEYDOWN :
+                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
+                    Role.Jump()
+                    
+        if Barriers_Time>=1000:
+            r=random.randint(0,100)
+            if r <= 10:
+                Barrier = Barriers(Barriers_Images)
+                List.append(Barrier)
+                Barriers_Time = 0
+        for i in range(len(List)) :
+            List[i].Move()  # 出现的障碍物移动
+            if pygame.sprite.collide_rect(Role,List[i]) :
+                Game_Over = True
                 
-    if Barriers_Time>=1000:
-        r=random.randint(0,100)
-        if r == 70:
-            Barrier = Barriers(Barriers_Images)
-            List.append(Barrier)
-            Barriers_Time = 0
-    for i in range(len(List)):
-        List[i].Move()  # 出现的障碍物移动
-    Barriers_Time += 20                
-    pygame.display.flip()      
-    Fps_Flash.tick(Fps)
+                Screen.blit(Role.Image, (Screen_Width / 2,Screen_Height / 2))                
+        Barriers_Time += 20                
+        pygame.display.flip()      
+        Fps_Flash.tick(Fps)
