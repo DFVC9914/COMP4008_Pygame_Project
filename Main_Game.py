@@ -90,19 +90,18 @@ Bg = Game_Map(0,0,"Images/Game_Background.jpg")
 
 Barriers_Time = 0 
 List = []
-Game_Run_Sound.play()
-while True:
-    if Game_Over == False : 
-        Bg.Map_Move()
-        Role.Move()
-        for event in pygame.event.get():
+Game_Run_Sound.play(-1,0)
+while True :
+    for event in pygame.event.get():
             if event.type == pygame.QUIT :
                 pygame.quit()# for the rest of the people with windows or Linux
                 # os._exit(0) # for Mac users.
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()
-                    
+    if Game_Over == False : 
+        Bg.Map_Move()
+        Role.Move()   
         if Barriers_Time>=1000:
             r=random.randint(0,100)
             if r <= 10:
@@ -113,7 +112,6 @@ while True:
             List[i].Move()  # 出现的障碍物移动
             if pygame.sprite.collide_rect(Role,List[i]) :
                 Game_Over = True
-                
                 Screen.blit(Role.Image, (Screen_Width / 2,Screen_Height / 2))                
         Barriers_Time += 20                
         pygame.display.flip()      
