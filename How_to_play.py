@@ -7,7 +7,7 @@ Created on Tue Dec  1 22:09:30 2020
 import pygame,sys,os
 pygame.init()
 Width,Height = (813,409)
-Orange = (255,89,0)
+Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
@@ -46,7 +46,7 @@ class Button():
         
 def How_screen():
     
-    b1x,b1y=660,370
+    b1x,b1y=670,375
 
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
