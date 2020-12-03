@@ -7,11 +7,13 @@ Created on Thu Nov 19 09:24:39 2020
 
 import pygame,os,random
 # Global variables
-Screen_Width = 1000
+Screen_Width = 900
 Screen_Height = 443
-Jump_Speed = 7
+Jump_Speed = 8
 Fps = 20
 Distance = 0
+Highest_y = 100
+Lowest_y = 250
 Scores = 0
 Barriers_Time = 0 
 Barriers_List = []
@@ -37,8 +39,8 @@ class Game_Role():
     def __init__(self,Role_Image) :  
         self.rect = pygame.Rect(10,250,0,0)
         self.Role_Image = Role_Image
-        self.Jump_Height = 100
-        self.Jump_Start_Position = 250
+        self.Jump_Height = Highest_y
+        self.Jump_Start_Position = Lowest_y
         self.Jump_Control = False
         self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha(),pygame.image.load(self.Role_Image[1]).convert_alpha(),pygame.image.load(self.Role_Image[2]).convert_alpha())
         self.rect.size = self.Image[0].get_size()
@@ -57,13 +59,13 @@ class Game_Role():
                 self.Jump_Control = False
                 self.Jump_Control_Twist = True
         elif self.Jump_Control_Twist == True :
-            self.rect.y += Jump_Speed
-            if self.rect.y == self.Jump_Start_Position :
+            self.rect.y += (Jump_Speed - 2)
+            if self.rect.y >= self.Jump_Start_Position :
                 self.Jump_Control_Twist = False
             
     def Draw_Role(self,i) :
         # self.Index = next(self.IndexGen)
-        if self.Jump_Start_Position == self.rect.y :
+        if self.Jump_Start_Position <= self.rect.y :
             Screen.blit(self.Image[i],(self.rect.x, self.rect.y))  
         else  :
             Screen.blit(self.Image[2],(self.rect.x, self.rect.y))
@@ -76,16 +78,16 @@ class Barriers() :
         Random_Number =  random.randint(0,3)
         if Random_Number == 0 :  
             self.Image = pygame.image.load(self.Barriers_Images[0]).convert_alpha()
-            self.rect.y = 260
+            self.rect.y = Lowest_y
         elif Random_Number == 1 :
             self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
-            self.rect.y = 260
+            self.rect.y = Lowest_y
         elif Random_Number == 2 :
             self.Image = pygame.image.load(self.Barriers_Images[2]).convert_alpha()
-            self.rect.y = 130
+            self.rect.y = Highest_y + 10
         elif Random_Number == 3 :
             self.Image = pygame.image.load(self.Barriers_Images[3]).convert_alpha()
-            self.rect.y = 130
+            self.rect.y = Highest_y + 10
         self.rect.size = self.Image.get_size()
         self.Score = 1
  
@@ -119,11 +121,11 @@ Award_Item_Images = ["Images/Item_1.png","Images/Item_2.png"]
 
 Role = Game_Role(Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
-Bg = Game_Map(0,0,"Images/Game_Background.jpg")
+Bg = Game_Map(0,0,"Images/Game_Background.png")
 # Show the score and distance on the left top
 def Show(Text,x,y) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
-    surf = Font.render(Text,False,(0,0,0))
+    surf = Font.render(Text,False,(255,255,255))
     Screen.blit(surf,(x,y))
 
 
@@ -141,6 +143,7 @@ while True :
         Run_State = not Run_State
         Bg.Map_Move()
         Role.Action_Move()
+        
         if Run_State == True :
             Role.Draw_Role(0)
         else :
