@@ -59,9 +59,9 @@ def Firstscreen():
     title = font.render('CWG-RUNNING GAME', True, White)
     screen.blit(title, (Width//2 - title.get_width()//2, 10))
 
-    play_button = Button('Play', Orange, b1x, b1y, center_x=True)
-    exit_button = Button('Quit', Orange, b2x, b2y, center_x=True)
-    introduction_button = Button('How to play', Orange, b3x, b3y, center_x=True)
+    play_button = Button('Play', Orange, b1x, b1y)
+    exit_button = Button('Quit', Orange, b2x, b2y)
+    introduction_button = Button('How to play', Orange, b3x, b3y)
 
     play_button.display()
     exit_button.display()
