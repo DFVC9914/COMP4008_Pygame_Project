@@ -13,10 +13,12 @@ Screen_Width = 1000
 Screen_Height = 443
 Jump_Speed = 6
 Fps = 20
+Distance = 0
+Lives = 3
 Game_Over = False 
 # The background of the game
 class Game_Map() :
-    def __init__(self,x,y,Background_Image):
+    def __init__(self,x,y,Background_Image) :
         self.x = x
         self.y = y
         self.Background_Image = Background_Image
@@ -44,7 +46,7 @@ class Game_Role():
     
     def Move(self) :   
         Screen.blit(self.Image , (self.rect.x, self.rect.y))
-        if self.Jump_Control == True:
+        if self.Jump_Control == True :
             self.rect.y -= Jump_Speed
             if self.rect.y <= self.Jump_Height :
                 self.Jump_Control = False
@@ -54,7 +56,7 @@ class Game_Role():
                 return self.rect.y
 
 class Barriers() :
-    def __init__(self,Barriers_Images):
+    def __init__(self,Barriers_Images) :
         self.rect = pygame.Rect(800, 260, 0, 0)  
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0, 1)
@@ -63,11 +65,12 @@ class Barriers() :
         else:
             self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
         self.rect.size = self.Image.get_size()
-    def Move(self):
+    
+    def Move(self) :
         self.rect.x -= 10
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
-
-class Score() :
+        
+    def Get_Score(self) :
         pass
 # Initialising pygame
 pygame.init()
@@ -87,19 +90,25 @@ Role = Game_Role(Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
 Bg = Game_Map(0,0,"Images/Game_Background.jpg")
 
-
+def Show(Text) :
+    Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
+    surf = Font.render(Text,False,(0,255,0))
+    Screen.blit(surf,(0,0))
+    
 Barriers_Time = 0 
 List = []
 Game_Run_Sound.play(-1,0)
-while True :
+
+while True :   
     for event in pygame.event.get():
-            if event.type == pygame.QUIT :
-                pygame.quit()# for the rest of the people with windows or Linux
-                # os._exit(0) # for Mac users.
-            elif event.type == pygame.KEYDOWN :
-                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
-                    Role.Jump()
-    if Game_Over == False : 
+        if event.type == pygame.QUIT :
+            pygame.quit()# for the rest of the people with windows or Linux
+            os._exit(0) # for Mac users.
+        elif event.type == pygame.KEYDOWN :
+            if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
+                Role.Jump()
+    if Game_Over == False :   
+        Distance  += 1  
         Bg.Map_Move()
         Role.Move()   
         if Barriers_Time>=1000:
@@ -111,8 +120,10 @@ while True :
         for i in range(len(List)) :
             List[i].Move()  # 出现的障碍物移动
             if pygame.sprite.collide_rect(Role,List[i]) :
-                Game_Over = True
-                Screen.blit(Role.Image, (Screen_Width / 2,Screen_Height / 2))                
+                Lives -= 1
+                Game_Over = True              
+        Show(f"Distance = {Distance} , Lives = {Lives}")                
         Barriers_Time += 20                
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
+    

@@ -24,7 +24,6 @@ bgm_sound.play()
 
 class Button():
     def __init__(self, text, color, x=None, y=None, **kwargs):
-
         self.surf = font.render(text, True, color)
         self.WIDTH = self.surf.get_width()
         self.HEIGHT = self.surf.get_height()
@@ -54,7 +53,6 @@ class Button():
 def Secondscreen():
     screen2 = pygame.display.set_mode((Width, Height)) 
     screen2.blit(how_to_play, (0,0))
-
     pygame.display.set_caption("Game Introduction") 
     pygame.display.update()
 
@@ -66,11 +64,11 @@ def Firstscreen():
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
     def Ourname():
-            global font
-            aut = pygame.font.Font(pygame.font.get_default_font(), 15)
-            author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU                                                                    \
-                        Version 1.0', True, White)
-            screen.blit(author, (10, 340))
+        global font
+        aut = pygame.font.Font(pygame.font.get_default_font(), 15)
+        author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU                                                                    \
+                    Version 1.0', True, White)
+        screen.blit(author, (10, 340))
 
     title = font.render('CWG-RUNNING GAME', True, White)
     screen.blit(title, (Width//2 - title.get_width()//2, 10))
@@ -119,7 +117,6 @@ def Firstscreen():
                 os.quit
 
         if pygame.mouse.get_pressed()[0]:
-
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
                 import Main_Game
