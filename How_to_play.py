@@ -4,11 +4,10 @@ Created on Tue Dec  1 22:09:30 2020
 
 @author: NANDI GUO
 """
-
 import pygame,sys,os
 pygame.init()
 Width,Height = (813,409)
-Orange = (255,89,0)
+Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
@@ -24,21 +23,14 @@ bgm2_sound.play()
 
 class Button():
     
-    def __init__(self, text, color, x=None, y=None, **kwargs):
+    def __init__(self, text, color, x=None, y=None):
 
         self.surf = font.render(text, True, color)
         self.WIDTH = self.surf.get_width()
         self.HEIGHT = self.surf.get_height()
     
-        if 'center_x' in kwargs and kwargs['center_x']:                    
-            self.x = Width // 2 - self.WIDTH // 2
-        else:
-            self.x = x
-    
-        if 'center_y' in kwargs and kwargs['center_y']:
-            self.y = Height // 2 - self.HEIGHT // 2
-        else:
-            self.y = y
+        self.x = x    
+        self.y = y
     
     def display(self):
     	screen.blit(self.surf, (self.x, self.y))
@@ -54,27 +46,23 @@ class Button():
         
 def How_screen():
     
-    b1x,b1y=None,5
+    b1x,b1y=670,375
 
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     
-    play_button = Button('Start Game', Orange, b1x, b1y, center_x=True)
+    play_button = Button('Start Game', Orange, b1x, b1y)
     play_button.display()
     pygame.display.update() 
        
     while True:
         
-        if not (play_button.check_click(pygame.mouse.get_pos())):
-                
-            pygame.mixer.music.play()
-              
-        if play_button.check_click(pygame.mouse.get_pos()):  
-            
-            play_button = Button('Start Game', Blue, b1x, b1y, center_x=True) 
-                       
+        if not (play_button.check_click(pygame.mouse.get_pos())):                
+            pygame.mixer.music.play()              
+        if play_button.check_click(pygame.mouse.get_pos()):              
+            play_button = Button('Start Game', Blue, b1x, b1y)                        
         else:            
-            play_button = Button('Start Game', Orange, b1x, b1y, center_x=True)
+            play_button = Button('Start Game', Orange, b1x, b1y)
         
         play_button.display()
         pygame.display.update()
@@ -89,8 +77,7 @@ def How_screen():
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 import Main_Game.py
-                pygame.quit()
-                sys.exit()
+                pygame.quit()                
                 os.quit
                 break
 How_screen()
