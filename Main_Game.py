@@ -10,7 +10,7 @@ import pygame,os,random
 # Global variables
 Screen_Width = 1000
 Screen_Height = 443
-Jump_Speed = 5
+Jump_Speed = 7
 Fps = 20
 Distance = 0
 Lives = 0
@@ -136,7 +136,7 @@ while True :
         Bg.Map_Move()
         Role.Action_Move()
         Role.Draw_Role()
-        if Barriers_Time >= 1000 :
+        if Barriers_Time >= 1500 :
             r=random.randint(0,100)
             if r <= 10 :
                 Barrier = Barriers(Barriers_Images)
