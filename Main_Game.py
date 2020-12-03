@@ -7,7 +7,6 @@ Created on Thu Nov 19 09:24:39 2020
 
 import pygame,os,random
 
-Images_Path = os.getcwd()
 # Global variables
 Screen_Width = 1000
 Screen_Height = 443
@@ -85,7 +84,7 @@ Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 # Set the title of the game
 pygame.display.set_caption("CWG's Game")
 # The images of the game
-Role_Image_Action = ["Images/222.png"]
+Role_Image_Action = ["Images/Role_1.png"]
 Barriers_Images = ["Images/Barrier_1.png","Images/Barrier_2.png"]
 
 Role = Game_Role(Role_Image_Action)
@@ -122,7 +121,7 @@ while True :
         Role.Move()   
         if Barriers_Time >= 1000 :
             r=random.randint(0,100)
-            if r <= 10:
+            if r <= 10 :
                 Barrier = Barriers(Barriers_Images)
                 Barriers_List.append(Barrier)
                 Barriers_Time = 0
