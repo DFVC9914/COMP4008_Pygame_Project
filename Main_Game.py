@@ -58,12 +58,12 @@ class Game_Role():
             if self.rect.y == self.Jump_Start_Position :
                 self.Jump_Control_Twist = False
             
-
     def Draw_Role(self,i) :
         if self.Jump_Start_Position == self.rect.y :
             Screen.blit(self.Image[i],(self.rect.x, self.rect.y))
         else  :
             Screen.blit(self.Image[2],(self.rect.x, self.rect.y))
+            
 # The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :
@@ -75,34 +75,32 @@ class Barriers() :
         else:
             self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
         self.rect.size = self.Image.get_size()
-        self.score = 0
-    
+        self.Score = 1
+ 
     def Move(self) :
         self.rect.x -= 10
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
         
     def getScore(self):
-        Scores = self.score 
-        if Scores == 1 :
-            Show("111")
-        self.score = 0
-        return Scores
+        Temporary_Score = self.Score
+        self.Score = 0
+        return Temporary_Score
 
-# The barriers of the game
-class Award_Items() :
-    def __init__(self,Award_Item_Images) :
-        self.rect = pygame.Rect(800, 120, 0, 0)  
-        self.Award_Item_Images = Award_Item_Images
-        Random_Number =  random.randint(0, 1)
-        if Random_Number == 0 :  
-            self.Image = pygame.image.load(self.Award_Item_Images[0]).convert_alpha()
-        else:
-            self.Image = pygame.image.load(self.Award_Item_Images[1]).convert_alpha()
-        self.rect.size = self.Image.get_size()
+# # The items of the game
+# class Award_Items() :
+#     def __init__(self,Award_Item_Images) :
+#         self.rect = pygame.Rect(800, 120, 0, 0)  
+#         self.Award_Item_Images = Award_Item_Images
+#         Random_Number =  random.randint(0, 1)
+#         if Random_Number == 0 :  
+#             self.Image = pygame.image.load(self.Award_Item_Images[0]).convert_alpha()
+#         else:
+#             self.Image = pygame.image.load(self.Award_Item_Images[1]).convert_alpha()
+#         self.rect.size = self.Image.get_size()
 
-    def Move(self) :
-        self.rect.x -= 10
-        Screen.blit(self.Image, (self.rect.x, self.rect.y))
+#     def Move(self) :
+#         self.rect.x -= 10
+#         Screen.blit(self.Image, (self.rect.x, self.rect.y))
         
                        
 # Initialising pygame
@@ -125,16 +123,16 @@ Role = Game_Role(Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
 Bg = Game_Map(0,0,"Images/Game_Background.jpg")
 # Show the score and distance on the left top
-def Show(Text) :
+def Show(Text,x,y) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
     surf = Font.render(Text,False,(0,0,0))
-    Screen.blit(surf,(0,0))
+    Screen.blit(surf,(x,y))
 
 Barriers_Time = 0 
 Barriers_List = []
 Game_Run_Sound.play(-1,0)
-Items_Time = 0
-Items_List = []
+# Items_Time = 0
+# Items_List = []
 while True : 
     for event in pygame.event.get():
         if event.type == pygame.QUIT :
@@ -157,25 +155,25 @@ while True :
         for i in range(len(Barriers_List)) :
             Barriers_List[i].Move()  
             if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
-                # Game_Over = True
-                Show("1111111111111111111111")  
-            else :
-                if(Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < 10 :
-                    Barriers_List[i].getScore()
-        if Items_Time >= 1000 :
-            r=random.randint(0,100)
-            if r <= 10 :
-                Award_Item = Award_Items(Award_Item_Images)
-                Items_List += [Award_Item]
-                Items_Time = 0
-        for i in range(len(Items_List)) : 
-            Items_List[i].Move() 
-            if pygame.sprite.collide_rect(Role,Items_List[i]) :
-                Scores += 10
+                Game_Over = True
+                Show("Dead",300,150)  
+            elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
+                    Scores += Barriers_List[i].getScore()
+        # if Items_Time >= 1000 :
+        #     r=random.randint(0,100)
+        #     if r <= 10 :
+        #         Award_Item = Award_Items(Award_Item_Images)
+        #         Items_List += [Award_Item]
+        #         Items_Time = 0
+        # for i in range(len(Items_List)) : 
+        #     Items_List[i].Move() 
+        #     if pygame.sprite.collide_rect(Role,Items_List[i]) :
+                
+        #         Scores += 10
 
-        Show(f"Distance = {Distance} , Scores = {Scores}")             
+        Show(f"Distance = {Distance} , Scores = {Scores}",0,0)             
         Barriers_Time += 20  
-        Items_Time += 10           
+        # Items_Time += 10           
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
     
