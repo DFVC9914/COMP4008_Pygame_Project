@@ -36,7 +36,7 @@ class Game_Role():
     def __init__(self,Role_Image) :  
         self.rect = pygame.Rect(10,250,0,0)
         self.Role_Image = Role_Image
-        self.Jump_Height = 120
+        self.Jump_Height = 10
         self.Jump_Start_Position = self.rect.y
         self.Jump_Control = False
         self.Image = pygame.image.load(self.Role_Image[0]).convert_alpha()
