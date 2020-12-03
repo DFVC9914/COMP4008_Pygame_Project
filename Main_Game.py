@@ -6,15 +6,15 @@ Created on Thu Nov 19 09:24:39 2020
 """
 
 import pygame,os,random
-
 # Global variables
 Screen_Width = 1000
 Screen_Height = 443
 Jump_Speed = 7
 Fps = 20
 Distance = 0
-Lives = 0
 Scores = 0
+Barriers_Time = 0 
+Barriers_List = []
 Game_Over = False 
 
 # The background of the game
@@ -42,6 +42,8 @@ class Game_Role():
         self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha(),pygame.image.load(self.Role_Image[1]).convert_alpha(),pygame.image.load(self.Role_Image[2]).convert_alpha())
         self.rect.size = self.Image[0].get_size()
         self.Jump_Control_Twist = False
+        # self.Index = 0
+        # self.IndexGen = itertools.cycle([0, 1, 2])
     
     def Jump(self):
         Jump_Sound.play()
@@ -58,22 +60,31 @@ class Game_Role():
             if self.rect.y == self.Jump_Start_Position :
                 self.Jump_Control_Twist = False
             
-    def Draw_Role(self,i) :
+    def Draw_Role(self) :
+        # self.Index = next(self.IndexGen)
         if self.Jump_Start_Position == self.rect.y :
-            Screen.blit(self.Image[i],(self.rect.x, self.rect.y))
+            Screen.blit(self.Image[0],(self.rect.x, self.rect.y))
         else  :
             Screen.blit(self.Image[2],(self.rect.x, self.rect.y))
             
 # The barriers of the game
 class Barriers() :
-    def __init__(self,Barriers_Images) :
-        self.rect = pygame.Rect(800, 260, 0, 0)  
+    def __init__(self,Barriers_Images) :   
+        self.rect = pygame.Rect(800,0,0,0)  
         self.Barriers_Images = Barriers_Images
-        Random_Number =  random.randint(0, 1)
+        Random_Number =  random.randint(0,3)
         if Random_Number == 0 :  
             self.Image = pygame.image.load(self.Barriers_Images[0]).convert_alpha()
-        else:
+            self.rect.y = 260
+        elif Random_Number == 1 :
             self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
+            self.rect.y = 260
+        elif Random_Number == 2 :
+            self.Image = pygame.image.load(self.Barriers_Images[2]).convert_alpha()
+            self.rect.y = 130
+        elif Random_Number == 3 :
+            self.Image = pygame.image.load(self.Barriers_Images[3]).convert_alpha()
+            self.rect.y = 130
         self.rect.size = self.Image.get_size()
         self.Score = 1
  
@@ -116,7 +127,7 @@ Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 pygame.display.set_caption("CWG's Game")
 # The images of the game
 Role_Image_Action = ["Images/Role_Run_1.png","Images/Role_Run_2.png","Images/Role_Jump.png"]
-Barriers_Images = ["Images/Barrier_1.png","Images/Barrier_2.png"]
+Barriers_Images = ["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_2.gif","Images/Barrier_Top_1.gif","Images/Barrier_Top_2.gif"]
 Award_Item_Images = ["Images/Item_1.png","Images/Item_2.png"] 
 
 Role = Game_Role(Role_Image_Action)
@@ -128,8 +139,7 @@ def Show(Text,x,y) :
     surf = Font.render(Text,False,(0,0,0))
     Screen.blit(surf,(x,y))
 
-Barriers_Time = 0 
-Barriers_List = []
+
 Game_Run_Sound.play(-1,0)
 # Items_Time = 0
 # Items_List = []
@@ -145,7 +155,7 @@ while True :
         Distance += 1  
         Bg.Map_Move()
         Role.Action_Move()
-        Role.Draw_Role(0)
+        Role.Draw_Role()
         if Barriers_Time >= 1000 :
             r=random.randint(0,100)
             if r <= 10 :
