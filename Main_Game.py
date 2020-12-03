@@ -14,7 +14,8 @@ Screen_Height = 443
 Jump_Speed = 6
 Fps = 20
 Distance = 0
-Lives = 3
+Lives = 0
+Scores = 0
 Game_Over = False 
 # The background of the game
 class Game_Map() :
@@ -70,8 +71,7 @@ class Barriers() :
         self.rect.x -= 10
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
         
-    def Get_Score(self) :
-        pass
+
 # Initialising pygame
 pygame.init()
 pygame.mixer.init()
@@ -92,14 +92,21 @@ Bg = Game_Map(0,0,"Images/Game_Background.jpg")
 
 def Show(Text) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
-    surf = Font.render(Text,False,(0,255,0))
+    surf = Font.render(Text,False,(0,0,0))
     Screen.blit(surf,(0,0))
-    
+
+def Get_Scores(a) :
+    global Scores
+    if a == 1 :
+        Scores += 1
+        a = 0
+    return Scores  
+
 Barriers_Time = 0 
 List = []
 Game_Run_Sound.play(-1,0)
 
-while True :   
+while True : 
     for event in pygame.event.get():
         if event.type == pygame.QUIT :
             pygame.quit()# for the rest of the people with windows or Linux
@@ -111,7 +118,7 @@ while True :
         Distance  += 1  
         Bg.Map_Move()
         Role.Move()   
-        if Barriers_Time>=1000:
+        if Barriers_Time >= 1000:
             r=random.randint(0,100)
             if r <= 10:
                 Barrier = Barriers(Barriers_Images)
@@ -120,9 +127,12 @@ while True :
         for i in range(len(List)) :
             List[i].Move()  # 出现的障碍物移动
             if pygame.sprite.collide_rect(Role,List[i]) :
-                Lives -= 1
-                Game_Over = True              
-        Show(f"Distance = {Distance} , Lives = {Lives}")                
+                Game_Over = True
+            else :
+                if(List[i].rect.x + List[i].rect.size[0]) <= Role.rect.size[0] :
+                    Lives = 1
+                    Get_Scores(Lives)
+        Show(f"Distance = {Distance} , Scores = {Scores}")             
         Barriers_Time += 20                
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
