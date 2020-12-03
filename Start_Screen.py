@@ -27,16 +27,8 @@ class Button():
         self.surf = font.render(text, True, color)
         self.WIDTH = self.surf.get_width()
         self.HEIGHT = self.surf.get_height()
-
-        if 'center_x' in kwargs and kwargs['center_x']:                    
-            self.x = Width // 2 - self.WIDTH // 2
-        else:
-            self.x = x
-
-        if 'center_y' in kwargs and kwargs['center_y']:
-            self.y = Height // 2 - self.HEIGHT // 2
-        else:
-            self.y = y
+        self.x = x
+        self.y = y
 
     def display(self):
     	screen.blit(self.surf, (self.x, self.y))
@@ -45,21 +37,15 @@ class Button():
         x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
         y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
 
-        if x_match and y_match:
+        if (x_match) and (y_match):
             return True
         else:
             return False
 
-def Secondscreen():
-    screen2 = pygame.display.set_mode((Width, Height)) 
-    screen2.blit(how_to_play, (0,0))
-    pygame.display.set_caption("Game Introduction") 
-    pygame.display.update()
-
 def Firstscreen():
-    b1x,b1y=None,90
-    b2x,b2y=None,150 
-    b3x,b3y=None,210  
+    b1x,b1y=360,90
+    b2x,b2y=360,150 
+    b3x,b3y=310,210  
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
@@ -91,19 +77,19 @@ def Firstscreen():
                 pygame.mixer.music.play()
 
         if play_button.check_click(pygame.mouse.get_pos()):
-            play_button = Button('Play', Blue, b1x, b1y, center_x=True)                        
+            play_button = Button('Play', Blue, b1x, b1y)                        
         else:            
-            play_button = Button('Play', Orange, b1x, b1y, center_x=True)
+            play_button = Button('Play', Orange, b1x, b1y)
             
         if exit_button.check_click(pygame.mouse.get_pos()):
-            exit_button = Button('Quit', Blue, b2x, b2y, center_x=True)
+            exit_button = Button('Quit', Blue, b2x, b2y)
         else:           
-            exit_button = Button('Quit', Orange, b2x, b2y, center_x=True)
+            exit_button = Button('Quit', Orange, b2x, b2y)
 
         if introduction_button.check_click(pygame.mouse.get_pos()):
-            introduction_button = Button('How to play', Blue, b3x, b3y, center_x=True)                        
+            introduction_button = Button('How to play', Blue, b3x, b3y)                        
         else:            
-            introduction_button = Button('How to play', Orange, b3x, b3y, center_x=True)
+            introduction_button = Button('How to play', Orange, b3x, b3y)
 
         play_button.display()
         exit_button.display()
@@ -130,7 +116,6 @@ def Firstscreen():
                 break
 
             if introduction_button.check_click(pygame.mouse.get_pos()):
-                #Secondscreen()
                 bgm_sound.stop()
                 import How_to_play.py
                 os._exit(0)
