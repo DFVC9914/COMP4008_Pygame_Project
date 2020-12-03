@@ -13,8 +13,9 @@ Screen_Height = 443
 Jump_Speed = 7
 Fps = 20
 Distance = 0
-Lives = 0
 Scores = 0
+Barriers_Time = 0 
+Barriers_List = []
 Game_Over = False 
 
 # The background of the game
@@ -128,8 +129,7 @@ def Show(Text,x,y) :
     surf = Font.render(Text,False,(0,0,0))
     Screen.blit(surf,(x,y))
 
-Barriers_Time = 0 
-Barriers_List = []
+
 Game_Run_Sound.play(-1,0)
 # Items_Time = 0
 # Items_List = []
