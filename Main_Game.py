@@ -17,6 +17,7 @@ Distance = 0
 Lives = 0
 Scores = 0
 Game_Over = False 
+
 # The background of the game
 class Game_Map() :
     def __init__(self,x,y,Background_Image) :
@@ -31,12 +32,12 @@ class Game_Map() :
             self.x -= 10  
         Screen.blit(pygame.image.load(os.path.join(self.Background_Image)).convert_alpha(), (self.x, self.y))
 
-#  
+# The role of the game
 class Game_Role():
     def __init__(self,Role_Image) :  
         self.rect = pygame.Rect(10,250,0,0)
         self.Role_Image = Role_Image
-        self.Jump_Height = 10
+        self.Jump_Height = 120
         self.Jump_Start_Position = self.rect.y
         self.Jump_Control = False
         self.Image = pygame.image.load(self.Role_Image[0]).convert_alpha()
@@ -55,7 +56,7 @@ class Game_Role():
             self.rect.y += Jump_Speed
             if self.rect.y == self.Jump_Start_Position :
                 return self.rect.y
-
+# The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :
         self.rect = pygame.Rect(800, 260, 0, 0)  
@@ -78,18 +79,19 @@ pygame.mixer.init()
 # The sounds of the game
 Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
 Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
-# creating the display with WIDTH and HEIGHT
+Game_Over = ""
+# Creat the display with Screen_Width and Screen_Height
 Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 # Set the title of the game
 pygame.display.set_caption("CWG's Game")
-
-
+# The images of the game
 Role_Image_Action = ["Images/222.png"]
 Barriers_Images = ["Images/Barrier_1.png","Images/Barrier_2.png"]
+
 Role = Game_Role(Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
 Bg = Game_Map(0,0,"Images/Game_Background.jpg")
-
+# Show the score and distance on the left top
 def Show(Text) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
     surf = Font.render(Text,False,(0,0,0))
@@ -103,7 +105,7 @@ def Get_Scores(a) :
     return Scores  
 
 Barriers_Time = 0 
-List = []
+Barriers_List = []
 Game_Run_Sound.play(-1,0)
 
 while True : 
@@ -118,18 +120,18 @@ while True :
         Distance  += 1  
         Bg.Map_Move()
         Role.Move()   
-        if Barriers_Time >= 1000:
+        if Barriers_Time >= 1000 :
             r=random.randint(0,100)
             if r <= 10:
                 Barrier = Barriers(Barriers_Images)
-                List.append(Barrier)
+                Barriers_List.append(Barrier)
                 Barriers_Time = 0
-        for i in range(len(List)) :
-            List[i].Move()  # 出现的障碍物移动
-            if pygame.sprite.collide_rect(Role,List[i]) :
+        for i in range(len(Barriers_List)) :
+            Barriers_List[i].Move()  
+            if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
                 Game_Over = True
             else :
-                if(List[i].rect.x + List[i].rect.size[0]) <= Role.rect.size[0] :
+                if(Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) <= Role.rect.size[0] :
                     Lives = 1
                     Get_Scores(Lives)
         Show(f"Distance = {Distance} , Scores = {Scores}")             
