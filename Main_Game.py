@@ -17,6 +17,7 @@ Barriers_Time = 0
 Barriers_List = []
 Game_Over = False 
 Run_State = False
+
 # The background of the game
 class Game_Map() :
     def __init__(self,x,y,Background_Image) :
@@ -94,6 +95,8 @@ class Barriers() :
         
     def getScore(self):
         Temporary_Score = self.Score
+        if Temporary_Score == 1 :
+            Get_Score.play()
         self.Score = 0
         return Temporary_Score
                        
@@ -103,6 +106,7 @@ pygame.mixer.init()
 # The sounds of the game
 Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
 Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
+Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
 Game_Over = ""
 # Creat the display with Screen_Width and Screen_Height
 Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
@@ -124,8 +128,6 @@ def Show(Text,x,y) :
 
 
 Game_Run_Sound.play(-1,0)
-# Items_Time = 0
-# Items_List = []
 while True : 
     for event in pygame.event.get():
         if event.type == pygame.QUIT :
