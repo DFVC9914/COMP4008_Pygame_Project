@@ -10,7 +10,7 @@ import pygame,os,random
 Screen_Width = 900
 Screen_Height = 476
 Jump_Speed = 8
-Fps = 20
+Fps = 25
 Distance = 0
 Highest_y = 200
 Lowest_y = 380
@@ -76,24 +76,26 @@ class Barriers() :
         self.rect = pygame.Rect(800,0,0,0)  
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0,3)
-        if Random_Number == 0 :  
-            self.Image = pygame.image.load(self.Barriers_Images[0]).convert_alpha()
+        if Random_Number == 0 :         
+            self.Image = (pygame.image.load(self.Barriers_Images[0][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[0][1]).convert_alpha())
             self.rect.y = Lowest_y
         elif Random_Number == 1 :
-            self.Image = pygame.image.load(self.Barriers_Images[1]).convert_alpha()
+            self.Image = (pygame.image.load(self.Barriers_Images[1][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[1][1]).convert_alpha())
             self.rect.y = Lowest_y
         elif Random_Number == 2 :
-            self.Image = pygame.image.load(self.Barriers_Images[2]).convert_alpha()
+            self.Image = (pygame.image.load(self.Barriers_Images[2][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[2][1]).convert_alpha())
             self.rect.y = Highest_y + 10
         elif Random_Number == 3 :
-            self.Image = pygame.image.load(self.Barriers_Images[3]).convert_alpha()
+            self.Image = (pygame.image.load(self.Barriers_Images[3][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[3][1]).convert_alpha())
             self.rect.y = Highest_y + 10
-        self.rect.size = self.Image.get_size()
+        self.rect.size = self.Image[0].get_size()
         self.Score = 1
  
     def Move(self) :
         self.rect.x -= 10
-        Screen.blit(self.Image, (self.rect.x, self.rect.y))
+        
+    def Draw_Barriers(self,i) :
+        Screen.blit(self.Image[i], (self.rect.x, self.rect.y))
         
     def getScore(self):
         Temporary_Score = self.Score
@@ -116,7 +118,7 @@ Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
 pygame.display.set_caption("CWG's Game")
 # The images of the game
 Role_Image_Action = ["Images/Role_Run_1.png","Images/Role_Run_2.png","Images/Role_Jump.png"]
-Barriers_Images = ["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_2.gif","Images/Barrier_Top_1.gif","Images/Barrier_Top_2.gif"]
+Barriers_Images = [["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_1.gif"],["Images/Barrier_Bottom_2_1.png","Images/Barrier_Bottom_2_2.png"],["Images/Barrier_Top_1_1.png","Images/Barrier_Top_1_2.png"],["Images/Barrier_Top_2_1.png","Images/Barrier_Top_2_2.png"]]
 Award_Item_Images = ["Images/Item_1.png","Images/Item_2.png"] 
 
 Role = Game_Role(Role_Image_Action)
@@ -142,20 +144,23 @@ while True :
         Distance += 1
         Run_State = not Run_State
         Bg.Map_Move()
-        Role.Action_Move()
-        
+        Role.Action_Move()  
         if Run_State == True :
             Role.Draw_Role(0)
         else :
             Role.Draw_Role(1)
         if Barriers_Time >= 1000 :
             r=random.randint(0,100)
-            if r <= 10 :
+            if r <= 30 :
                 Barrier = Barriers(Barriers_Images)
                 Barriers_List += [Barrier]
                 Barriers_Time = 0
         for i in range(len(Barriers_List)) :
-            Barriers_List[i].Move()  
+            Barriers_List[i].Move()
+            if Run_State == True :
+                Barriers_List[i].Draw_Barriers(0)
+            else :
+                Barriers_List[i].Draw_Barriers(1)
             if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
                 # play_button = Button('Play', Orange,200, 200)
                 Show("Dead",300,150)  
