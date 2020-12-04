@@ -16,7 +16,7 @@ Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
 
 pygame.display.set_caption("Start Screen")
-background = pygame.image.load("Images/Start2_Background.png")
+background = pygame.image.load("Images/Start_Background.jpg")
 how_to_play = pygame.image.load("Images/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 32)
 bgm_sound = pygame.mixer.Sound("Sounds/bgm1.mp3")
@@ -105,7 +105,7 @@ def Firstscreen():
         if pygame.mouse.get_pressed()[0]:
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import Main_Game
+                import Game_Modes
                 pygame.quit()
                 os._exit(0)
                 break
@@ -117,7 +117,7 @@ def Firstscreen():
 
             if introduction_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import How_to_play.py
+                import How_to_play
                 os._exit(0)
                 break            
 Firstscreen()

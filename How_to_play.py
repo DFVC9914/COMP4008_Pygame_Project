@@ -51,7 +51,7 @@ def How_screen():
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     
-    play_button = Button('Start Game', Orange, b1x, b1y)
+    play_button = Button('Play Game', Orange, b1x, b1y)
     play_button.display()
     pygame.display.update() 
        
@@ -60,9 +60,9 @@ def How_screen():
         if not (play_button.check_click(pygame.mouse.get_pos())):                
             pygame.mixer.music.play()              
         if play_button.check_click(pygame.mouse.get_pos()):              
-            play_button = Button('Start Game', Blue, b1x, b1y)                        
+            play_button = Button('Play Game', Blue, b1x, b1y)                        
         else:            
-            play_button = Button('Start Game', Orange, b1x, b1y)
+            play_button = Button('Play Game', Orange, b1x, b1y)
         
         play_button.display()
         pygame.display.update()
@@ -76,7 +76,7 @@ def How_screen():
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                import Main_Game.py
+                import Game_Modes
                 pygame.quit()                
                 os.quit
                 break
