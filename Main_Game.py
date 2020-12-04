@@ -92,8 +92,7 @@ class Barriers() :
 
 class Button(): 
     def __init__(self, text, color, x=None, y=None):
-        font = pygame.font.SysFont(pygame.font.get_default_font(),40)
-        self.surf = font.render(text, True, color)
+        self.surf = Font.render(text, True, color)
         self.WIDTH = self.surf.get_width()
         self.HEIGHT = self.surf.get_height()   
         self.x = x    
@@ -113,13 +112,13 @@ class Button():
         
 # Show the score and distance on the left top
 def Show(Text,x,y) :
-    Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
     surf = Font.render(Text,False,(255,255,255))
     Screen.blit(surf,(x,y))
 
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound):
-    global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,Game_Run_Sound,Get_Score,Screen,Background_Images
+    global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Font
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -132,7 +131,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Barriers_Time = 0 
     Barriers_List = []
     Run_State = False
-    Return_Button = Button("Return", (255,255,255), Screen_Width, Screen_Height) 
+    
     # Initialising pygame
     pygame.init()
     pygame.mixer.init() 
@@ -140,7 +139,9 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
-    Game_Over = ""   
+    Game_Over = ""  
+    Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
+    Return_Button = Button("Return", (0,255,255), Screen_Width/2, Screen_Height/2) 
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
     Barriers_Images = [["Images/Barriers/Barrier_Bottom_1.gif","Images/Barriers/Barrier_Bottom_1.gif"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
