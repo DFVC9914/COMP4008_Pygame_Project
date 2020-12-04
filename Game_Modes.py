@@ -32,8 +32,13 @@ class Button():
         else:
             return False
         
+def Show(screen,Text,x,y) :
+    score_font = pygame.font.Font(pygame.font.get_default_font(), 20)
+    surf = score_font.render(Text,False,(255,255,255))
+    screen.blit(surf,(x,y))
+        
 def Modes_Screen():
-    global screen,font
+    global screen,font,Total_Scores
     pygame.init()
     screen = pygame.display.set_mode((Width, Height))  
     font = pygame.font.Font(pygame.font.get_default_font(), 25)
@@ -42,7 +47,7 @@ def Modes_Screen():
     screen.blit(background, (0,0))
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
-    
+    Total_Scores =  Main_Game.Scores
     b1x,b1y=155,155
     b2x,b2y=550,155
     b3x,b3y=155,320
@@ -65,7 +70,8 @@ def Modes_Screen():
     play4_button.display()
     back_button.display()
     pygame.display.update() 
-       
+    Show(screen,f"Total Scores = {Total_Scores}",0,0) 
+    
     while True:
         
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
