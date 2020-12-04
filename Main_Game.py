@@ -12,8 +12,8 @@ Screen_Height = 476
 Jump_Speed = 8
 Fps = 20
 Distance = 0
-Highest_y = 100
-Lowest_y = 250
+Highest_y = 200
+Lowest_y = 380
 Scores = 0
 Barriers_Time = 0 
 Barriers_List = []
@@ -37,7 +37,7 @@ class Game_Map() :
 # The role of the game
 class Game_Role():
     def __init__(self,Role_Image) :  
-        self.rect = pygame.Rect(10,250,0,0)
+        self.rect = pygame.Rect(10,Lowest_y,0,0)
         self.Role_Image = Role_Image
         self.Jump_Height = Highest_y
         self.Jump_Start_Position = Lowest_y
