@@ -10,13 +10,13 @@ Created on Sun Nov 29 09:24:39 2020
 
 pygame.init()
 Width,Height = (780,366)
-Orange = (255,89,0)
+Orange = (255,145,0)
 White = (255,255,255)
 Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
 
 pygame.display.set_caption("Start Screen")
-background = pygame.image.load("Images/Start_Background.jpg")
+background = pygame.image.load("Images/Start1_Background.png")
 how_to_play = pygame.image.load("Images/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 32)
 bgm_sound = pygame.mixer.Sound("Sounds/Start_Bgm.mp3")
@@ -43,21 +43,21 @@ class Button():
             return False
 
 def Firstscreen():
-    b1x,b1y=360,90
-    b2x,b2y=360,150 
-    b3x,b3y=310,210  
+    b1x,b1y=360,100
+    b2x,b2y=360,160 
+    b3x,b3y=310,220  
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
     def Ourname():
         global font
-        aut = pygame.font.Font(pygame.font.get_default_font(), 15)
+        aut = pygame.font.Font(pygame.font.get_default_font(), 16)
         author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU                                                                    \
-                    Version 1.0', True, White)
+                Version 1.0', True, White)
         screen.blit(author, (10, 340))
 
-    title = font.render('CWG-RUNNING GAME', True, White)
-    screen.blit(title, (Width//2 - title.get_width()//2, 10))
+    title = font.render('CWG-Ultimate Running', True, White)
+    screen.blit(title, (Width//2 - title.get_width()//2, 25))
 
     play_button = Button('Play', Orange, b1x, b1y)
     exit_button = Button('Quit', Orange, b2x, b2y)
