@@ -4,7 +4,7 @@ Created on Tue Dec  1 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,os,Game_Modes
+import pygame,os,Game_Modes,Start_Screen
 Width,Height = (813,409)
 Orange = (119,0,255)
 White = (255,255,255)
@@ -48,24 +48,35 @@ def How_screen():
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
     b1x,b1y=670,375
+    b2x,b2y=15,375
 
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     
     play_button = Button('Play Game', Orange, b1x, b1y)
+    back_button = Button('Back', Orange, b2x, b2y)
     play_button.display()
+    back_button.display()
     pygame.display.update() 
        
     while True:
         
-        if not (play_button.check_click(pygame.mouse.get_pos())):                
-            pygame.mixer.music.play()              
+        if not (play_button.check_click(pygame.mouse.get_pos()) or\
+                back_button.check_click(pygame.mouse.get_pos())):                
+            pygame.mixer.music.play()   
+            
         if play_button.check_click(pygame.mouse.get_pos()):              
             play_button = Button('Play Game', Blue, b1x, b1y)                        
         else:            
             play_button = Button('Play Game', Orange, b1x, b1y)
         
+        if back_button.check_click(pygame.mouse.get_pos()):              
+            back_button = Button('Back', Blue, b2x, b2y)                        
+        else:            
+            back_button = Button('Back', Orange, b2x, b2y)
+            
         play_button.display()
+        back_button.display()
         pygame.display.update()
         
         for event in pygame.event.get():
@@ -77,6 +88,13 @@ def How_screen():
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 Game_Modes.Modes_Screen()
+                pygame.quit()                
+                os._exit(0)
+                break
+                         
+            if play_button.check_click(pygame.mouse.get_pos()):
+                bgm2_sound.stop()
+                #Start_Screen.Firstscreen()
                 pygame.quit()                
                 os._exit(0)
                 break
