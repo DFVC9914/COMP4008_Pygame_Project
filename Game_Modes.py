@@ -4,7 +4,7 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,os,Main_Game
+import pygame,os,Main_Game,Start_Screen,How_to_play
 Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
@@ -47,20 +47,23 @@ def Modes_Screen():
     b2x,b2y=550,155
     b3x,b3y=155,320
     b4x,b4y=510,320
+    b5x,b5y=350,165
     
 
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
-    Easy,Normal,Hard,Ultimate = 'Easy','Normal','Hard','Coming soon'
+    Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Coming soon','Back'
     play_button = Button(Easy, White, b1x, b1y)
     play2_button = Button(Normal, White, b2x, b2y)
     play3_button = Button(Hard, White, b3x, b3y)
     play4_button = Button(Ultimate, White, b4x, b4y)
+    back_button = Button(Back, Orange, b5x, b5y)
     
     play_button.display()
     play2_button.display()
     play3_button.display()
     play4_button.display()
+    back_button.display()
     pygame.display.update() 
        
     while True:
@@ -68,7 +71,8 @@ def Modes_Screen():
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
                 play2_button.check_click(pygame.mouse.get_pos()) or \
                 play3_button.check_click(pygame.mouse.get_pos()) or \
-                play4_button.check_click(pygame.mouse.get_pos())):                
+                play4_button.check_click(pygame.mouse.get_pos()) or\
+                back_button.check_click(pygame.mouse.get_pos())):                
             pygame.mixer.music.play() 
              
         if play_button.check_click(pygame.mouse.get_pos()):              
@@ -91,10 +95,16 @@ def Modes_Screen():
         else:            
             play4_button = Button(Ultimate, White, b4x, b4y)
         
+        if back_button.check_click(pygame.mouse.get_pos()):              
+            back_button = Button(Back, Blue, b5x, b5y)                        
+        else:            
+            back_button = Button(Back, Orange, b5x, b5y)
+            
         play_button.display()
         play2_button.display()
         play3_button.display()
         play4_button.display()
+        back_button.display()
         pygame.display.update()
         
         for event in pygame.event.get():
@@ -150,5 +160,13 @@ def Modes_Screen():
             
             if play4_button.check_click(pygame.mouse.get_pos()):
                 pass
-                
+            
+            if back_button.check_click(pygame.mouse.get_pos()):
+                bgm2_sound.stop()
+                # Start_Screen.Firstscreen()
+                How_to_play.How_screen()
+                pygame.quit()                
+                os._exit(0)
+                break
+                    
 

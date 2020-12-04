@@ -1,5 +1,5 @@
 
-import pygame,os,Game_Modes,How_to_play
+import pygame,os,Game_Modes,How_to_play,Main_Game
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -41,10 +41,14 @@ class Button():
             return True
         else:
             return False
-
+def Show(screen,Text,x,y) :
+    surf = font.render(Text,False,(255,255,255))
+    screen.blit(surf,(x,y))
 def Firstscreen():
+
+    
     bgm_sound.play()
-    global screen
+    global screen,Total_Scores 
     screen = pygame.display.set_mode((Width, Height))
     b1x,b1y=360,100
     b2x,b2y=360,160 
@@ -71,6 +75,8 @@ def Firstscreen():
     introduction_button.display()
     Ourname()
     pygame.display.update()
+    Total_Scores =  Main_Game.Scores
+    Show(screen,f"Total Scores = {Total_Scores}",0,0)
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\

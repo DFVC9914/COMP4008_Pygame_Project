@@ -6,7 +6,7 @@ Created on Thu Nov 19 09:24:39 2020
 """
 
 import pygame,os,random,Game_Modes
-
+Scores = 0
 
 # The background of the game
 class Game_Map() :
@@ -111,14 +111,14 @@ class Button() :
             return False
         
 # Show the score and distance on the left top
-def Show(Text,x,y) :
+def Show(screen,Text,x,y) :
     surf = Font.render(Text,False,(255,255,255))
-    Screen.blit(surf,(x,y))
+    screen.blit(surf,(x,y))
 
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Font
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Font,Scores
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -127,7 +127,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     # Local variables
     Fps = 24
     Distance = 0
-    Scores = 0
+
     Barriers_Time = 0 
     Barriers_List = []
     Run_State = False
@@ -183,7 +183,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Barriers_List[i].Draw_Barriers(1)
                 if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
                     Game_Over = True
-                    Show(f"You ran {Distance} meters and  got {Scores} scores!",0,0)
+                    Show(Screen,f"You ran {Distance} meters and  got {Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()
