@@ -141,11 +141,14 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Game_Over = ""  
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
-    Return_Button = Button("Return", (0,255,255), Screen_Width/2, Screen_Height/2) 
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
     Barriers_Images = [["Images/Barriers/Barrier_Bottom_1.gif","Images/Barriers/Barrier_Bottom_1.gif"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
     Background = P_Background
+    Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
+    Game_Over_Width = Game_Over_Image.get_width()
+    Game_Over_Height = Game_Over_Image.get_height()
+    Return_Button = Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
     # Set the title of the game
@@ -153,7 +156,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Role = Game_Role(Role_Image_Action)
     Fps_Flash = pygame.time.Clock()
     Bg = Game_Map(0,0,Background)
-    Return_Button.display()
+    
     Game_Run_Sound.play(-1,0)
     Game_Over = False 
     while True : 
@@ -193,11 +196,12 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 else :
                     Barriers_List[i].Draw_Barriers(1)
                 if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
-                    Game_Over = True 
-                    Show("Dead",Screen_Width/2,Screen_Height/2)  
+                    Game_Over = True
+                    Show(f"You ran {Distance} meters and  got {Scores} scores!",0,0)
+                    Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
+                    Return_Button.display()
                 elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
-                        Scores += Barriers_List[i].getScore()
-        Show(f"Distance = {Distance} , Scores = {Scores}",0,0)             
+                        Scores += Barriers_List[i].getScore()         
         Barriers_Time += 20           
         pygame.display.flip()      
         Fps_Flash.tick(Fps)

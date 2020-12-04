@@ -68,7 +68,6 @@ def Firstscreen():
     introduction_button.display()
     Ourname()
     pygame.display.update()
-
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\
