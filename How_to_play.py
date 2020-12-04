@@ -4,7 +4,7 @@ Created on Tue Dec  1 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,os,Game_Modes,Start_Screen
+import pygame,os,Game_Modes,Start_Screen_help
 Width,Height = (813,409)
 Orange = (119,0,255)
 White = (255,255,255)
@@ -59,8 +59,7 @@ def How_screen():
     back_button.display()
     pygame.display.update() 
        
-    while True:
-        
+    while True:       
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
                 back_button.check_click(pygame.mouse.get_pos())):                
             pygame.mixer.music.play()   
@@ -87,14 +86,15 @@ def How_screen():
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                Game_Modes.Modes_Screen()
+                # Game_Modes.Modes_Screen()
+                Start_Screen_help.Firstscreen()
                 pygame.quit()                
                 os._exit(0)
                 break
                          
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                #Start_Screen.Firstscreen()
+                Game_Modes.Modes_Screen()
                 pygame.quit()                
                 os._exit(0)
                 break

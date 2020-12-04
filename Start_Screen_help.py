@@ -1,4 +1,3 @@
-
 import pygame,os,Game_Modes,How_to_play
 
 #!/usr/bin/env python3
@@ -110,7 +109,6 @@ def Firstscreen():
                 break
 
             if exit_button.check_click(pygame.mouse.get_pos()):
-                bgm_sound.stop()
                 pygame.quit()
                 os._exit(0)
                 break
@@ -120,5 +118,3 @@ def Firstscreen():
                 How_to_play.How_screen()
                 os._exit(0)
                 break            
-
-Firstscreen()
