@@ -8,7 +8,7 @@ Created on Thu Nov 19 09:24:39 2020
 import pygame,os,random
 # Global variables
 Screen_Width = 900
-Screen_Height = 443
+Screen_Height = 476
 Jump_Speed = 8
 Fps = 20
 Distance = 0
