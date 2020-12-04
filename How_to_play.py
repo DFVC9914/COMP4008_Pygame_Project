@@ -92,7 +92,7 @@ def How_screen():
                 os._exit(0)
                 break
                          
-            if play_button.check_click(pygame.mouse.get_pos()):
+            if back_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 #Start_Screen.Firstscreen()
                 pygame.quit()                
