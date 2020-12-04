@@ -42,8 +42,10 @@ class Button():
         else:
             return False
 def Show(screen,Text,x,y) :
-    surf = font.render(Text,False,(255,255,255))
+    score_font = pygame.font.Font(pygame.font.get_default_font(), 20)
+    surf = score_font.render(Text,False,(255,255,255))
     screen.blit(surf,(x,y))
+    
 def Firstscreen():
 
     
@@ -64,7 +66,7 @@ def Firstscreen():
         screen.blit(author, (10, 340))
 
     title = font.render('CWG-Ultimate Running', True, White)
-    screen.blit(title, (Width//2 - title.get_width()//2, 25))
+    screen.blit(title, (Width//2 - title.get_width()//2, 40))
 
     play_button = Button('Play', Orange, b1x, b1y)
     exit_button = Button('Quit', Orange, b2x, b2y)
@@ -75,8 +77,8 @@ def Firstscreen():
     introduction_button.display()
     Ourname()
     pygame.display.update()
-    Total_Scores =  Main_Game.Scores
-    Show(screen,f"Total Scores = {Total_Scores}",0,0)
+    Best_Scores =  Main_Game.Scores
+    Show(screen,f"Best Score = {Best_Scores}",0,0)
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\
