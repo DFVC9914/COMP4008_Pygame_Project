@@ -7,13 +7,13 @@ Created on Thu Nov 19 09:24:39 2020
 
 import pygame,os,random
 # Global variables
-Screen_Width = 900
+Screen_Width = 850
 Screen_Height = 476
 Jump_Speed = 8
-Fps = 25
+Fps = 24
 Distance = 0
-Highest_y = 200
-Lowest_y = 380
+Highest_y = 145
+Lowest_y = 305
 Scores = 0
 Barriers_Time = 0 
 Barriers_List = []
