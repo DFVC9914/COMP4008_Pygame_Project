@@ -122,7 +122,7 @@ Award_Item_Images = ["Images/Item_1.png","Images/Item_2.png"]
 
 Role = Game_Role(Role_Image_Action)
 Fps_Flash = pygame.time.Clock()
-Bg = Game_Map(0,0,"Images/SNOW.jpg")
+Bg = Game_Map(0,0,"Images/Snow_Background.jpg")
 # Show the score and distance on the left top
 def Show(Text,x,y) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
