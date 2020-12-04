@@ -148,6 +148,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
     Game_Over_Width = Game_Over_Image.get_width()
     Game_Over_Height = Game_Over_Image.get_height()
+    Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
     Return_Button = Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
@@ -183,6 +184,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Barriers_List[i].Draw_Barriers(1)
                 if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
                     Game_Over = True
+                    Game_Run_Sound.stop()
+                    Dead_Bgm.play()
                     Show(Screen,f"You ran {Distance} meters and  got {Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
