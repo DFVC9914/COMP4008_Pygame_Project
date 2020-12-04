@@ -90,7 +90,7 @@ class Barriers() :
         self.Score = 0
         return Temporary_Score
 
-class Button(): 
+class Button() : 
     def __init__(self, text, color, x=None, y=None):
         self.surf = Font.render(text, True, color)
         self.WIDTH = self.surf.get_width()
@@ -98,10 +98,10 @@ class Button():
         self.x = x    
         self.y = y
     
-    def display(self):
+    def display(self) :
     	Screen.blit(self.surf, (self.x, self.y))
-    
-    def check_click(self, position):  
+        
+    def check_click(self, position) :  
         x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
         y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
         
@@ -140,7 +140,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Game_Over = ""  
-    Font = pygame.font.SysFont("Arial",40)
+    Font = pygame.font.SysFont("Arial",30)
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
     Barriers_Images = [["Images/Barriers/Barrier_Bottom_1.gif","Images/Barriers/Barrier_Bottom_1.gif"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
@@ -160,21 +160,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Run_Sound.play(-1,0)
     Game_Over = False 
     while True : 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT :
-                pygame.quit()# for the rest of the people with windows or Linux
-                os._exit(0) # for Mac users.
-            elif event.type == pygame.KEYDOWN :
-                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
-                    Role.Jump()
-                    
-        if pygame.mouse.get_pressed()[0]:            
-            if Return_Button.check_click(pygame.mouse.get_pos()):
-                Game_Run_Sound.stop()
-                Game_Modes.Modes_Screen()
-                pygame.quit()                
-                os._exit(0)
-            
         if Game_Over == False :   
             Distance += 1
             Run_State = not Run_State
@@ -200,9 +185,25 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Game_Over = True
                     Show(f"You ran {Distance} meters and  got {Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
+                    pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()
+                    break
+                    
                 elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
-                        Scores += Barriers_List[i].getScore()         
+                        Scores += Barriers_List[i].getScore()    
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT :
+                pygame.quit()# for the rest of the people with windows or Linux
+                os._exit(0) # for Mac users.
+            elif event.type == pygame.KEYDOWN :
+                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
+                    Role.Jump()                   
+        if pygame.mouse.get_pressed()[0]:            
+            if Return_Button.check_click(pygame.mouse.get_pos()):
+                Game_Run_Sound.stop()
+                Game_Modes.Modes_Screen()
+                pygame.quit()                
+                os._exit(0)    
         Barriers_Time += 20           
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
