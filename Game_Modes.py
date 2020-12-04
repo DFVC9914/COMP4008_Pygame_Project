@@ -4,7 +4,7 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,os,Main_Game,Start_Screen
+import pygame,os,Main_Game,Start_Screen,How_to_play
 Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
@@ -160,9 +160,11 @@ def Modes_Screen():
             
             if play4_button.check_click(pygame.mouse.get_pos()):
                 pass
+            
             if back_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                Start_Screen.Firstscreen()
+                # Start_Screen.Firstscreen()
+                How_to_play.How_screen()
                 pygame.quit()                
                 os._exit(0)
                 break
