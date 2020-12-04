@@ -4,11 +4,10 @@ Created on Tue Dec  1 22:09:30 2020
 
 @author: NANDI GUO
 """
-<<<<<<< HEAD
+
 import pygame,os,Game_Modes,Start_Screen_help
-=======
-import pygame,os,Game_Modes
->>>>>>> edc30b111bca1d37cd21a2c854eb6a15d5c26fd6
+
+
 Width,Height = (813,409)
 Orange = (119,0,255)
 White = (255,255,255)
@@ -98,12 +97,8 @@ def How_screen():
                          
             if back_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-<<<<<<< HEAD
                 Game_Modes.Modes_Screen()
                 pygame.quit()                
                 os._exit(0)
                 break
-=======
-                
-                
->>>>>>> edc30b111bca1d37cd21a2c854eb6a15d5c26fd6
+
