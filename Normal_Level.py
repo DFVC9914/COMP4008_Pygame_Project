@@ -108,7 +108,7 @@ pygame.init()
 pygame.mixer.init()
 # The sounds of the game
 Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
-Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
+Game_Run_Sound = pygame.mixer.Sound("Sounds/Normal_Bgm.mp3")
 Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
 Game_Over = ""
 # Creat the display with Screen_Width and Screen_Height

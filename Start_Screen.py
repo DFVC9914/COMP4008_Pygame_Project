@@ -19,7 +19,7 @@ pygame.display.set_caption("Start Screen")
 background = pygame.image.load("Images/Start_Background.jpg")
 how_to_play = pygame.image.load("Images/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 32)
-bgm_sound = pygame.mixer.Sound("Sounds/bgm1.mp3")
+bgm_sound = pygame.mixer.Sound("Sounds/Start_Bgm.mp3")
 bgm_sound.play()
 
 class Button():

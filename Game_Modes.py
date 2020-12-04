@@ -18,7 +18,7 @@ font = pygame.font.Font(pygame.font.get_default_font(), 25)
 screen.blit(background, (0,0))
 pygame.display.update()
 
-bgm2_sound = pygame.mixer.Sound("Sounds/bgm2.mp3")
+bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
 bgm2_sound.play()
 
 class Button():
