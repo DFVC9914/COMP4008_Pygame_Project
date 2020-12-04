@@ -13,7 +13,7 @@ Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
 
 pygame.display.set_caption("How_to_play")
-background = pygame.image.load("Images/how.png")
+background = pygame.image.load("Images/Backgrounds/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 25)
 screen.blit(background, (0,0))
 pygame.display.update()

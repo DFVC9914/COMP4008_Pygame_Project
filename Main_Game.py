@@ -123,8 +123,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Game_Over = ""   
     # The images of the game
-    Role_Image_Action = ["Images/Role_Run_1.png","Images/Role_Run_2.png","Images/Role_Jump.png"]
-    Barriers_Images = [["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_1.gif"],["Images/Barrier_Bottom_2_1.png","Images/Barrier_Bottom_2_2.png"],["Images/Barrier_Top_1_1.png","Images/Barrier_Top_1_2.gif"],["Images/Barrier_Top_2_1.png","Images/Barrier_Top_2_2.png"]]
+    Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
+    Barriers_Images = [["Images/Barriers/Barrier_Bottom_1.gif","Images/Barriers/Barrier_Bottom_1.gif"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
     Background = P_Background
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
