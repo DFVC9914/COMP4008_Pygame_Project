@@ -110,19 +110,28 @@ def Modes_Screen():
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
 # =============================================================================
+#                 Easy
 #                 Screen_Width = 890
 #                 Screen_Height = 476
 #                 Fps = 24
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
-                Main_Game.Game_Main(890,476,200,370,"Images/Game_Background.png","Sounds/Normal_Bgm.mp3")
+                Main_Game.Game_Main(850,476,150,305,"Images/Snow_Background.jpg","Sounds/Normal_Bgm.mp3")
                 pygame.quit()                
                 os._exit(0)
                 break
             
             if play2_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
+# =============================================================================
+#                 Normal 
+#                 Screen_Width = 890
+#                 Screen_Height = 476
+#                 Fps = 24
+#                 Highest_y = 200
+#                 Lowest_y = 370
+# =============================================================================
                 Main_Game.Game_Main(890,476,180,370,"Images/Game_Background.png","Sounds/Normal_Bgm.mp3")
                 pygame.quit()                
                 os._exit(0)
@@ -131,10 +140,11 @@ def Modes_Screen():
             if play3_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
 # =============================================================================
+#                 Hard
 #                 Screen_Width = 850
 #                 Screen_Height = 476
 #                 Fps = 40
-#                 Highest_y = 145
+#                 Highest_y = 150
 #                 Lowest_y = 305
 # =============================================================================
                 Main_Game.Game_Main(850,476,145,305,"Images/Road_Background.png","Sounds/Hard_Bgm.mp3")
