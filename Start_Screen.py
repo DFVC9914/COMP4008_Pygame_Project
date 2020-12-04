@@ -76,7 +76,7 @@ def Firstscreen():
     Ourname()
     pygame.display.update()
     Total_Scores =  Main_Game.Scores
-    Show(screen,f"{Total Scores = Total_Scores}",0,0)
+    Show(screen,f"Total Scores = {Total_Scores}",0,0)
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\
