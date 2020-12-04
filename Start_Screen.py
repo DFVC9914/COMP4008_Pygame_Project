@@ -1,5 +1,5 @@
 
-import pygame,os,sys
+import pygame,os,Game_Modes,How_to_play
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -16,8 +16,8 @@ Blue = (0,238,255)
 screen = pygame.display.set_mode((Width, Height))
 
 pygame.display.set_caption("Start Screen")
-background = pygame.image.load("Images/Start1_Background.png")
-how_to_play = pygame.image.load("Images/how.png")
+background = pygame.image.load("Images/Backgrounds/Start1_Background.png")
+how_to_play = pygame.image.load("Images/Backgrounds/how.png")
 font = pygame.font.Font(pygame.font.get_default_font(), 32)
 bgm_sound = pygame.mixer.Sound("Sounds/Start_Bgm.mp3")
 bgm_sound.play()
@@ -70,7 +70,6 @@ def Firstscreen():
     pygame.display.update()
 
     while True:
-
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\
             introduction_button.check_click(pygame.mouse.get_pos())):
@@ -99,13 +98,12 @@ def Firstscreen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
-                os.quit
-
+                os._exit(0)
+                
         if pygame.mouse.get_pressed()[0]:
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import Game_Modes
+                Game_Modes.Modes_Screen()
                 pygame.quit()
                 os._exit(0)
                 break
@@ -117,7 +115,7 @@ def Firstscreen():
 
             if introduction_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import How_to_play
+                How_to_play.How_screen()
                 os._exit(0)
                 break            
 Firstscreen()

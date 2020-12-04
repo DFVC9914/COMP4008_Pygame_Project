@@ -4,22 +4,11 @@ Created on Tue Dec  1 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,sys,os
-pygame.init()
+import pygame,os,Game_Modes
 Width,Height = (813,409)
 Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
-screen = pygame.display.set_mode((Width, Height))
-
-pygame.display.set_caption("How_to_play")
-background = pygame.image.load("Images/how.png")
-font = pygame.font.Font(pygame.font.get_default_font(), 25)
-screen.blit(background, (0,0))
-pygame.display.update()
-
-bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
-bgm2_sound.play()
 
 class Button():
     
@@ -45,7 +34,19 @@ class Button():
             return False
         
 def How_screen():
+    global screen,font
+    pygame.init()
+    font = pygame.font.Font(pygame.font.get_default_font(), 25)
+    screen = pygame.display.set_mode((Width, Height))
     
+    pygame.display.set_caption("How_to_play")
+    background = pygame.image.load("Images/Backgrounds/how.png")
+   
+    screen.blit(background, (0,0))
+    pygame.display.update()
+    
+    bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
+    bgm2_sound.play()
     b1x,b1y=670,375
 
     screen.blit(background, (0,0))
@@ -70,14 +71,12 @@ def How_screen():
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    sys.exit()
-                    os.quit
+                    os._exit(0)
                             
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                import Game_Modes
+                Game_Modes.Modes_Screen()
                 pygame.quit()                
-                os.quit
+                os._exit(0)
                 break
-How_screen()
