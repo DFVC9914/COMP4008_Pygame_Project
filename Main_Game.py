@@ -6,18 +6,7 @@ Created on Thu Nov 19 09:24:39 2020
 """
 
 import pygame,os,random
-# Global variables
-Screen_Width = 850
-Screen_Height = 476
-Jump_Speed = 8
-Fps = 24
-Distance = 0
-Highest_y = 145
-Lowest_y = 305
-Scores = 0
-Barriers_Time = 0 
-Barriers_List = []
-Run_State = False
+
 
 # The background of the game
 class Game_Map() :
@@ -102,27 +91,7 @@ class Barriers() :
             Get_Score.play()
         self.Score = 0
         return Temporary_Score
-                       
-# Initialising pygame
-pygame.init()
-pygame.mixer.init()
-# The sounds of the game
-Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
-Game_Run_Sound = pygame.mixer.Sound("Sounds/Game_Run.mp3")
-Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
-Game_Over = ""
-# Creat the display with Screen_Width and Screen_Height
-Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
-# Set the title of the game
-pygame.display.set_caption("CWG's Game")
-# The images of the game
-Role_Image_Action = ["Images/Role_Run_1.png","Images/Role_Run_2.png","Images/Role_Jump.png"]
-Barriers_Images = [["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_1.gif"],["Images/Barrier_Bottom_2_1.png","Images/Barrier_Bottom_2_2.png"],["Images/Barrier_Top_1_1.png","Images/Barrier_Top_1_2.gif"],["Images/Barrier_Top_2_1.png","Images/Barrier_Top_2_2.png"]]
-Award_Item_Images = ["Images/Item_1.png","Images/Item_2.png"] 
-
-Role = Game_Role(Role_Image_Action)
-Fps_Flash = pygame.time.Clock()
-Bg = Game_Map(0,0,"Images/Snow_Background.jpg")
+    
 # Show the score and distance on the left top
 def Show(Text,x,y) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
@@ -130,44 +99,78 @@ def Show(Text,x,y) :
     Screen.blit(surf,(x,y))
 
 
-Game_Run_Sound.play(-1,0)
-Game_Over = False 
-while True : 
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT :
-            pygame.quit()# for the rest of the people with windows or Linux
-            os._exit(0) # for Mac users.
-        elif event.type == pygame.KEYDOWN :
-            if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
-                Role.Jump()
-    if Game_Over == False :   
-        Distance += 1
-        Run_State = not Run_State
-        Bg.Map_Move()
-        Role.Action_Move()  
-        if Run_State == True :
-            Role.Draw_Role(0)
-        else :
-            Role.Draw_Role(1)
-        if Barriers_Time >= 1000 :
-            r=random.randint(0,100)
-            if r <= 30 :
-                Barrier = Barriers(Barriers_Images)
-                Barriers_List += [Barrier]
-                Barriers_Time = 0
-        for i in range(len(Barriers_List)) :
-            Barriers_List[i].Move()
-            if Run_State == True :
-                Barriers_List[i].Draw_Barriers(0)
-            else :
-                Barriers_List[i].Draw_Barriers(1)
-            if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
-                Game_Over = True 
-                Show("Dead",Screen_Width/2,Screen_Height/2)  
-            elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
-                    Scores += Barriers_List[i].getScore()
-    Show(f"Distance = {Distance} , Scores = {Scores}",0,0)             
-    Barriers_Time += 20           
-    pygame.display.flip()      
-    Fps_Flash.tick(Fps)
+def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound):
+    global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,Game_Run_Sound,Get_Score,Screen,Background_Images
+    Screen_Width = P_Screen_Width
+    Screen_Height = P_Screen_Height
+    Jump_Speed = 8  
+    Highest_y = P_Highest_y
+    Lowest_y = P_Lowest_y    
+    # Local variables
+    Fps = 24
+    Distance = 0
+    Scores = 0
+    Barriers_Time = 0 
+    Barriers_List = []
+    Run_State = False
     
+    # Initialising pygame
+    pygame.init()
+    pygame.mixer.init() 
+    # The sounds of the game
+    Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
+    Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
+    Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
+    Game_Over = ""   
+    # The images of the game
+    Role_Image_Action = ["Images/Role_Run_1.png","Images/Role_Run_2.png","Images/Role_Jump.png"]
+    Barriers_Images = [["Images/Barrier_Bottom_1.gif","Images/Barrier_Bottom_1.gif"],["Images/Barrier_Bottom_2_1.png","Images/Barrier_Bottom_2_2.png"],["Images/Barrier_Top_1_1.png","Images/Barrier_Top_1_2.gif"],["Images/Barrier_Top_2_1.png","Images/Barrier_Top_2_2.png"]]
+    Background = P_Background
+    # Creat the display with Screen_Width and Screen_Height
+    Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
+    # Set the title of the game
+    pygame.display.set_caption("CWG's Game")   
+    Role = Game_Role(Role_Image_Action)
+    Fps_Flash = pygame.time.Clock()
+    Bg = Game_Map(0,0,Background)
+    Game_Run_Sound.play(-1,0)
+    Game_Over = False 
+    while True : 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT :
+                pygame.quit()# for the rest of the people with windows or Linux
+                os._exit(0) # for Mac users.
+            elif event.type == pygame.KEYDOWN :
+                if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
+                    Role.Jump()
+        if Game_Over == False :   
+            Distance += 1
+            Run_State = not Run_State
+            Bg.Map_Move()
+            Role.Action_Move()  
+            if Run_State == True :
+                Role.Draw_Role(0)
+            else :
+                Role.Draw_Role(1)
+            if Barriers_Time >= 1000 :
+                r=random.randint(0,100)
+                if r <= 30 :
+                    Barrier = Barriers(Barriers_Images)
+                    Barriers_List += [Barrier]
+                    Barriers_Time = 0
+            for i in range(len(Barriers_List)) :
+                Barriers_List[i].Move()
+                if Run_State == True :
+                    Barriers_List[i].Draw_Barriers(0)
+                else :
+                    Barriers_List[i].Draw_Barriers(1)
+                if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
+                    Game_Over = True 
+                    Show("Dead",Screen_Width/2,Screen_Height/2)  
+                elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
+                        Scores += Barriers_List[i].getScore()
+        Show(f"Distance = {Distance} , Scores = {Scores}",0,0)             
+        Barriers_Time += 20           
+        pygame.display.flip()      
+        Fps_Flash.tick(Fps)
+        

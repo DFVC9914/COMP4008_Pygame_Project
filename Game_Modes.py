@@ -4,7 +4,8 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,sys,os
+import pygame,os,Main_Game
+
 pygame.init()
 Width,Height = (780,366)
 Orange = (119,0,255)
@@ -103,29 +104,42 @@ def Modes_Screen():
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    sys.exit()
-                    os.quit
+                    os._exit(0)
                             
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                import Main_Game
+# =============================================================================
+#                 Screen_Width = 890
+#                 Screen_Height = 476
+#                 Fps = 24
+#                 Highest_y = 200
+#                 Lowest_y = 370
+# =============================================================================
+                Main_Game.Game_Main(890,476,200,370,"Images/Game_Background.png","Sounds/Normal_Bgm.mp3")
                 pygame.quit()                
-                os.quit
+                os._exit(0)
                 break
             
             if play2_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                import Normal_Level
+                Main_Game.Game_Main(890,476,180,370,"Images/Game_Background.png","Sounds/Normal_Bgm.mp3")
                 pygame.quit()                
-                os.quit
+                os._exit(0)
                 break
             
             if play3_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                import Hard_Level
+# =============================================================================
+#                 Screen_Width = 850
+#                 Screen_Height = 476
+#                 Fps = 40
+#                 Highest_y = 145
+#                 Lowest_y = 305
+# =============================================================================
+                Main_Game.Game_Main(850,476,145,305,"Images/Road_Background.png","Sounds/Hard_Bgm.mp3")
                 pygame.quit()                
-                os.quit
+                os._exit(0)
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
