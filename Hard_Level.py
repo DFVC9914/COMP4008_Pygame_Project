@@ -10,7 +10,7 @@ import pygame,os,random
 Screen_Width = 850
 Screen_Height = 476
 Jump_Speed = 8
-Fps = 24
+Fps = 40
 Distance = 0
 Highest_y = 145
 Lowest_y = 305
