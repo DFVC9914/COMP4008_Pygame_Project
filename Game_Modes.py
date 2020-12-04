@@ -49,7 +49,7 @@ def Modes_Screen():
     b1x,b1y=155,155
     b2x,b2y=550,155
     b3x,b3y=155,320
-    b4x,b4y=520,320
+    b4x,b4y=510,320
     
 
     screen.blit(background, (0,0))
