@@ -44,7 +44,7 @@ def How_screen():
     
     pygame.display.set_caption("How_to_play")
     background = pygame.image.load("Images/Backgrounds/how.png")
-   
+    
     screen.blit(background, (0,0))
     pygame.display.update()
     

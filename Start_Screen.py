@@ -42,8 +42,10 @@ class Button():
         else:
             return False
 def Show(screen,Text,x,y) :
-    surf = font.render(Text,False,(255,255,255))
+    score_font = pygame.font.Font(pygame.font.get_default_font(), 20)
+    surf = score_font.render(Text,False,(255,255,255))
     screen.blit(surf,(x,y))
+    
 def Firstscreen():
 
     
