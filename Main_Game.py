@@ -5,7 +5,7 @@ Created on Thu Nov 19 09:24:39 2020
 @author: Chao Cui
 """
 
-import pygame,os,random
+import pygame,os,random,Game_Modes
 
 
 # The background of the game
@@ -33,8 +33,6 @@ class Game_Role():
         self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha(),pygame.image.load(self.Role_Image[1]).convert_alpha(),pygame.image.load(self.Role_Image[2]).convert_alpha())
         self.rect.size = self.Image[0].get_size()
         self.Jump_Control_Twist = False
-        # self.Index = 0
-        # self.IndexGen = itertools.cycle([0, 1, 2])
     
     def Jump(self):
         Jump_Sound.play()
@@ -91,7 +89,28 @@ class Barriers() :
             Get_Score.play()
         self.Score = 0
         return Temporary_Score
+
+class Button(): 
+    def __init__(self, text, color, x=None, y=None):
+        font = pygame.font.SysFont(pygame.font.get_default_font(),40)
+        self.surf = font.render(text, True, color)
+        self.WIDTH = self.surf.get_width()
+        self.HEIGHT = self.surf.get_height()   
+        self.x = x    
+        self.y = y
     
+    def display(self):
+    	Screen.blit(self.surf, (self.x, self.y))
+    
+    def check_click(self, position):  
+        x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
+        y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
+        
+        if x_match and y_match:
+            return True
+        else:
+            return False
+        
 # Show the score and distance on the left top
 def Show(Text,x,y) :
     Font = pygame.font.SysFont(pygame.font.get_default_font(),40)
@@ -113,7 +132,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Barriers_Time = 0 
     Barriers_List = []
     Run_State = False
-    
+    Return_Button = Button("Return", (255,255,255), Screen_Width, Screen_Height) 
     # Initialising pygame
     pygame.init()
     pygame.mixer.init() 
@@ -133,6 +152,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Role = Game_Role(Role_Image_Action)
     Fps_Flash = pygame.time.Clock()
     Bg = Game_Map(0,0,Background)
+    Return_Button.display()
     Game_Run_Sound.play(-1,0)
     Game_Over = False 
     while True : 
@@ -143,6 +163,13 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()
+                    
+        if pygame.mouse.get_pressed()[0]:            
+            if Return_Button.check_click(pygame.mouse.get_pos()):
+                Game_Modes.Modes_Screen()
+                pygame.quit()                
+                os._exit(0)
+            
         if Game_Over == False :   
             Distance += 1
             Run_State = not Run_State

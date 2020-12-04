@@ -1,5 +1,5 @@
 
-import pygame,os,sys
+import pygame,os,Game_Modes,How_to_play
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -99,13 +99,12 @@ def Firstscreen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
-                os.quit
-
+                os._exit(0)
+                
         if pygame.mouse.get_pressed()[0]:
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import Game_Modes
+                Game_Modes.Modes_Screen()
                 pygame.quit()
                 os._exit(0)
                 break
@@ -117,7 +116,7 @@ def Firstscreen():
 
             if introduction_button.check_click(pygame.mouse.get_pos()):
                 bgm_sound.stop()
-                import How_to_play
+                How_to_play.How_screen()
                 os._exit(0)
                 break            
 Firstscreen()
