@@ -5,6 +5,7 @@ Created on Fri Dec 4 22:09:30 2020
 @author: NANDI GUO
 """
 import pygame,os,Main_Game,Start_Screen,How_to_play
+
 Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
@@ -44,6 +45,7 @@ def Modes_Screen():
     font = pygame.font.Font(pygame.font.get_default_font(), 25)
     pygame.display.set_caption("Game Modes")
     background = pygame.image.load("Images/Backgrounds/Start2_Background.png")
+    background1 = pygame.image.load("Images/Backgrounds/p.png")
     screen.blit(background, (0,0))
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
@@ -52,10 +54,11 @@ def Modes_Screen():
     b2x,b2y=550,155
     b3x,b3y=155,320
     b4x,b4y=510,320
-    b5x,b5y=350,165
-    
-
-    screen.blit(background, (0,0))
+    b5x,b5y=350,165   
+    if Main_Game.Scores <= 3 :
+        screen.blit(background, (0,0))
+    else :
+        screen.blit(background1, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Coming soon','Back'
     play_button = Button(Easy, White, b1x, b1y)
@@ -72,8 +75,7 @@ def Modes_Screen():
     pygame.display.update() 
     Show(screen,f"Total Scores = {Total_Scores}",0,0) 
     
-    while True:
-        
+    while True:  
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
                 play2_button.check_click(pygame.mouse.get_pos()) or \
                 play3_button.check_click(pygame.mouse.get_pos()) or \
@@ -165,8 +167,14 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                pass
-            
+                if Total_Scores <= 3 :
+                    Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
+                else :
+                    Main_Game.Game_Main(850,476,145,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3")
+                    pygame.quit()                
+                    os._exit(0)
+                    break
+                
             if back_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 # Start_Screen.Firstscreen()
