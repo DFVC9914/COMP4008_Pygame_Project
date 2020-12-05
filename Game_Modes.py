@@ -53,14 +53,14 @@ def Modes_Screen():
     b1x,b1y=155,155
     b2x,b2y=550,155
     b3x,b3y=155,320
-    b4x,b4y=510,320
+    b4x,b4y=550,320
     b5x,b5y=350,165   
     if Main_Game.Scores <= 3 :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
-    Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Coming soon','Back'
+    Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
     play_button = Button(Easy, White, b1x, b1y)
     play2_button = Button(Normal, White, b2x, b2y)
     play3_button = Button(Hard, White, b3x, b3y)
