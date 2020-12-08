@@ -121,7 +121,7 @@ class Golds():
         self.Score = 0
         return Temporary_Score
 
-def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound):
+def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
         Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number
     Screen_Width = P_Screen_Width
@@ -149,7 +149,12 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Over = ""  
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
+
+    Barriers_Images = P_Barriers_Images
+    
+
     Barriers_Images = [["Images/Barriers/Barrier_Bottom_1.png","Images/Barriers/Barrier_Bottom_1_2.png"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
+
     Golds_Images = [["Images/Barriers/Gold_1.png"]] 
     Background = P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
