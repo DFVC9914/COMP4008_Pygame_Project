@@ -147,7 +147,7 @@ def Modes_Screen():
                 else :
                     bgm2_sound.stop()
                     Barriers4 = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png"],["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png"],["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png"],["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png"]]
-                    Main_Game.Game_Main(880,476,145,340,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers4)
+                    Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers4)
                     pygame.quit()                
                     os._exit(0)
                     break
