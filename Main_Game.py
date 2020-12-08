@@ -18,10 +18,10 @@ class Game_Map() :
         self.Background_Image = Background_Image
 
     def Map_Move(self):
-        if self.x < -(Screen_Width-10) :  
+        if self.x < -(Screen_Width-8) :  
             self.x = 0   
         else:
-            self.x -= 10  
+            self.x -= 8  
         Screen.blit(pygame.image.load(self.Background_Image).convert_alpha(),(self.x, self.y))
 
 # The role of the game
@@ -60,7 +60,7 @@ class Game_Role():
                 self.Jump_Control_Twist = False
         # if  self.Jump_Control == True :
         #     if self.rect.y >= self.Jump_Start_Position :
-        #     self.Jump_Control = -5  # 向上移动五个像素点
+        #         self.jumpValu = -5  # 向上移动五个像素点
         #     if self.rect.y <= self.Jump_Height :  # 到顶后下降
         #         self.jumpValue = 5
         #     self.rect.y += self.jumpValue
@@ -77,7 +77,7 @@ class Game_Role():
 # The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :   
-        self.rect = pygame.Rect(800,0,0,0)  
+        self.rect = pygame.Rect(Screen_Width,0,0,0)  
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0,3)
         if Random_Number == 0 :         
@@ -115,7 +115,7 @@ class Barriers() :
         self.Score = 1
  
     def Move(self) :
-        self.rect.x -= 10
+        self.rect.x -= 8
         
     def Draw_Barriers(self,i) :
         Screen.blit(self.Image[i], (self.rect.x, self.rect.y))
@@ -146,7 +146,7 @@ class Golds():
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
-        self.rect.x -= 20
+        self.rect.x -= 15
     
     def getScore(self):
         Temporary_Score = self.Score
@@ -205,7 +205,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
         if Game_Over == False :   
             Distance += 1
             Role_Image_Time += 1
-            
             Bg.Map_Move()
             Role.Action_Move()  
             if Role_Image_Time == 0 :
@@ -221,14 +220,14 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 Role_Image_Time = -1
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
-                if r <= 30 :
+                if r <= 40 :
                     Barrier = Barriers(Barriers_Images)
                     Barriers_List += [Barrier]
                     Barriers_Time = 0
                     
             if Golds_Time >= 800 :
                 r=random.randint(0,100)
-                if r <= 30 :
+                if r <= 10 :
                     Gold = Golds(Golds_Images) 
                     Gold_Lists += [Gold]
                     Golds_Time = 0
@@ -240,8 +239,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             for i in range(len(Barriers_List)) :
-                Barrier_Image_Time += 1
                 Barriers_List[i].Move()
+                Barrier_Image_Time += 1
                 if Barrier_Image_Time == 0 :
                     Barriers_List[i].Draw_Barriers(0)
                 elif Barrier_Image_Time == 1 :
@@ -253,6 +252,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 elif Barrier_Image_Time == 4 :
                     Barriers_List[i].Draw_Barriers(4)
                     Barrier_Image_Time = -1
+                pygame.display.flip()
                 if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
