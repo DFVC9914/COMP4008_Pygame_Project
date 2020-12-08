@@ -74,8 +74,7 @@ def Firstscreen():
     introduction_button.display()
     Ourname()
     pygame.display.update()
-    Best_Scores =  Main_Game.Scores
-    Show(screen,f"Best Score = {Best_Scores}",0,0)
+    Show(screen,f"Best Score = {Main_Game.Scores}",0,0)
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\

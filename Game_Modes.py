@@ -21,7 +21,6 @@ def Modes_Screen():
     screen.blit(background, (0,0))
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
-    Best_Score =  Main_Game.Scores
     b1x,b1y=155,155
     b2x,b2y=550,155
     b3x,b3y=155,320
@@ -45,7 +44,7 @@ def Modes_Screen():
     play4_button.display()
     back_button.display()
     pygame.display.update() 
-    Start_Screen.Show(screen,f"Best Score = {Best_Score}",0,0) 
+    Start_Screen.Show(screen,f"Best Score = {Main_Game.Scores}",0,0) 
     
     while True:  
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
@@ -142,7 +141,7 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                if Total_Scores < 3 :
+                if Main_Game.Scores < 3 :
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
