@@ -14,13 +14,11 @@ Orange = (255,145,0)
 White = (255,255,255)
 Blue = (0,238,255)
 
-
 pygame.display.set_caption("Start Screen")
 background = pygame.image.load("Images/Backgrounds/Start1_Background.png")
 how_to_play = pygame.image.load("Images/Backgrounds/how.png")
-font = pygame.font.Font(pygame.font.get_default_font(), 32)
+font = pygame.font.SysFont("Arial",30)
 bgm_sound = pygame.mixer.Sound("Sounds/Start_Bgm.mp3")
-
 
 class Button():
     def __init__(self, text, color, x=None, y=None, **kwargs):
@@ -43,13 +41,11 @@ class Button():
             return False
 
 def Show(screen,Text,x,y) :
-    score_font = pygame.font.Font(pygame.font.get_default_font(), 20)
+    score_font = pygame.font.SysFont("Arial",20)
     surf = score_font.render(Text,False,(255,255,255))
     screen.blit(surf,(x,y))
     
-def Firstscreen():
-
-    
+def Firstscreen(): 
     bgm_sound.play()
     global screen,Total_Scores 
     screen = pygame.display.set_mode((Width, Height))

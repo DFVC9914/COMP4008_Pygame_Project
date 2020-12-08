@@ -15,7 +15,6 @@ def Modes_Screen():
     global screen,font,Total_Scores
     pygame.init()
     screen = pygame.display.set_mode((Width, Height))  
-    font = pygame.font.Font(pygame.font.get_default_font(), 25)
     pygame.display.set_caption("Game Modes")
     background = pygame.image.load("Images/Backgrounds/Start2_Background.png")
     background1 = pygame.image.load("Images/Backgrounds/p.png")
