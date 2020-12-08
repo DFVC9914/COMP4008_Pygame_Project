@@ -47,7 +47,7 @@ def Show(screen,Text,x,y) :
     
 def Firstscreen(): 
     bgm_sound.play()
-    global screen,Total_Scores 
+    global screen
     screen = pygame.display.set_mode((Width, Height))
     b1x,b1y=360,100
     b2x,b2y=360,160 

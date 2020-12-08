@@ -141,11 +141,8 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-<<<<<<< HEAD
+
                 if Main_Game.Scores < 3 :
-=======
-                if Best_Score < 3 :
->>>>>>> 0edbbf78b18eb68f86e2b39c301e318b2726bfbe
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
