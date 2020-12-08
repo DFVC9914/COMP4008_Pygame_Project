@@ -12,7 +12,7 @@ Blue = (0,238,255)
 Width,Height = (780,366)
   
 def Modes_Screen():
-    global screen,font,Total_Scores
+    global screen,font,Best_Score
     pygame.init()
     screen = pygame.display.set_mode((Width, Height))  
     pygame.display.set_caption("Game Modes")
@@ -142,7 +142,7 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                if Total_Scores < 3 :
+                if Best_Score < 3 :
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
