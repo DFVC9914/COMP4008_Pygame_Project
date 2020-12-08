@@ -97,20 +97,19 @@ class Golds():
     def __init__(self,Golds_Images) :   
         self.rect = pygame.Rect(800,0,0,0)  
         self.Golds_Images = Golds_Images
-        self.active = True
-        
+        self.active = True  
         Random_Number =  random.randint(0,1)
         if Random_Number == 0 :         
-            self.Image = (pygame.image.load(self.Golds_Images[0][0]).convert_alpha(),pygame.image.load(self.Golds_Images[0][0]).convert_alpha())
+            self.Image = pygame.image.load(self.Golds_Images).convert_alpha()
             self.rect.y = Lowest_y
         elif Random_Number == 1 :
-            self.Image = (pygame.image.load(self.Golds_Images[0][0]).convert_alpha(),pygame.image.load(self.Golds_Images[0][0]).convert_alpha())
+            self.Image = pygame.image.load(self.Golds_Images).convert_alpha()
             self.rect.y = Highest_y + 10
-        self.rect.size = self.Image[0].get_size()
+        self.rect.size = self.Image.get_size()
         self.Score = 1   
         
-    def Draw_Golds(self,i) :
-        Screen.blit(self.Image[i], (self.rect.x, self.rect.y))
+    def Draw_Golds(self) :
+        Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
         self.rect.x -= 20
@@ -133,11 +132,10 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     # Local variables
     Fps = 24
     Distance = 0
-
+    Gold_Lists = []
     Barriers_Time = 0 
     Barriers_List = []
     Golds_Time = 0
-    Golds_List = []
     Run_State = False
     
     # Initialising pygame
@@ -152,7 +150,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
 
     Barriers_Images = P_Barriers_Images
-    Golds_Images = [["Images/Barriers/Gold_1.png"]] 
+    Golds_Images = "Images/Barriers/Gold_1.png" 
     Background = P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
     Game_Over_Width = Game_Over_Image.get_width()
@@ -189,21 +187,14 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
             if Golds_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 30 :
-                    Gold = Golds(Golds_Images)
-                    Golds_List += [Gold]
+                    Gold = Golds(Golds_Images) 
+                    Gold_Lists += [Gold]
                     Golds_Time = 0
-            
-            for i in range (len(Golds_List)):
-                
-                Golds_List[i].Move()
-                if Run_State == True :
-                    Golds_List[i].Draw_Golds(0)
-                else :
-                    Golds_List[i].Draw_Golds(1)
-                    
-                if pygame.sprite.collide_rect(Role,Golds_List[i]) :
-                    
-                    Golds_number += Golds_List[i].getScore()
+            for i in range(len(Gold_Lists)) :
+                Gold_Lists[i].Move()            
+                Gold_Lists[i].Draw_Golds()               
+                if pygame.sprite.collide_rect(Role,Gold_Lists[i]) :
+                    Golds_number += Gold_Lists[i].getScore()
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             for i in range(len(Barriers_List)) :
@@ -216,7 +207,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
-                    Scores =  Scores + Golds_number*5
+                    Scores =  Scores + Golds_number * 5
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Golds_number} Golds ,{Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
