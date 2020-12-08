@@ -17,7 +17,7 @@ Blue = (0,238,255)
 pygame.display.set_caption("Start Screen")
 background = pygame.image.load("Images/Backgrounds/Start1_Background.png")
 how_to_play = pygame.image.load("Images/Backgrounds/how.png")
-font = pygame.font.SysFont("Verdana",30)
+font = pygame.font.SysFont("Verdana",25)
 bgm_sound = pygame.mixer.Sound("Sounds/Start_Bgm.mp3")
 
 class Button():

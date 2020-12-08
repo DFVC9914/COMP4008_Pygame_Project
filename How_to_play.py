@@ -26,7 +26,7 @@ def How_screen():
     
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
-    b1x,b1y=670,375
+    b1x,b1y=670,370
     b2x,b2y=15,375
 
     screen.blit(background, (0,0))
