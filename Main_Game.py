@@ -77,7 +77,7 @@ class Game_Role():
 # The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :   
-        self.rect = pygame.Rect(Screen_Width,0,0,0)  
+        self.rect = pygame.Rect(800,0,0,0)  
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0,3)
         if Random_Number == 0 :         
@@ -129,7 +129,7 @@ class Barriers() :
     
 class Golds():
     def __init__(self,Golds_Images) :   
-        self.rect = pygame.Rect(800,0,0,0)  
+        self.rect = pygame.Rect(750,0,0,0)  
         self.Golds_Images = Golds_Images
         self.active = True  
         Random_Number =  random.randint(0,1)
@@ -146,7 +146,7 @@ class Golds():
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
-        self.rect.x -= 15
+        self.rect.x -= 8
     
     def getScore(self):
         Temporary_Score = self.Score
@@ -164,7 +164,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Highest_y = P_Highest_y
     Lowest_y = P_Lowest_y    
     # Local variables
-    Fps = 24
+    Fps = 30
     Distance = 0
     Gold_Lists = []
     Barriers_Time = 0 
@@ -217,14 +217,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 Role.Draw_Role(3)
             elif Role_Image_Time == 4 :
                 Role.Draw_Role(4)
-                Role_Image_Time = -1
-            if Barriers_Time >= 1000 :
-                r=random.randint(0,100)
-                if r <= 40 :
-                    Barrier = Barriers(Barriers_Images)
-                    Barriers_List += [Barrier]
-                    Barriers_Time = 0
-                    
+                Role_Image_Time = -1         
+            #########################################        
             if Golds_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 10 :
@@ -237,7 +231,13 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 if pygame.sprite.collide_rect(Role,Gold_Lists[i]) :
                     Golds_number += Gold_Lists[i].getScore()
                     Start_Screen.Show(Screen,"Gold +1",0,0)
-                    
+            if Barriers_Time >= 1000 :
+                r=random.randint(0,100)
+                if r <= 40 :
+                    Barrier = Barriers(Barriers_Images)
+                    Barriers_List += [Barrier]
+                    Barriers_Time = 0        
+            #########################################
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move() 
                 Barrier_Image_Time += 1
@@ -252,7 +252,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 elif Barrier_Image_Time == 4 :
                     Barriers_List[i].Draw_Barriers(4)
                     Barrier_Image_Time = -1
-                
                 if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
@@ -265,6 +264,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     break
                 elif (Barriers_List[i].rect.x + Barriers_List[i].rect.size[0]) < Role.rect.x :
                         Scores += Barriers_List[i].getScore()    
+        #########################################                
         for event in pygame.event.get():
             if event.type == pygame.QUIT :
                 pygame.quit()# for the rest of the people with windows or Linux
@@ -280,7 +280,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 pygame.quit()                
                 os._exit(0)    
         Barriers_Time += 10
-        Golds_Time += 60            
+        Golds_Time += 30            
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
         
