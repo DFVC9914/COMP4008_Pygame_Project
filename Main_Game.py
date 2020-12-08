@@ -239,7 +239,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             for i in range(len(Barriers_List)) :
-                Barriers_List[i].Move()
+                Barriers_List[i].Move() 
                 Barrier_Image_Time += 1
                 if Barrier_Image_Time == 0 :
                     Barriers_List[i].Draw_Barriers(0)
@@ -252,7 +252,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 elif Barrier_Image_Time == 4 :
                     Barriers_List[i].Draw_Barriers(4)
                     Barrier_Image_Time = -1
-                pygame.display.flip()
+                
                 if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
@@ -279,7 +279,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 Game_Modes.Modes_Screen()
                 pygame.quit()                
                 os._exit(0)    
-        Barriers_Time += 20
+        Barriers_Time += 10
         Golds_Time += 60            
         pygame.display.flip()      
         Fps_Flash.tick(Fps)

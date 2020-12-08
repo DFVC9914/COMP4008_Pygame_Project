@@ -96,7 +96,7 @@ def Modes_Screen():
                 bgm2_sound.stop()
                 Barriers = [["Images/Barriers/Barrier_Bottom_1_1.png","Images/Barriers/Barrier_Bottom_1_2.png","Images/Barriers/Barrier_Bottom_1_3.png","Images/Barriers/Barrier_Bottom_1_4.png","Images/Barriers/Barrier_Bottom_1_5.png"]\
                              ,["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png","Images/Barriers/Barrier_Bottom_2_3.png","Images/Barriers/Barrier_Bottom_2_4.png","Images/Barriers/Barrier_Bottom_2_5.png"]\
-                                 ,["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.png","Images/Barriers/Barrier_Top_1_3.png","Images/Barriers/Barrier_Top_1_4.png","Images/Barriers/Barrier_Top_1_4.png"]\
+                                 ,["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.png","Images/Barriers/Barrier_Top_1_3.png","Images/Barriers/Barrier_Top_1_4.png","Images/Barriers/Barrier_Top_1_2.png"]\
                                      ,["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png","Images/Barriers/Barrier_Top_2_3.png","Images/Barriers/Barrier_Top_2_4.png","Images/Barriers/Barrier_Top_2_5.png"]]
 # =============================================================================
 #                 Easy
