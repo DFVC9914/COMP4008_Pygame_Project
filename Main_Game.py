@@ -18,10 +18,10 @@ class Game_Map() :
         self.Background_Image = Background_Image
 
     def Map_Move(self):
-        if self.x < -(Screen_Width-10) :  
+        if self.x < -(Screen_Width-8) :  
             self.x = 0   
         else:
-            self.x -= 10  
+            self.x -= 8  
         Screen.blit(pygame.image.load(self.Background_Image).convert_alpha(),(self.x, self.y))
 
 # The role of the game
@@ -42,6 +42,7 @@ class Game_Role():
         self.rect.width -= 50
         self.rect.height -= 50
         self.Jump_Control_Twist = False
+        self.jumpValue = 0
     
     def Jump(self):
         Jump_Sound.play()
@@ -57,6 +58,14 @@ class Game_Role():
             self.rect.y += (Jump_Speed - 2)
             if self.rect.y >= self.Jump_Start_Position :
                 self.Jump_Control_Twist = False
+        # if  self.Jump_Control == True :
+        #     if self.rect.y >= self.Jump_Start_Position :
+        #         self.jumpValu = -5  # 向上移动五个像素点
+        #     if self.rect.y <= self.Jump_Height :  # 到顶后下降
+        #         self.jumpValue = 5
+        #     self.rect.y += self.jumpValue
+        #     if self.rect.y >= self.Jump_Start_Position :  # 恐龙落地以后，跳跃状态改为False
+        #         self.Jump_Control = False
             
     def Draw_Role(self,i) :
         # self.Index = next(self.IndexGen)
@@ -68,20 +77,36 @@ class Game_Role():
 # The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :   
-        self.rect = pygame.Rect(800,0,0,0)  
+        self.rect = pygame.Rect(Screen_Width,0,0,0)  
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0,3)
         if Random_Number == 0 :         
-            self.Image = (pygame.image.load(self.Barriers_Images[0][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[0][1]).convert_alpha())
+            self.Image = (pygame.image.load(self.Barriers_Images[0][0]).convert_alpha()\
+                          ,pygame.image.load(self.Barriers_Images[0][1]).convert_alpha()\
+                              ,pygame.image.load(self.Barriers_Images[0][2]).convert_alpha()\
+                                  ,pygame.image.load(self.Barriers_Images[0][3]).convert_alpha()\
+                                      ,pygame.image.load(self.Barriers_Images[0][4]).convert_alpha())
             self.rect.y = Lowest_y
         elif Random_Number == 1 :
-            self.Image = (pygame.image.load(self.Barriers_Images[1][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[1][1]).convert_alpha())
+            self.Image = (pygame.image.load(self.Barriers_Images[1][0]).convert_alpha()\
+                          ,pygame.image.load(self.Barriers_Images[1][1]).convert_alpha()\
+                              ,pygame.image.load(self.Barriers_Images[1][2]).convert_alpha()\
+                                  ,pygame.image.load(self.Barriers_Images[1][3]).convert_alpha()\
+                                      ,pygame.image.load(self.Barriers_Images[1][4]).convert_alpha())
             self.rect.y = Lowest_y
         elif Random_Number == 2 :
-            self.Image = (pygame.image.load(self.Barriers_Images[2][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[2][1]).convert_alpha())
+            self.Image = (pygame.image.load(self.Barriers_Images[2][0]).convert_alpha()\
+                          ,pygame.image.load(self.Barriers_Images[2][1]).convert_alpha()\
+                              ,pygame.image.load(self.Barriers_Images[2][2]).convert_alpha()\
+                                  ,pygame.image.load(self.Barriers_Images[2][3]).convert_alpha()\
+                                      ,pygame.image.load(self.Barriers_Images[2][4]).convert_alpha())
             self.rect.y = Highest_y 
         elif Random_Number == 3 :
-            self.Image = (pygame.image.load(self.Barriers_Images[3][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[3][1]).convert_alpha())
+            self.Image = (pygame.image.load(self.Barriers_Images[3][0]).convert_alpha()\
+                          ,pygame.image.load(self.Barriers_Images[3][1]).convert_alpha()\
+                              ,pygame.image.load(self.Barriers_Images[3][2]).convert_alpha()\
+                                  ,pygame.image.load(self.Barriers_Images[3][3]).convert_alpha()\
+                                      ,pygame.image.load(self.Barriers_Images[3][4]).convert_alpha())
             self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
         self.rect.width -= 80
@@ -90,7 +115,7 @@ class Barriers() :
         self.Score = 1
  
     def Move(self) :
-        self.rect.x -= 10
+        self.rect.x -= 8
         
     def Draw_Barriers(self,i) :
         Screen.blit(self.Image[i], (self.rect.x, self.rect.y))
@@ -121,7 +146,7 @@ class Golds():
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
-        self.rect.x -= 20
+        self.rect.x -= 15
     
     def getScore(self):
         Temporary_Score = self.Score
@@ -145,8 +170,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Barriers_Time = 0 
     Barriers_List = []
     Golds_Time = 0
-    Run_State = False
-    
+    Barrier_Image_Time = -1
+    Role_Image_Time = -1
     # Initialising pygame
     pygame.init()
     pygame.mixer.init() 
@@ -173,39 +198,36 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     pygame.display.set_caption("CWG's Game")   
     Role = Game_Role(Role_Image_Action)
     Fps_Flash = pygame.time.Clock()
-    Bg = Game_Map(0,0,Background)
-    
+    Bg = Game_Map(0,0,Background)  
     Game_Run_Sound.play(-1,0)
-    Game_Over = False 
-    a = 0
+    Game_Over = False  
     while True : 
         if Game_Over == False :   
             Distance += 1
-            a += 1
-            Run_State = not Run_State
+            Role_Image_Time += 1
             Bg.Map_Move()
             Role.Action_Move()  
-            if a == 0 :
+            if Role_Image_Time == 0 :
                 Role.Draw_Role(0)
-            elif a == 1 :
+            elif Role_Image_Time == 1 :
                 Role.Draw_Role(1)
-            elif a == 2 :
+            elif Role_Image_Time == 2 :
                 Role.Draw_Role(2)
-            elif a == 3 :
+            elif Role_Image_Time == 3 :
                 Role.Draw_Role(3)
-            elif a == 4 :
+            elif Role_Image_Time == 4 :
                 Role.Draw_Role(4)
-                a = -1
+                Role_Image_Time = -1
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
-                if r <= 30 :
+                if r <= 40 :
                     Barrier = Barriers(Barriers_Images)
                     Barriers_List += [Barrier]
                     Barriers_Time = 0
                     
             if Golds_Time >= 800 :
                 r=random.randint(0,100)
-                if r <= 30 :
+                if r <= 10 :
                     Gold = Golds(Golds_Images) 
                     Gold_Lists += [Gold]
                     Golds_Time = 0
@@ -218,10 +240,19 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move()
-                if Run_State == True :
+                Barrier_Image_Time += 1
+                if Barrier_Image_Time == 0 :
                     Barriers_List[i].Draw_Barriers(0)
-                else :
+                elif Barrier_Image_Time == 1 :
                     Barriers_List[i].Draw_Barriers(1)
+                elif Barrier_Image_Time == 2 :
+                    Barriers_List[i].Draw_Barriers(2)
+                elif Barrier_Image_Time == 3 :
+                    Barriers_List[i].Draw_Barriers(3)
+                elif Barrier_Image_Time == 4 :
+                    Barriers_List[i].Draw_Barriers(4)
+                    Barrier_Image_Time = -1
+                pygame.display.flip()
                 if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
