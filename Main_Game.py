@@ -72,11 +72,12 @@ class Barriers() :
             self.rect.y = Lowest_y
         elif Random_Number == 2 :
             self.Image = (pygame.image.load(self.Barriers_Images[2][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[2][1]).convert_alpha())
-            self.rect.y = Highest_y + 10
+            self.rect.y = Highest_y 
         elif Random_Number == 3 :
             self.Image = (pygame.image.load(self.Barriers_Images[3][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[3][1]).convert_alpha())
-            self.rect.y = Highest_y + 10
+            self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
+
         self.Score = 1
  
     def Move(self) :
@@ -201,8 +202,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Golds_List[i].Draw_Golds(1)
                     
                 if pygame.sprite.collide_rect(Role,Golds_List[i]) :
-                    #Golds_Images = [["Images/Barriers/Nothing_1.png"]]
-                    #pygame.display.update()
+                    
                     Golds_number += Golds_List[i].getScore()
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
@@ -212,10 +212,11 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Barriers_List[i].Draw_Barriers(0)
                 else :
                     Barriers_List[i].Draw_Barriers(1)
-                if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
+                if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
+                    Scores =  Scores + Golds_number*5
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Golds_number} Golds ,{Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
@@ -230,6 +231,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()                   
+        
         if pygame.mouse.get_pressed()[0]:            
             if Return_Button.check_click(pygame.mouse.get_pos()):
                 Game_Run_Sound.stop()

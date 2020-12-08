@@ -117,10 +117,10 @@ def Modes_Screen():
 #                 Screen_Width = 890
 #                 Screen_Height = 476
 #                 Fps = 24
-#                 Highest_y = 200
+#                 Highest_y = 120
 #                 Lowest_y = 370
 # =============================================================================
-                Main_Game.Game_Main(890,476,180,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers2)
+                Main_Game.Game_Main(890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers2)
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -133,10 +133,10 @@ def Modes_Screen():
 #                 Screen_Width = 850
 #                 Screen_Height = 476
 #                 Fps = 40
-#                 Highest_y = 150
+#                 Highest_y = 120
 #                 Lowest_y = 305
 # =============================================================================
-                Main_Game.Game_Main(850,476,145,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers3)
+                Main_Game.Game_Main(850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers3)
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -153,8 +153,7 @@ def Modes_Screen():
                     break
                 
             if back_button.check_click(pygame.mouse.get_pos()):
-                bgm2_sound.stop()
-                # Start_Screen.Firstscreen()
+                bgm2_sound.stop()                
                 How_to_play.How_screen()
                 pygame.quit()                
                 os._exit(0)
