@@ -94,7 +94,10 @@ def Modes_Screen():
         if pygame.mouse.get_pressed()[0]:            
             if play_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                Barriers1 = [["Images/Barriers/Barrier_Bottom_1.png","Images/Barriers/Barrier_Bottom_2.png"],["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png"],["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.gif"],["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png"]]
+                Barriers1 = [["Images/Barriers/Barrier_Bottom_1.png","Images/Barriers/Barrier_Bottom_2.png","Images/Barriers/Barrier_Bottom_1.png","Images/Barriers/Barrier_Bottom_2.png","Images/Barriers/Barrier_Bottom_1.png"]\
+                             ,["Images/Barriers/Barrier_Bottom_2_1.png","Images/Barriers/Barrier_Bottom_2_2.png","Images/Barriers/Barrier_Bottom_2_3.png","Images/Barriers/Barrier_Bottom_2_4.png","Images/Barriers/Barrier_Bottom_2_5.png"]\
+                                 ,["Images/Barriers/Barrier_Top_1_1.png","Images/Barriers/Barrier_Top_1_2.png","Images/Barriers/Barrier_Top_1_3.png","Images/Barriers/Barrier_Top_1_4.png","Images/Barriers/Barrier_Top_1_4.png"]\
+                                     ,["Images/Barriers/Barrier_Top_2_1.png","Images/Barriers/Barrier_Top_2_2.png","Images/Barriers/Barrier_Top_2_3.png","Images/Barriers/Barrier_Top_2_4.png","Images/Barriers/Barrier_Top_2_5.png"]]
 # =============================================================================
 #                 Easy
 #                 Screen_Width = 890
@@ -110,7 +113,10 @@ def Modes_Screen():
             
             if play2_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                Barriers2 = [["Images/Barriers/Normal_bot1_1.png","Images/Barriers/Normal_bot1_2.png"],["Images/Barriers/Normal_bot2_1.png","Images/Barriers/Normal_bot2_2.png"],["Images/Barriers/Normal_top1_1.png","Images/Barriers/Normal_top1_2.png"],["Images/Barriers/Normal_top2_1.png","Images/Barriers/Normal_top2_2.png"]]
+                Barriers2 = [["Images/Barriers/Normal_bot1_1.png","Images/Barriers/Normal_bot1_2.png"]\
+                             ,["Images/Barriers/Normal_bot2_1.png","Images/Barriers/Normal_bot2_2.png"]\
+                                 ,["Images/Barriers/Normal_top1_1.png","Images/Barriers/Normal_top1_2.png"]\
+                                     ,["Images/Barriers/Normal_top2_1.png","Images/Barriers/Normal_top2_2.png"]]
 # =============================================================================
 #                 Normal 
 #                 Screen_Width = 890
@@ -126,7 +132,10 @@ def Modes_Screen():
             
             if play3_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
-                Barriers3 = [["Images/Barriers/Hard_bot3_1.png","Images/Barriers/Hard_bot3_2.png"],["Images/Barriers/Hard_bot2_1.png","Images/Barriers/Hard_bot2_2.png"],["Images/Barriers/Hard_top1_1.png","Images/Barriers/Hard_top1_2.png"],["Images/Barriers/Hard_top2_1.png","Images/Barriers/Hard_top2_2.png"]]
+                Barriers3 = [["Images/Barriers/Hard_bot3_1.png","Images/Barriers/Hard_bot3_2.png"]\
+                             ,["Images/Barriers/Hard_bot2_1.png","Images/Barriers/Hard_bot2_2.png"]\
+                                 ,["Images/Barriers/Hard_top1_1.png","Images/Barriers/Hard_top1_2.png"]\
+                                     ,["Images/Barriers/Hard_top2_1.png","Images/Barriers/Hard_top2_2.png"]]
 # =============================================================================
 #                 Hard
 #                 Screen_Width = 850
@@ -146,7 +155,10 @@ def Modes_Screen():
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
-                    Barriers4 = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png"],["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png"],["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png"],["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png"]]
+                    Barriers4 = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png"]\
+                                 ,["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png"]\
+                                     ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png"]\
+                                         ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png"]]
                     Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers4)
                     pygame.quit()                
                     os._exit(0)
