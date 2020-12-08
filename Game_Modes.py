@@ -167,10 +167,11 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                if Total_Scores <= 3 :
+                if Total_Scores < 3 :
                     Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
-                    Main_Game.Game_Main(850,476,145,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3")
+                    bgm2_sound.stop()
+                    Main_Game.Game_Main(880,476,145,340,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3")
                     pygame.quit()                
                     os._exit(0)
                     break
