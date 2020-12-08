@@ -32,7 +32,12 @@ class Game_Role():
         self.Jump_Height = Highest_y
         self.Jump_Start_Position = Lowest_y
         self.Jump_Control = False
-        self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha(),pygame.image.load(self.Role_Image[1]).convert_alpha(),pygame.image.load(self.Role_Image[2]).convert_alpha())
+        self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha()\
+                      ,pygame.image.load(self.Role_Image[1]).convert_alpha()\
+                          ,pygame.image.load(self.Role_Image[2]).convert_alpha()\
+                              ,pygame.image.load(self.Role_Image[3]).convert_alpha()\
+                                  ,pygame.image.load(self.Role_Image[4]).convert_alpha()\
+                                     , pygame.image.load(self.Role_Image[5]).convert_alpha())
         self.rect.size = self.Image[0].get_size()
         self.Jump_Control_Twist = False
     
@@ -56,7 +61,7 @@ class Game_Role():
         if self.Jump_Start_Position <= self.rect.y :
             Screen.blit(self.Image[i],(self.rect.x, self.rect.y))  
         else  :
-            Screen.blit(self.Image[2],(self.rect.x, self.rect.y))
+            Screen.blit(self.Image[5],(self.rect.x, self.rect.y))
             
 # The barriers of the game
 class Barriers() :
@@ -123,7 +128,7 @@ class Golds():
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number,a
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -147,7 +152,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Game_Over = ""  
     # The images of the game
-    Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Jump.png"]
+    Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
+                         ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
 
     Barriers_Images = P_Barriers_Images
     Golds_Images = "Images/Barriers/Gold_1.png" 
@@ -167,16 +173,25 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     
     Game_Run_Sound.play(-1,0)
     Game_Over = False 
+    a = 0
     while True : 
         if Game_Over == False :   
             Distance += 1
+            a += 1
             Run_State = not Run_State
             Bg.Map_Move()
             Role.Action_Move()  
-            if Run_State == True :
+            if a == 0 :
                 Role.Draw_Role(0)
-            else :
+            elif a == 1 :
                 Role.Draw_Role(1)
+            elif a == 2 :
+                Role.Draw_Role(2)
+            elif a == 3 :
+                Role.Draw_Role(3)
+            elif a == 4 :
+                Role.Draw_Role(4)
+                a = -1
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 30 :
