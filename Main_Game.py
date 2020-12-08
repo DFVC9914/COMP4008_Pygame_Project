@@ -5,7 +5,8 @@ Created on Thu Nov 19 09:24:39 2020
 @author: Chao Cui
 """
 
-import pygame,os,random,Game_Modes
+import pygame,os,random,Game_Modes,Start_Screen
+ 
 Scores = 0
 Golds_number = 0
 
@@ -119,32 +120,6 @@ class Golds():
             Get_Score.play()
         self.Score = 0
         return Temporary_Score
-    
-class Button() : 
-    def __init__(self, text, color, x=None, y=None):
-        self.surf = Font.render(text, True, color)
-        self.WIDTH = self.surf.get_width()
-        self.HEIGHT = self.surf.get_height()   
-        self.x = x    
-        self.y = y
-    
-    def display(self) :
-    	Screen.blit(self.surf, (self.x, self.y))
-        
-    def check_click(self, position) :  
-        x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
-        y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
-        
-        if x_match and y_match:
-            return True
-        else:
-            return False
-        
-# Show the score and distance on the left top
-def Show(screen,Text,x,y) :
-    surf = Font.render(Text,False,(255,255,255))
-    screen.blit(surf,(x,y))
-
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
@@ -182,7 +157,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Over_Width = Game_Over_Image.get_width()
     Game_Over_Height = Game_Over_Image.get_height()
     Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
-    Return_Button = Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
+    Return_Button = Start_Screen.Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
     # Set the title of the game
@@ -229,10 +204,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     #Golds_Images = [["Images/Barriers/Nothing_1.png"]]
                     #pygame.display.update()
                     Golds_number += Golds_List[i].getScore()
-                    Show(Screen,"Gold +1",0,0)
-                    
-                    
-                    
+                    Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move()
@@ -244,7 +216,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
-                    Show(Screen,f"You ran {Distance} meters and  got {Golds_number} Golds ,{Scores} scores!",0,0)
+                    Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Golds_number} Golds ,{Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()

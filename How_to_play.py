@@ -13,28 +13,6 @@ Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 
-class Button():
-    
-    def __init__(self, text, color, x=None, y=None):
-
-        self.surf = font.render(text, True, color)
-        self.WIDTH = self.surf.get_width()
-        self.HEIGHT = self.surf.get_height()
-    
-        self.x = x    
-        self.y = y
-    
-    def display(self):
-    	screen.blit(self.surf, (self.x, self.y))
-    
-    def check_click(self, position):  
-        x_match = position[0] > self.x and position[0] < self.x + self.WIDTH
-        y_match = position[1] > self.y and position[1] < self.y + self.HEIGHT
-        
-        if x_match and y_match:
-            return True
-        else:
-            return False
         
 def How_screen():
     global screen,font
@@ -56,8 +34,8 @@ def How_screen():
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     
-    play_button = Button('Play Game', Orange, b1x, b1y)
-    back_button = Button('Back', Orange, b2x, b2y)
+    play_button = Start_Screen.Button('Play Game', Orange, b1x, b1y)
+    back_button = Start_Screen.Button('Back', Orange, b2x, b2y)
     play_button.display()
     back_button.display()
     pygame.display.update() 
@@ -68,14 +46,14 @@ def How_screen():
             pygame.mixer.music.play()   
             
         if play_button.check_click(pygame.mouse.get_pos()):              
-            play_button = Button('Play Game', Blue, b1x, b1y)                        
+            play_button = Start_Screen.Button('Play Game', Blue, b1x, b1y)                        
         else:            
-            play_button = Button('Play Game', Orange, b1x, b1y)
+            play_button = Start_Screen.Button('Play Game', Orange, b1x, b1y)
         
         if back_button.check_click(pygame.mouse.get_pos()):              
-            back_button = Button('Back', Blue, b2x, b2y)                        
+            back_button = Start_Screen.Button('Back', Blue, b2x, b2y)                        
         else:            
-            back_button = Button('Back', Orange, b2x, b2y)
+            back_button = Start_Screen.Button('Back', Orange, b2x, b2y)
             
         play_button.display()
         back_button.display()
