@@ -39,6 +39,8 @@ class Game_Role():
                                   ,pygame.image.load(self.Role_Image[4]).convert_alpha()\
                                      , pygame.image.load(self.Role_Image[5]).convert_alpha())
         self.rect.size = self.Image[0].get_size()
+        self.rect.width -= 50
+        self.rect.height -= 50
         self.Jump_Control_Twist = False
     
     def Jump(self):
@@ -82,8 +84,8 @@ class Barriers() :
             self.Image = (pygame.image.load(self.Barriers_Images[3][0]).convert_alpha(),pygame.image.load(self.Barriers_Images[3][1]).convert_alpha())
             self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
-        self.rect.width -= 50
-        self.rect.height -= 50
+        self.rect.width -= 80
+        self.rect.height -= 80
 
         self.Score = 1
  
