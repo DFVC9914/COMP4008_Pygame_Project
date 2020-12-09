@@ -10,10 +10,10 @@ Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 Width,Height = (780,366)
-Gem_easy = 0
-Gem_normal = 0
-Gem_hard = 0
-Gem_ultimate = 0  
+Gem_easy = 30
+Gem_normal = 40
+Gem_hard = 70
+Gem_ultimate = 100  
 def Modes_Screen():
     global screen,font,Best_Score,a
     pygame.init()
@@ -29,7 +29,7 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Main_Game.Scores <= 3 :
+    if Main_Game.Scores <= 3000 :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
@@ -132,7 +132,7 @@ def Modes_Screen():
 #                 Lowest_y = 370
 # =============================================================================
 
-                Main_Game.Game_Main(30,890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
+                Main_Game.Game_Main(30,890,476,210,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -153,7 +153,7 @@ def Modes_Screen():
 #                 Lowest_y = 305
 # =============================================================================
 
-                Main_Game.Game_Main(40,850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
+                Main_Game.Game_Main(40,850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
 
 
                 pygame.quit()                
