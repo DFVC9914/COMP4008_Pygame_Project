@@ -1,5 +1,5 @@
 
-import pygame,os,Game_Modes,How_to_play,Main_Game
+import pygame,os,Game_Modes,How_to_play
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
