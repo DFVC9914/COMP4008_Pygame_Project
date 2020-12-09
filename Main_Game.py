@@ -101,8 +101,8 @@ class Barriers() :
                                       ,pygame.image.load(self.Barriers_Images[3][4]).convert_alpha())
             self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
-        self.rect.width -= 80
-        self.rect.height -= 80
+        self.rect.width -= 60
+        self.rect.height -= 50
         self.Barriers_Index = itertools.cycle([0,1,2,3,4])
         self.Score = 1
  
