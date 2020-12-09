@@ -29,7 +29,7 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Main_Game.Scores <= 3 :
+    if Main_Game.Scores <= 3000 :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
