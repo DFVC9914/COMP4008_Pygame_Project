@@ -219,13 +219,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]) :
                     Get_Score.play()
                     Gems_number += Gem_Lists[i].getScore()
-<<<<<<< HEAD
                     Start_Screen.Show(Screen,"Gem + 1",0,0)                
-            
-            ######################################### 
-=======
-                    Start_Screen.Show(Screen,"Gem +1",0,0)                
->>>>>>> e6cd76f3ce052c637b77ea7eb33785c8ab34ae72
+ 
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :

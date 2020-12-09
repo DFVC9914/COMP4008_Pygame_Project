@@ -131,11 +131,8 @@ def Modes_Screen():
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
-<<<<<<< HEAD
+
                 Main_Game.Game_Main(890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
-=======
-                Main_Game.Game_Main(890,476,210,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem)
->>>>>>> e6cd76f3ce052c637b77ea7eb33785c8ab34ae72
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -155,11 +152,10 @@ def Modes_Screen():
 #                 Highest_y = 120
 #                 Lowest_y = 305
 # =============================================================================
-<<<<<<< HEAD
+
                 Main_Game.Game_Main(850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
-=======
-                Main_Game.Game_Main(850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem)
->>>>>>> e6cd76f3ce052c637b77ea7eb33785c8ab34ae72
+
+
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -174,13 +170,11 @@ def Modes_Screen():
                              ,["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png","Images/Barriers/Ultimate_bot2_3.png","Images/Barriers/Ultimate_bot2_4.png","Images/Barriers/Ultimate_bot2_5.png"]\
                                  ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png","Images/Barriers/Ultimate_top1_3.png","Images/Barriers/Ultimate_top1_4.png","Images/Barriers/Ultimate_top1_5.png"]\
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
-<<<<<<< HEAD
+
                     Gem = "Images/Barriers/Yellow.png"
                     Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,3)
-=======
-                    Gem = "Images/Barriers/Blue.png"
-                    Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem)
->>>>>>> e6cd76f3ce052c637b77ea7eb33785c8ab34ae72
+
+
                     pygame.quit()                
                     os._exit(0)
                     break
