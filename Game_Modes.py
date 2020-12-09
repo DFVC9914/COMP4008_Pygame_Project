@@ -166,7 +166,7 @@ def Modes_Screen():
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
-                    Barriers = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png","Images/Barriers/Ultimate_bot1_3.png","Images/Barriers/Ultimate_bot1_4.png","Images/Barriers/Ultimate_bot1_5.png"]\
+                    Barriers = [["Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png"]\
                              ,["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png","Images/Barriers/Ultimate_bot2_3.png","Images/Barriers/Ultimate_bot2_4.png","Images/Barriers/Ultimate_bot2_5.png"]\
                                  ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png","Images/Barriers/Ultimate_top1_3.png","Images/Barriers/Ultimate_top1_4.png","Images/Barriers/Ultimate_top1_5.png"]\
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
