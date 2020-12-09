@@ -58,7 +58,7 @@ def Firstscreen():
     def Ourname():
         global font
         aut = pygame.font.Font(pygame.font.get_default_font(), 16)
-        author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU                                                                    \
+        author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\
                 Version 1.0', True, White)
         screen.blit(author, (10, 340))
 
