@@ -8,7 +8,8 @@ Created on Thu Nov 19 09:24:39 2020
 import pygame,os,random,Game_Modes,Start_Screen,itertools 
  
 Scores = 0
-Gems_number = 0
+
+
 
 # The background of the game
 class Game_Map() :
@@ -142,15 +143,16 @@ class Gems():
         self.Score = 0
         return Temporary_Score
 
-def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images):
+def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Gems_number,Role,Gems_Images
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Role,Gems_Images
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
     Highest_y = P_Highest_y
     Lowest_y = P_Lowest_y    
     # Local variables
+    Gems_number = 0
     Fps = 30
     Distance = 0
     Gem_Lists = []
@@ -217,14 +219,15 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]) :
                     Get_Score.play()
                     Gems_number += Gem_Lists[i].getScore()
-                    Start_Screen.Show(Screen,"Gold +1",0,0)                
+                    Start_Screen.Show(Screen,"Gem + 1",0,0)                
+            
+            ######################################### 
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
                     Barrier = Barriers(Barriers_Images)
                     Barriers_List += [Barrier]
-                    Barriers_Time = 0        
-            #########################################         
+                    Barriers_Time = 0              
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move() 
                 Barriers_List[i].Draw_Barriers()              
@@ -234,6 +237,14 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Dead_Bgm.play()
                     Scores =  Scores + Gems_number * 5
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems ,{Scores} scores!",0,0)
+                    if Mode == 0 :
+                        Game_Modes.Gem_easy += Gems_number
+                    elif Mode == 1 :
+                        Game_Modes.Gem_normal += Gems_number
+                    elif Mode == 2 :
+                        Game_Modes.Gem_hard += Gems_number
+                    elif Mode == 3 :
+                        Game_Modes.Gem_ultimate += Gems_number
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()
