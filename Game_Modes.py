@@ -104,13 +104,13 @@ def Modes_Screen():
                 Gem = "Images/Barriers/Green.png"
 # =============================================================================
 #                 Easy
+#                 Fps = 24
 #                 Screen_Width = 890
 #                 Screen_Height = 476
-#                 Fps = 24
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
-                Main_Game.Game_Main(850,476,150,305,"Images/Backgrounds/Snow_Background.jpg","Sounds/Normal_Bgm.mp3",Barriers,Gem,0)
+                Main_Game.Game_Main(24,850,476,150,305,"Images/Backgrounds/Snow_Background.jpg","Sounds/Normal_Bgm.mp3",Barriers,Gem,0)
                
                 pygame.quit()                
                 os._exit(0)
@@ -125,14 +125,14 @@ def Modes_Screen():
                 Gem = "Images/Barriers/Yellow.png"
 # =============================================================================
 #                 Normal 
+#                 Fps = 24
 #                 Screen_Width = 890
 #                 Screen_Height = 476
-#                 Fps = 24
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
 
-                Main_Game.Game_Main(890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
+                Main_Game.Game_Main(30,890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -146,14 +146,14 @@ def Modes_Screen():
                 Gem = "Images/Barriers/Red.png"
 # =============================================================================
 #                 Hard
+#                 Fps = 40
 #                 Screen_Width = 850
 #                 Screen_Height = 476
-#                 Fps = 40
 #                 Highest_y = 120
 #                 Lowest_y = 305
 # =============================================================================
 
-                Main_Game.Game_Main(850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
+                Main_Game.Game_Main(40,850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
 
 
                 pygame.quit()                
@@ -172,9 +172,15 @@ def Modes_Screen():
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
 
                     Gem = "Images/Barriers/Yellow.png"
-                    Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,3)
-
-
+# =============================================================================
+#                 Ultimate
+#                 Fps = 50
+#                 Screen_Width = 880
+#                 Screen_Height = 476
+#                 Highest_y = 145
+#                 Lowest_y = 320
+# =============================================================================
+                    Main_Game.Game_Main(50,880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,3)
                     pygame.quit()                
                     os._exit(0)
                     break

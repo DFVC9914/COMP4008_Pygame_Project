@@ -143,7 +143,7 @@ class Gems():
         self.Score = 0
         return Temporary_Score
 
-def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
+def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
         Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Role,Gems_Images
     Screen_Width = P_Screen_Width
@@ -153,7 +153,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Lowest_y = P_Lowest_y    
     # Local variables
     Gems_number = 0
-    Fps = 30
     Distance = 0
     Gem_Lists = []
     Barriers_Time = 0 
@@ -266,5 +265,5 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
         Barriers_Time += 20
         Gem_Time += 30            
         pygame.display.flip()      
-        Fps_Flash.tick(Fps)
+        Fps_Flash.tick(P_Fps)
         
