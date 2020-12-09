@@ -58,14 +58,7 @@ class Game_Role():
             self.rect.y += (Jump_Speed - 2)
             if self.rect.y >= self.Jump_Start_Position :
                 self.Jump_Control_Twist = False
-        # if  self.Jump_Control == True :
-        #     if self.rect.y >= self.Jump_Start_Position :
-        #         self.jumpValu = -5  # 向上移动五个像素点
-        #     if self.rect.y <= self.Jump_Height :  # 到顶后下降
-        #         self.jumpValue = 5
-        #     self.rect.y += self.jumpValue
-        #     if self.rect.y >= self.Jump_Start_Position :  # 恐龙落地以后，跳跃状态改为False
-        #         self.Jump_Control = False
+ 
             
     def Draw_Role(self,i) :
         # self.Index = next(self.IndexGen)
@@ -229,6 +222,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 Gold_Lists[i].Draw_Golds()               
                 if pygame.sprite.collide_rect(Role,Gold_Lists[i]) :
                     Golds_number += Gold_Lists[i].getScore()
+                    Screen.blit(pygame.image.load("Images/Roles/Role_Run_4.png").convert_alpha(),(Gold_Lists[i].rect.x,Gold_Lists[i].rect.y))
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             if Barriers_Time >= 1000 :
