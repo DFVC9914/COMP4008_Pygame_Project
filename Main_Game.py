@@ -232,7 +232,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
-                    Scores =  Scores + Gems_number * 5
+                    Scores =  Scores + Gems_number * 10
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems ,{Scores} scores!",0,0)
                     Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])

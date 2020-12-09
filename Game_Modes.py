@@ -118,7 +118,7 @@ def Modes_Screen():
                              ,["Images/Barriers/Normal_bot2_1.png","Images/Barriers/Normal_bot2_2.png","Images/Barriers/Normal_bot2_3.png","Images/Barriers/Normal_bot2_4.png","Images/Barriers/Normal_bot2_5.png"]\
                                  ,["Images/Barriers/Normal_top1_1.png","Images/Barriers/Normal_top1_2.png","Images/Barriers/Normal_top1_3.png","Images/Barriers/Normal_top1_4.png","Images/Barriers/Normal_top1_5.png"]\
                                      ,["Images/Barriers/Normal_top2_1.png","Images/Barriers/Normal_top2_2.png","Images/Barriers/Normal_top2_3.png","Images/Barriers/Normal_top2_4.png","Images/Barriers/Normal_top2_5.png"]]
-                Gem = "Images/Barriers/Blue.png"
+                Gem = "Images/Barriers/Yellow.png"
 # =============================================================================
 #                 Normal 
 #                 Screen_Width = 890
@@ -162,7 +162,7 @@ def Modes_Screen():
                              ,["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png","Images/Barriers/Ultimate_bot2_3.png","Images/Barriers/Ultimate_bot2_4.png","Images/Barriers/Ultimate_bot2_5.png"]\
                                  ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png","Images/Barriers/Ultimate_top1_3.png","Images/Barriers/Ultimate_top1_4.png","Images/Barriers/Ultimate_top1_5.png"]\
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
-                    Gem = "Images/Barriers/Yellow.png"
+                    Gem = "Images/Barriers/Blue.png"
                     Main_Game.Game_Main(880,476,145,320,"Images/Backgrounds/Red_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem)
                     pygame.quit()                
                     os._exit(0)
