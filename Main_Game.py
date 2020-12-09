@@ -5,7 +5,7 @@ Created on Thu Nov 19 09:24:39 2020
 @author: Chao Cui
 """
 
-import pygame,os,random,Game_Modes,Start_Screen
+import pygame,os,random,Game_Modes,Start_Screen,itertools 
  
 Scores = 0
 Golds_number = 0
@@ -111,14 +111,15 @@ class Barriers() :
         self.rect.size = self.Image[0].get_size()
         self.rect.width -= 80
         self.rect.height -= 80
-
+        self.Barriers_Index = itertools.cycle([0,1,2,3,4])
         self.Score = 1
  
     def Move(self) :
         self.rect.x -= 8
         
-    def Draw_Barriers(self,i) :
-        Screen.blit(self.Image[i], (self.rect.x, self.rect.y))
+    def Draw_Barriers(self) :
+        Index = next(self.Barriers_Index)
+        Screen.blit(self.Image[Index], (self.rect.x, self.rect.y))
         
     def getScore(self):
         Temporary_Score = self.Score
@@ -157,7 +158,7 @@ class Golds():
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number,a
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -170,7 +171,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Barriers_Time = 0 
     Barriers_List = []
     Golds_Time = 0
-    Barrier_Image_Time = -1
     Role_Image_Time = -1
     # Initialising pygame
     pygame.init()
@@ -179,7 +179,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
-    Game_Over = ""  
+    Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
@@ -190,7 +190,6 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
     Game_Over_Width = Game_Over_Image.get_width()
     Game_Over_Height = Game_Over_Image.get_height()
-    Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
     Return_Button = Start_Screen.Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
@@ -231,6 +230,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 if pygame.sprite.collide_rect(Role,Gold_Lists[i]) :
                     Golds_number += Gold_Lists[i].getScore()
                     Start_Screen.Show(Screen,"Gold +1",0,0)
+                    
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
@@ -238,20 +238,10 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Barriers_List += [Barrier]
                     Barriers_Time = 0        
             #########################################
+            
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move() 
-                Barrier_Image_Time += 1
-                if Barrier_Image_Time == 0 :
-                    Barriers_List[i].Draw_Barriers(0)
-                elif Barrier_Image_Time == 1 :
-                    Barriers_List[i].Draw_Barriers(1)
-                elif Barrier_Image_Time == 2 :
-                    Barriers_List[i].Draw_Barriers(2)
-                elif Barrier_Image_Time == 3 :
-                    Barriers_List[i].Draw_Barriers(3)
-                elif Barrier_Image_Time == 4 :
-                    Barriers_List[i].Draw_Barriers(4)
-                    Barrier_Image_Time = -1
+                Barriers_List[i].Draw_Barriers()              
                 if pygame.sprite.collide_circle(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
@@ -272,14 +262,14 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()                   
-        
+        ######################################
         if pygame.mouse.get_pressed()[0]:            
             if Return_Button.check_click(pygame.mouse.get_pos()):
                 Game_Run_Sound.stop()
                 Game_Modes.Modes_Screen()
                 pygame.quit()                
                 os._exit(0)    
-        Barriers_Time += 10
+        Barriers_Time += 20
         Golds_Time += 30            
         pygame.display.flip()      
         Fps_Flash.tick(Fps)
