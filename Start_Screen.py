@@ -75,7 +75,7 @@ def Firstscreen():
     # Ourname()
     
     pygame.display.update()
-    Show(screen,"Creators: CHAO CUI, NANDI GUO, HAO WU          \                                                        \
+    Show(screen," Creators: CHAO CUI, NANDI GUO, HAO WU          \                                                        \
     Version 1.0",0, Height-30)
     Show(screen,f"Total Score = {Main_Game.Scores},Easy = {Game_Modes.Gem_easy},Normal = {Game_Modes.Gem_normal},Hard = {Game_Modes.Gem_hard},Ultimate = {Game_Modes.Gem_ultimate}",0,0) 
     while True:
