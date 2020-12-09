@@ -55,12 +55,12 @@ def Firstscreen():
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
 
-    def Ourname():
-        global font
-        aut = pygame.font.Font(pygame.font.get_default_font(), 16)
-        author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\
-                Version 1.0', True, White)
-        screen.blit(author, (10, 340))
+    # def Ourname():
+    #     global font
+    #     aut = pygame.font.Font(pygame.font.get_default_font(), 16)
+    #     author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\
+    #             Version 1.0', True, White)
+    #     screen.blit(author, (10, 340))
 
     title = font.render('CWG-Ultimate Running', True, White)
     screen.blit(title, (Width//2 - title.get_width()//2, 40))
@@ -72,8 +72,10 @@ def Firstscreen():
     play_button.display()
     exit_button.display()
     introduction_button.display()
-    Ourname()
+    # Ourname()
+    
     pygame.display.update()
+    Show(screen,"Creators: CHAO CUI, NANDI GUO, HAO WU \n Version 1.0",0, Height-30)
     Show(screen,f"Total Score = {Main_Game.Scores},Easy = {Game_Modes.Gem_easy},Normal = {Game_Modes.Gem_normal},Hard = {Game_Modes.Gem_hard},Ultimate = {Game_Modes.Gem_ultimate}",0,0) 
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\

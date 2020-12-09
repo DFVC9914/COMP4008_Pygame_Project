@@ -171,7 +171,7 @@ def Modes_Screen():
                                  ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png","Images/Barriers/Ultimate_top1_3.png","Images/Barriers/Ultimate_top1_4.png","Images/Barriers/Ultimate_top1_5.png"]\
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
 
-                    Gem = "Images/Barriers/Yellow.png"
+                    Gem = "Images/Barriers/Blue.png"
 # =============================================================================
 #                 Ultimate
 #                 Fps = 50
