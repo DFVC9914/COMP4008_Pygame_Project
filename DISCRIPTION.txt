@@ -1,1 +1,1 @@
-
+The game is a parkour game, divided into four levels from easy to hard. Each level involves avoiding monsters and collecting gems. The first three levels are unlocked, and the final level is unlocked when the total score reaches 3000 points. As the same player plays, his score and the number of gems he has received are displayed at the start of the game!
