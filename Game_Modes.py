@@ -132,7 +132,7 @@ def Modes_Screen():
 #                 Lowest_y = 370
 # =============================================================================
 
-                Main_Game.Game_Main(30,890,476,210,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
+                Main_Game.Game_Main(30,890,476,210,360,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
                 break
