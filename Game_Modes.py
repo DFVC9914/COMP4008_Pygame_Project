@@ -29,7 +29,7 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Main_Game.Scores <= 3000 :
+    if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
@@ -159,7 +159,7 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                if Gem_easy >= 3 and Gem_normal >= 3 and Gem_hard >= 3 :
+                if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
