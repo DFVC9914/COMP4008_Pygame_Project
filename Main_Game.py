@@ -141,13 +141,13 @@ class Gems():
 
 def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Role,Gems_Images
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Role
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
-    Jump_Speed = 8  
     Highest_y = P_Highest_y
     Lowest_y = P_Lowest_y    
     # Local variables
+    Jump_Speed = 8  
     Gems_number = 0
     Distance = 0
     Gem_Lists = []
@@ -167,9 +167,6 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
-    Gems_Images = P_Gems_Images
-    Barriers_Images = P_Barriers_Images
-    Background = P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
     Game_Over_Width = Game_Over_Image.get_width()
     Game_Over_Height = Game_Over_Image.get_height()
@@ -180,7 +177,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     pygame.display.set_caption("CWG's Game")   
     Role = Game_Role(Role_Image_Action)
     Fps_Flash = pygame.time.Clock()
-    Bg = Game_Map(0,0,Background)  
+    Bg = Game_Map(0,0,P_Background)  
     Game_Run_Sound.play(-1,0)
     Game_Over = False  
 
@@ -205,7 +202,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             if Gem_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 10 :
-                    Gem = Gems(Gems_Images) 
+                    Gem = Gems(P_Gems_Images) 
                     Gem_Lists += [Gem]
                     Gem_Time = 0
             for i in range(len(Gem_Lists)) :
@@ -219,7 +216,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
-                    Barrier = Barriers(Barriers_Images)
+                    Barrier = Barriers( P_Barriers_Images)
                     Barriers_List += [Barrier]
                     Barriers_Time = 0              
             for i in range(len(Barriers_List)) :

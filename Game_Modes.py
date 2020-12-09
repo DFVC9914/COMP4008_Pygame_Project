@@ -14,6 +14,7 @@ Gem_easy = 0
 Gem_normal = 0
 Gem_hard = 0
 Gem_ultimate = 0 
+Restrict = 3
 def Modes_Screen():
     global screen,font,Best_Score,a
     pygame.init()
@@ -29,11 +30,11 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
+    if Gem_easy < Restrict and Gem_normal < Restrict and Gem_hard < Restrict :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
-    if Gem_easy == 3 and Gem_normal == 3 and Gem_hard == 3 and Gem_ultimate == 3 :
+    if Gem_easy == Restrict and Gem_normal == Restrict and Gem_hard == Restrict and Gem_ultimate == Restrict :
         screen.blit(pygame.image.load("Images/unknown.png"), (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
@@ -161,7 +162,7 @@ def Modes_Screen():
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-                if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
+                if Gem_easy < Restrict and Gem_normal < Restrict and Gem_hard < Restrict :
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
