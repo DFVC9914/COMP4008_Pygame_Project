@@ -33,6 +33,8 @@ def Modes_Screen():
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
+    if Gem_easy == 3 and Gem_normal == 3 and Gem_hard == 3 and Gem_ultimate == 3 :
+        screen.blit(pygame.image.load("Images/unknown.png"), (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
     play_button = Start_Screen.Button(Easy, White, b1x, b1y)
