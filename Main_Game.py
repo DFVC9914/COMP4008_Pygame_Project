@@ -172,14 +172,15 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     # The sounds of the game
     Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
-    Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
+    Get_Score = pygame.mixer.Sound("Sounds/GOLD_1.1.mp3")
     Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
+    # Gold_sound = pygame.mixer.music.load("Sounds/gold_ggg.mp3")
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
     Golds_Images = "Images/Barriers/Gold_1.png" 
     Barriers_Images = P_Barriers_Images
-    Golds_Images = "Images/Barriers/Gold_1.png" 
+    
     Background = P_Background
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
     Game_Over_Width = Game_Over_Image.get_width()
