@@ -47,7 +47,7 @@ def Modes_Screen():
     play4_button.display()
     back_button.display()
     pygame.display.update() 
-    Start_Screen.Show(screen,f"Green gem = {Gem_easy},Yellow gem = {Gem_normal},Red gem = {Gem_hard},Blue gem = {Gem_ultimate}",0,0) 
+    Start_Screen.Show(screen,f"Green gem = {Gem_easy}, Yellow gem = {Gem_normal}, Red gem = {Gem_hard}, Blue gem = {Gem_ultimate}",0,0) 
     
     while True:  
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
