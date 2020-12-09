@@ -41,7 +41,7 @@ class Button():
             return False
 
 def Show(screen,Text,x,y) :
-    score_font = pygame.font.SysFont("Arial",20)
+    score_font = pygame.font.SysFont("Verdana",15)
     surf = score_font.render(Text,False,(255,255,255))
     screen.blit(surf,(x,y))
     
@@ -75,7 +75,8 @@ def Firstscreen():
     # Ourname()
     
     pygame.display.update()
-    Show(screen,"Creators: CHAO CUI, NANDI GUO, HAO WU \n Version 1.0",0, Height-30)
+    Show(screen,"Creators: CHAO CUI, NANDI GUO, HAO WU          \                                                        \
+    Version 1.0",0, Height-30)
     Show(screen,f"Total Score = {Main_Game.Scores},Easy = {Game_Modes.Gem_easy},Normal = {Game_Modes.Gem_normal},Hard = {Game_Modes.Gem_hard},Ultimate = {Game_Modes.Gem_ultimate}",0,0) 
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
