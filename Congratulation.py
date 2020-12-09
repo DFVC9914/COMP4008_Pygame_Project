@@ -10,10 +10,11 @@ Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 Width,Height = (781,482)
-pygame.init()
+
 
 def Con_Screen():
     global screen,font
+    pygame.init()
     screen = pygame.display.set_mode((Width, Height))  
     pygame.display.set_caption("Game Modes")
     background = pygame.image.load("Images/Backgrounds/Congratulation_1.png")
@@ -21,11 +22,10 @@ def Con_Screen():
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
     
-while True:
-    pygame.display.update()
-    for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    os._exit(0)
+    while True:
+        pygame.display.update()
+        for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        os._exit(0)
 
-Con_Screen()

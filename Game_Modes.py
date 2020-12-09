@@ -4,7 +4,7 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: NANDI GUO
 """
-import pygame,os,Main_Game,How_to_play,Start_Screen
+import pygame,os,Main_Game,How_to_play,Start_Screen,Congratulation
 
 Orange = (119,0,255)
 White = (255,255,255)
@@ -35,7 +35,7 @@ def Modes_Screen():
     else :
         screen.blit(background1, (0,0))
     if Gem_easy == Restrict and Gem_normal == Restrict and Gem_hard == Restrict and Gem_ultimate == Restrict :
-        screen.blit(pygame.image.load("Images/unknown.png"), (0,0))
+        Congratulation.Con_Screen()
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
     play_button = Start_Screen.Button(Easy, White, b1x, b1y)
@@ -43,7 +43,6 @@ def Modes_Screen():
     play3_button = Start_Screen.Button(Hard, White, b3x, b3y)
     play4_button = Start_Screen.Button(Ultimate, White, b4x, b4y)
     back_button = Start_Screen.Button(Back, Orange, b5x, b5y)
-    
     play_button.display()
     play2_button.display()
     play3_button.display()
@@ -163,7 +162,7 @@ def Modes_Screen():
             
             if play4_button.check_click(pygame.mouse.get_pos()):
                 if Gem_easy < Restrict and Gem_normal < Restrict and Gem_hard < Restrict :
-                    Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
+                    Start_Screen.Show(screen,"Your gems are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
                     Barriers = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png","Images/Barriers/Ultimate_bot1_3.png","Images/Barriers/Ultimate_bot1_4.png","Images/Barriers/Ultimate_bot1_5.png"]\

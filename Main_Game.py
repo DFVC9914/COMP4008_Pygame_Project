@@ -57,7 +57,6 @@ class Game_Role():
                 self.Jump_Control_Twist = False
             
     def Draw_Role(self,i) :
-        # self.Index = next(self.IndexGen)
         if self.Jump_Start_Position <= self.rect.y :
             Screen.blit(self.Image[i],(self.rect.x, self.rect.y))  
         else  :
