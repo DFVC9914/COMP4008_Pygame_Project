@@ -54,7 +54,7 @@ def Firstscreen():
     b3x,b3y=310,220  
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
-    title = font.render('CWG-Ultimate Running', True, White)
+    title = font.render('CWG-Ultimate Warrior', True, White)
     screen.blit(title, (Width//2 - title.get_width()//2, 40))
     play_button = Button('Play', Orange, b1x, b1y)
     exit_button = Button('Quit', Orange, b2x, b2y)
