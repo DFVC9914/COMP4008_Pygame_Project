@@ -137,21 +137,22 @@ class Golds():
         self.Score = 1   
         
     def Draw_Golds(self) :
-        Screen.blit(self.Image, (self.rect.x, self.rect.y))
+        if pygame.sprite.collide_rect(Role,self) :
+            Screen.blit(pygame.image.load("Images/Barriers/Nothing_1.png").convert_alpha(), (self.rect.x, self.rect.y))
+        else :
+            Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
         self.rect.x -= 8
     
     def getScore(self):
         Temporary_Score = self.Score
-        if Temporary_Score == 1 :
-            Get_Score.play()
         self.Score = 0
         return Temporary_Score
 
 def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Golds_number,Role
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -176,7 +177,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
-
+    Golds_Images = "Images/Barriers/Gold_1.png" 
     Barriers_Images = P_Barriers_Images
     Golds_Images = "Images/Barriers/Gold_1.png" 
     Background = P_Background
@@ -193,8 +194,10 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     Bg = Game_Map(0,0,Background)  
     Game_Run_Sound.play(-1,0)
     Game_Over = False  
+
     while True : 
-        if Game_Over == False :   
+        if Game_Over == False :
+            
             Distance += 1
             Role_Image_Time += 1
             Bg.Map_Move()
@@ -221,8 +224,8 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 Gold_Lists[i].Move()            
                 Gold_Lists[i].Draw_Golds()               
                 if pygame.sprite.collide_rect(Role,Gold_Lists[i]) :
+                    Get_Score.play()
                     Golds_number += Gold_Lists[i].getScore()
-                    Screen.blit(pygame.image.load("Images/Roles/Role_Run_4.png").convert_alpha(),(Gold_Lists[i].rect.x,Gold_Lists[i].rect.y))
                     Start_Screen.Show(Screen,"Gold +1",0,0)
                     
             if Barriers_Time >= 1000 :
