@@ -172,7 +172,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
     # The sounds of the game
     Jump_Sound = pygame.mixer.Sound("Sounds/Jump.mp3")
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
-    Get_Score = pygame.mixer.Sound("Sounds/GOLD_1.1.mp3")
+    Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
     # Gold_sound = pygame.mixer.music.load("Sounds/gold_ggg.mp3")
     # The images of the game
