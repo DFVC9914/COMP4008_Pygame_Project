@@ -132,7 +132,7 @@ def Modes_Screen():
 #                 Lowest_y = 370
 # =============================================================================
 
-                Main_Game.Game_Main(30,890,476,120,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
+                Main_Game.Game_Main(30,890,476,210,370,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
                 break
@@ -153,7 +153,7 @@ def Modes_Screen():
 #                 Lowest_y = 305
 # =============================================================================
 
-                Main_Game.Game_Main(40,850,476,120,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
+                Main_Game.Game_Main(40,850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
 
 
                 pygame.quit()                
