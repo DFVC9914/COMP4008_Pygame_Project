@@ -163,13 +163,10 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     Game_Run_Sound = pygame.mixer.Sound(P_Background_Sound)
     Get_Score = pygame.mixer.Sound("Sounds/Get_Score.wav")
     Dead_Bgm = pygame.mixer.Sound("Sounds/Dead.mp3")
-    # Gold_sound = pygame.mixer.music.load("Sounds/gold_ggg.mp3")
     # The images of the game
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
-    Game_Over_Width = Game_Over_Image.get_width()
-    Game_Over_Height = Game_Over_Image.get_height()
     Return_Button = Start_Screen.Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
@@ -235,15 +232,15 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                         Game_Modes.Gem_hard += Gems_number
                     elif Mode == 3 :
                         Game_Modes.Gem_ultimate += Gems_number
-                    Screen.blit(Game_Over_Image,((Screen_Width/2-Game_Over_Width/2),(Screen_Height/2-Game_Over_Height/2)))
+                    Screen.blit(Game_Over_Image,((Screen_Width/2 - Game_Over_Image.get_width()/2),(Screen_Height/2 - Game_Over_Image.get_height()/2)))
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()
                     break    
         #########################################                
         for event in pygame.event.get():
             if event.type == pygame.QUIT :
-                pygame.quit()# for the rest of the people with windows or Linux
-                os._exit(0) # for Mac users.
+                pygame.quit() # For the rest of the people with windows or Linux
+                os._exit(0) # For Mac users.
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()                   

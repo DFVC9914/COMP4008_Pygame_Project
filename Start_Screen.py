@@ -54,31 +54,21 @@ def Firstscreen():
     b3x,b3y=310,220  
     screen.blit(background, (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
-
-    # def Ourname():
-    #     global font
-    #     aut = pygame.font.Font(pygame.font.get_default_font(), 16)
-    #     author = aut.render('Creators: CHAO CUI, NANDI GUO, HAO WU\
-    #             Version 1.0', True, White)
-    #     screen.blit(author, (10, 340))
-
     title = font.render('CWG-Ultimate Running', True, White)
     screen.blit(title, (Width//2 - title.get_width()//2, 40))
-
     play_button = Button('Play', Orange, b1x, b1y)
     exit_button = Button('Quit', Orange, b2x, b2y)
     introduction_button = Button('How to play', Orange, b3x, b3y)
-
     play_button.display()
     exit_button.display()
     introduction_button.display()
-    # Ourname()
     
-    pygame.display.update()
+    
     Show(screen," Creators: CHAO CUI, NANDI GUO, HAO WU          \                                                        \
     Version 1.0",0, Height-30)
     Show(screen,f"Green gem = {Game_Modes.Gem_easy}, Red gem = {Game_Modes.Gem_normal}, Yellow gem = {Game_Modes.Gem_hard}, Blue gem = {Game_Modes.Gem_ultimate}",0,0) 
     while True:
+        pygame.display.update()
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\
             introduction_button.check_click(pygame.mouse.get_pos())):
