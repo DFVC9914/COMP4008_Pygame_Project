@@ -77,7 +77,7 @@ def Firstscreen():
     pygame.display.update()
     Show(screen," Creators: CHAO CUI, NANDI GUO, HAO WU          \                                                        \
     Version 1.0",0, Height-30)
-    Show(screen,f"Total Score = {Main_Game.Scores},Easy = {Game_Modes.Gem_easy},Normal = {Game_Modes.Gem_normal},Hard = {Game_Modes.Gem_hard},Ultimate = {Game_Modes.Gem_ultimate}",0,0) 
+    Show(screen,f"Green gem = {Game_Modes.Gem_easy}, Red gem = {Game_Modes.Gem_normal}, Yellow gem = {Game_Modes.Gem_hard}, Blue gem = {Game_Modes.Gem_ultimate}",0,0) 
     while True:
         if not (play_button.check_click(pygame.mouse.get_pos()) or\
             exit_button.check_click(pygame.mouse.get_pos()) or\

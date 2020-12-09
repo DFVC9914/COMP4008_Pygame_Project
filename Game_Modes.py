@@ -29,10 +29,12 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Main_Game.Scores <= 3000 :
+    if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
         screen.blit(background, (0,0))
     else :
         screen.blit(background1, (0,0))
+    if Gem_easy == 3 and Gem_normal == 3 and Gem_hard == 3 and Gem_ultimate == 3 :
+        screen.blit(pygame.image.load("Images/unknown.png"), (0,0))
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
     play_button = Start_Screen.Button(Easy, White, b1x, b1y)
@@ -47,7 +49,7 @@ def Modes_Screen():
     play4_button.display()
     back_button.display()
     pygame.display.update() 
-    Start_Screen.Show(screen,f"Total Score = {Main_Game.Scores},Easy = {Gem_easy},Normal = {Gem_normal},Hard = {Gem_hard},Ultimate = {Gem_ultimate}",0,0) 
+    Start_Screen.Show(screen,f"Green gem = {Gem_easy}, Yellow gem = {Gem_normal}, Red gem = {Gem_hard}, Blue gem = {Gem_ultimate}",0,0) 
     
     while True:  
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
@@ -154,23 +156,19 @@ def Modes_Screen():
 # =============================================================================
 
                 Main_Game.Game_Main(40,850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
-
-
                 pygame.quit()                
                 os._exit(0)
                 break
             
             if play4_button.check_click(pygame.mouse.get_pos()):
-
-                if Main_Game.Scores < 3 :
+                if Gem_easy < 3 and Gem_normal < 3 and Gem_hard < 3 :
                     Start_Screen.Show(screen,"Your scores are not enought!",b4x-50,b4y+20)                   
                 else :
                     bgm2_sound.stop()
-                    Barriers = [["Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png","Images/Barriers/c.png"]\
-                             ,["Images/Barriers/Ultimate_bot2_1.png","Images/Barriers/Ultimate_bot2_2.png","Images/Barriers/Ultimate_bot2_3.png","Images/Barriers/Ultimate_bot2_4.png","Images/Barriers/Ultimate_bot2_5.png"]\
+                    Barriers = [["Images/Barriers/Ultimate_bot1_1.png","Images/Barriers/Ultimate_bot1_2.png","Images/Barriers/Ultimate_bot1_3.png","Images/Barriers/Ultimate_bot1_4.png","Images/Barriers/Ultimate_bot1_5.png"]\
+                             ,["Images/Barriers/Ultimate_top3_1.png","Images/Barriers/Ultimate_top3_2.png","Images/Barriers/Ultimate_top3_3.png","Images/Barriers/Ultimate_top3_4.png","Images/Barriers/Ultimate_top3_5.png"]\
                                  ,["Images/Barriers/Ultimate_top1_1.png","Images/Barriers/Ultimate_top1_2.png","Images/Barriers/Ultimate_top1_3.png","Images/Barriers/Ultimate_top1_4.png","Images/Barriers/Ultimate_top1_5.png"]\
                                      ,["Images/Barriers/Ultimate_top2_1.png","Images/Barriers/Ultimate_top2_2.png","Images/Barriers/Ultimate_top2_3.png","Images/Barriers/Ultimate_top2_4.png","Images/Barriers/Ultimate_top2_5.png"]]
-
                     Gem = "Images/Barriers/Blue.png"
 # =============================================================================
 #                 Ultimate

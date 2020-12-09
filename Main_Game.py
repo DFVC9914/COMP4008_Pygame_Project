@@ -6,10 +6,6 @@ Created on Thu Nov 19 09:24:39 2020
 """
 
 import pygame,os,random,Game_Modes,Start_Screen,itertools 
- 
-Scores = 0
-
-
 
 # The background of the game
 class Game_Map() :
@@ -145,7 +141,7 @@ class Gems():
 
 def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Scores,Role,Gems_Images
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Role,Gems_Images
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Jump_Speed = 8  
@@ -233,8 +229,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
-                    Scores =  Scores + Gems_number * 10
-                    Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems ,{Scores} scores!",0,0)
+                    Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems",0,0)
                     if Mode == 0 :
                         Game_Modes.Gem_easy += Gems_number
                     elif Mode == 1 :
