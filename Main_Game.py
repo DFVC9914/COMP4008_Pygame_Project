@@ -102,8 +102,8 @@ class Barriers() :
                                       ,pygame.image.load(self.Barriers_Images[3][4]).convert_alpha())
             self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
-        self.rect.width -= 80
-        self.rect.height -= 80
+        self.rect.width -= 60
+        self.rect.height -= 50
         self.Barriers_Index = itertools.cycle([0,1,2,3,4])
         self.Score = 1
  
@@ -219,9 +219,13 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]) :
                     Get_Score.play()
                     Gems_number += Gem_Lists[i].getScore()
+<<<<<<< HEAD
                     Start_Screen.Show(Screen,"Gem + 1",0,0)                
             
             ######################################### 
+=======
+                    Start_Screen.Show(Screen,"Gem +1",0,0)                
+>>>>>>> e6cd76f3ce052c637b77ea7eb33785c8ab34ae72
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
@@ -235,7 +239,7 @@ def Game_Main(P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
-                    Scores =  Scores + Gems_number * 5
+                    Scores =  Scores + Gems_number * 10
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems ,{Scores} scores!",0,0)
                     if Mode == 0 :
                         Game_Modes.Gem_easy += Gems_number
