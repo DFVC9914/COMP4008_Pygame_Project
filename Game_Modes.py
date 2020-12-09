@@ -10,10 +10,10 @@ Orange = (119,0,255)
 White = (255,255,255)
 Blue = (0,238,255)
 Width,Height = (780,366)
-Gem_easy = 0
-Gem_normal = 0
-Gem_hard = 0
-Gem_ultimate = 0  
+Gem_easy = 30
+Gem_normal = 40
+Gem_hard = 70
+Gem_ultimate = 100  
 def Modes_Screen():
     global screen,font,Best_Score,a
     pygame.init()
