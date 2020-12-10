@@ -16,6 +16,7 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
 * python (3.6+)
 * pip
 
+****
 ## Contents
 * pycache
 * Images
@@ -42,6 +43,7 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
   * Generate characters, obstacles and gems for the game and allow players to play the game
 * Open.py
   * Start the entire game program
+****
 
 ## Install pygame in Window 10 
 ### Step 1: PIP installation and upgrade
@@ -93,6 +95,7 @@ then :
 ```cmd
 python3 -m pygame.examples.aliens
 ```
+****
 
 #### To check if Pygame is installed successfully
 1. Open cmd and type python
