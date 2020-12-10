@@ -48,7 +48,7 @@ def Firstscreen():                                                             #
     bgm_sound.play()
     global screen
     screen = pygame.display.set_mode((Width, Height))
-    b1x,b1y=360,10                                                             # Buttons coordinates
+    b1x,b1y=360,100                                                            # Buttons coordinates
     b2x,b2y=360,160     
     b3x,b3y=310,220  
     screen.blit(background, (0,0))
