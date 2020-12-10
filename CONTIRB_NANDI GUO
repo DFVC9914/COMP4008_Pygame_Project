@@ -1,0 +1,13 @@
+Code
+-- In Main_ Game.py, mainly completed with barriers related, like barriers display, movement and initialization.
+-- At Start_ Screen.py, completed the button related operation settings, such as click event, style and so on.
+-- The codes in Congratulation.py and How_ To_ play.py are basically done by me.
+
+Materials
+-- Provides all the background images used in the map, some game sound effects and barriers.
+
+Inspiration
+-- Congratulation picture: https://www.pngegg.com/en/png-eipnw
+-- Button: https://www.geeksforgeeks.org/how-to-create-buttons-in-a-game-using-pygame/
+-- Barrier: https://kidscancode.org/blog/2016/08/pygame_1-2_working-with-sprites/
+-- Materials: https://www.aigei.com/
