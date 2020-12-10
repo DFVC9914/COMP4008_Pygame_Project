@@ -214,8 +214,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     
             for i in range(len(Gem_Lists)) :   
                 Gem_Lists[i].Move() 
-                if pygame.sprite.collide_rect(Role,Gem_Lists[i]):
-                   
+                if pygame.sprite.collide_rect(Role,Gem_Lists[i]):   
                     Gems_number += Gem_Lists[i].getScore()
                     Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
                 else :
