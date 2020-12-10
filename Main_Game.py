@@ -203,8 +203,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     Gem = Gems(P_Gems_Images)
                     Gem_Lists += [Gem]
                     Gem_Time = 0
-            
-                          
+                                 
             for i in range(len(Gem_Lists)) :
                 Gem_Lists[i].Move() 
                 for j in range(len(Barriers_List)) :

@@ -2,7 +2,7 @@
 """
 Created on Tue Dec  1 22:09:30 2020
 
-@author: NANDI GUO
+@author: CHAO CUI, HAO WU, NANDI GUO
 """
 
 import pygame,os,Game_Modes,Start_Screen

@@ -147,7 +147,7 @@ def Modes_Screen():
             if play3_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 Barriers = [["Images/Barriers/Hard_bot1_1.png","Images/Barriers/Hard_bot1_2.png","Images/Barriers/Hard_bot1_3.png","Images/Barriers/Hard_bot1_4.png","Images/Barriers/Hard_bot1_5.png"]\
-                             ,["Images/Barriers/Hard_bot1_1.png","Images/Barriers/Hard_bot2_2.png","Images/Barriers/Hard_bot1_3.png","Images/Barriers/Hard_bot1_4.png","Images/Barriers/Hard_bot1_5.png"]\
+                             ,["Images/Barriers/Hard_bot2_1.png","Images/Barriers/Hard_bot2_2.png","Images/Barriers/Hard_bot2_3.png","Images/Barriers/Hard_bot2_4.png","Images/Barriers/Hard_bot2_5.png"]\
                                  ,["Images/Barriers/Hard_top1_1.png","Images/Barriers/Hard_top1_2.png","Images/Barriers/Hard_top1_3.png","Images/Barriers/Hard_top1_4.png","Images/Barriers/Hard_top1_5.png"]\
                                      ,["Images/Barriers/Hard_top2_1.png","Images/Barriers/Hard_top2_2.png","Images/Barriers/Hard_top2_3.png","Images/Barriers/Hard_top2_4.png","Images/Barriers/Hard_top2_5.png"]]
                 Gem = "Images/Barriers/Red.png"
