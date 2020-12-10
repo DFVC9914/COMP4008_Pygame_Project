@@ -231,7 +231,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             elif Role_Image_Time == 4 :
                 Role.Draw_Role(4)
                 Role_Image_Time = -1         
-            #########################################        
+###############################################################################        
             if Gem_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 10 :
@@ -247,7 +247,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]):   
                     Gems_number += Gem_Lists[i].getScore()
                     Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
-                    
+###############################################################################                     
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
@@ -275,7 +275,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     pygame.draw.rect(Screen, (0,0,0),[Screen_Width/2, Lowest_y, 130, 40])
                     Return_Button.display()
                     break    
-        #########################################                
+###############################################################################            
         for event in pygame.event.get():
             if event.type == pygame.QUIT :
                 pygame.quit() # For the rest of the people with windows or Linux
@@ -283,7 +283,7 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             elif event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()                   
-        ######################################
+############################################################################### 
         if pygame.mouse.get_pressed()[0]:            
             if Return_Button.check_click(pygame.mouse.get_pos()):
                 Game_Run_Sound.stop()

@@ -14,7 +14,7 @@ Gem_easy = 0                                                                   #
 Gem_normal = 0
 Gem_hard = 0
 Gem_ultimate = 0 
-Restrict = 2                                                                   # Set amount for unlock ultimate and congratulation
+Restrict = 100                                                                   # Set amount for unlock ultimate and congratulation
 def Modes_Screen():
     global screen,font,Best_Score
     pygame.init()
@@ -87,8 +87,7 @@ def Modes_Screen():
         if (Gem_easy >= Restrict) and (Gem_normal >= Restrict) and (Gem_hard >= Restrict) and (Gem_ultimate >= Restrict) :
             bgm2_sound.stop()
             Congratulation.Con_Screen()
-            
-            
+                 
         play_button.display()
         play2_button.display()
         play3_button.display()
@@ -138,7 +137,6 @@ def Modes_Screen():
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
-
                 Main_Game.Game_Main(30,890,476,210,360,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
@@ -159,7 +157,6 @@ def Modes_Screen():
 #                 Highest_y = 120
 #                 Lowest_y = 305
 # =============================================================================
-
                 Main_Game.Game_Main(40,850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
                 pygame.quit()                
                 os._exit(0)
