@@ -6,15 +6,15 @@ Created on Fri Dec 4 22:09:30 2020
 """
 import pygame,os,Main_Game,How_to_play,Start_Screen,Congratulation
 
-Orange = (119,0,255)
+Orange = (119,0,255)                                                           # Button colors, RGB
 White = (255,255,255)
 Blue = (0,238,255)
 Width,Height = (780,366)
-Gem_easy = 0
+Gem_easy = 0                                                                   # Gems amount initialization
 Gem_normal = 0
 Gem_hard = 0
 Gem_ultimate = 0 
-Restrict = 100
+Restrict = 100                                                                   # Set amount for unlock ultimate and congratulation
 def Modes_Screen():
     global screen,font,Best_Score
     pygame.init()
@@ -25,7 +25,7 @@ def Modes_Screen():
     screen.blit(background, (0,0))
     bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
     bgm2_sound.play()
-    b1x,b1y=155,155
+    b1x,b1y=155,155                                                            # Buttons position
     b2x,b2y=550,155
     b3x,b3y=155,320
     b4x,b4y=550,320
@@ -33,7 +33,7 @@ def Modes_Screen():
     
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
-    play_button = Start_Screen.Button(Easy, White, b1x, b1y)
+    play_button = Start_Screen.Button(Easy, White, b1x, b1y)                   # buttons initialization
     play2_button = Start_Screen.Button(Normal, White, b2x, b2y)
     play3_button = Start_Screen.Button(Hard, White, b3x, b3y)
     play4_button = Start_Screen.Button(Ultimate, White, b4x, b4y)
@@ -52,9 +52,9 @@ def Modes_Screen():
                 play3_button.check_click(pygame.mouse.get_pos()) or \
                 play4_button.check_click(pygame.mouse.get_pos()) or\
                 back_button.check_click(pygame.mouse.get_pos())):                
-            pygame.mixer.music.play() 
+            pygame.mixer.music.play()                                          # when mouse is moving on the buttons, play the click sound
              
-        if play_button.check_click(pygame.mouse.get_pos()):              
+        if play_button.check_click(pygame.mouse.get_pos()):                    # when mouse is moving on the buttons, change the colors of button
             play_button = Start_Screen.Button(Easy, Blue, b1x, b1y)                        
         else:            
             play_button = Start_Screen.Button(Easy, White, b1x, b1y)
@@ -87,8 +87,7 @@ def Modes_Screen():
         if (Gem_easy >= Restrict) and (Gem_normal >= Restrict) and (Gem_hard >= Restrict) and (Gem_ultimate >= Restrict) :
             bgm2_sound.stop()
             Congratulation.Con_Screen()
-            
-            
+                 
         play_button.display()
         play2_button.display()
         play3_button.display()
@@ -138,7 +137,6 @@ def Modes_Screen():
 #                 Highest_y = 200
 #                 Lowest_y = 370
 # =============================================================================
-
                 Main_Game.Game_Main(30,890,476,210,360,"Images/Backgrounds/Game_Background.png","Sounds/Normal_Bgm.mp3",Barriers,Gem,1)
                 pygame.quit()                
                 os._exit(0)
@@ -147,7 +145,7 @@ def Modes_Screen():
             if play3_button.check_click(pygame.mouse.get_pos()):
                 bgm2_sound.stop()
                 Barriers = [["Images/Barriers/Hard_bot1_1.png","Images/Barriers/Hard_bot1_2.png","Images/Barriers/Hard_bot1_3.png","Images/Barriers/Hard_bot1_4.png","Images/Barriers/Hard_bot1_5.png"]\
-                             ,["Images/Barriers/Hard_bot1_1.png","Images/Barriers/Hard_bot2_2.png","Images/Barriers/Hard_bot1_3.png","Images/Barriers/Hard_bot1_4.png","Images/Barriers/Hard_bot1_5.png"]\
+                             ,["Images/Barriers/Hard_bot2_1.png","Images/Barriers/Hard_bot2_2.png","Images/Barriers/Hard_bot2_3.png","Images/Barriers/Hard_bot2_4.png","Images/Barriers/Hard_bot2_5.png"]\
                                  ,["Images/Barriers/Hard_top1_1.png","Images/Barriers/Hard_top1_2.png","Images/Barriers/Hard_top1_3.png","Images/Barriers/Hard_top1_4.png","Images/Barriers/Hard_top1_5.png"]\
                                      ,["Images/Barriers/Hard_top2_1.png","Images/Barriers/Hard_top2_2.png","Images/Barriers/Hard_top2_3.png","Images/Barriers/Hard_top2_4.png","Images/Barriers/Hard_top2_5.png"]]
                 Gem = "Images/Barriers/Red.png"
@@ -159,7 +157,6 @@ def Modes_Screen():
 #                 Highest_y = 120
 #                 Lowest_y = 305
 # =============================================================================
-
                 Main_Game.Game_Main(40,850,476,170,305,"Images/Backgrounds/Road_Background.png","Sounds/Hard_Bgm.mp3",Barriers,Gem,2)
                 pygame.quit()                
                 os._exit(0)
