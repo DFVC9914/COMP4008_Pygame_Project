@@ -1,11 +1,15 @@
+# CWG Utimate Warrior game
 ****
-|Authors|Chao Cui, Nandi Guo, Hao Wu|
+|Authors|Chao Cui, Nandi Guo, Hao Wu
 |---|---
 |Group|CWG
 |Game name|Utimate Running
 |Language|Python
 |Version|1.0
 ****
+
+## Background
+The game is a parkour type game, developed in python and uses mainly pygame content.
 
 ## Environment
 * macOS or Windows
