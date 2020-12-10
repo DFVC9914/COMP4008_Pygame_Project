@@ -231,38 +231,43 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             elif Role_Image_Time == 4 :
                 Role.Draw_Role(4)
                 Role_Image_Time = -1         
-###############################################################################        
+###############################################################################       
+            # Gems generation 
             if Gem_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 10 :
                     Gem = Gems(P_Gems_Images)
                     Gem_Lists += [Gem]
                     Gem_Time = 0
-                                 
             for i in range(len(Gem_Lists)) :
                 Gem_Lists[i].Move() 
+                # Determine if there is an overlap between the position where the gems are generated and the obstacle and if so, make the picture of the gems change to Nothing_1
                 for j in range(len(Barriers_List)) :
                     if pygame.sprite.collide_rect(Barriers_List[j],Gem_Lists[i]) :
                         Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
-                if pygame.sprite.collide_rect(Role,Gem_Lists[i]):   
+                # If a character collides with a gem, it gets a point and replaces the gem object with Gems("Images/Barriers/Nothing_1.png")
+                if pygame.sprite.collide_rect(Role,Gem_Lists[i]) :   
                     Gems_number += Gem_Lists[i].getScore()
                     Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
-###############################################################################                     
+###############################################################################  
+            # Barriers generation       
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
-                    Barrier = Barriers( P_Barriers_Images)
+                    Barrier = Barriers(P_Barriers_Images)
                     Barriers_List += [Barrier]
-                    Barriers_Time = 0     
-                    
+                    Barriers_Time = 0                     
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move() 
-                Barriers_List[i].Draw_Barriers()              
+                Barriers_List[i].Draw_Barriers()  
+                # If a character collides with a gem, the game is over
                 if pygame.sprite.collide_rect(Role,Barriers_List[i]) :
                     Game_Over = True
                     Game_Run_Sound.stop()
                     Dead_Bgm.play()
+                    # Display the final overall results
                     Start_Screen.Show(Screen,f"You ran {Distance} meters and got {Gems_number} gems",0,0)
+                    # The number of gems obtained for the different difficulty levels is transferred to the Game_Modes file.
                     if Mode == 0 :
                         Game_Modes.Gem_easy += Gems_number
                     elif Mode == 1 :
@@ -276,15 +281,17 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     Return_Button.display()
                     break    
 ###############################################################################            
-        for event in pygame.event.get():
+        for event in pygame.event.get() :
             if event.type == pygame.QUIT :
                 pygame.quit() # For the rest of the people with windows or Linux
                 os._exit(0) # For Mac users.
             elif event.type == pygame.KEYDOWN :
+                # When the player enters the up, W and space keyboard keys, it causes the character to jump!
                 if event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_SPACE :
                     Role.Jump()                   
 ############################################################################### 
-        if pygame.mouse.get_pressed()[0]:            
+        # Monitor mouse click events, and end the game if you click to exit
+        if pygame.mouse.get_pressed()[0] :            
             if Return_Button.check_click(pygame.mouse.get_pos()):
                 Game_Run_Sound.stop()
                 Game_Modes.Modes_Screen()
