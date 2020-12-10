@@ -113,10 +113,7 @@ class Gems():
     def __init__(self,Gems_Images) :   
         self.rect = pygame.Rect(750,0,0,0)  
         self.Gems_Images = Gems_Images
-        self.active = True 
-        # self.con = False
-        # if Gems_Images == "Images/Barriers/Nothing_1.png" :
-        #     self.con = True
+        self.active = True  
         Random_Number =  random.randint(0,1)
         if Random_Number == 0 :         
             self.Image = pygame.image.load(self.Gems_Images).convert_alpha()
