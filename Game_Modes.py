@@ -14,7 +14,7 @@ Gem_easy = 0
 Gem_normal = 0
 Gem_hard = 0
 Gem_ultimate = 0 
-Restrict = 3
+Restrict = 100
 def Modes_Screen():
     global screen,font,Best_Score
     pygame.init()
@@ -84,7 +84,7 @@ def Modes_Screen():
         else :
             screen.blit(background1, (0,0))
             
-        if (Gem_easy >= 1) or (Gem_normal >= 1) or (Gem_hard >= 1) or (Gem_ultimate >= 1) :
+        if (Gem_easy >= Restrict) and (Gem_normal >= Restrict) and (Gem_hard >= Restrict) and (Gem_ultimate >= Restrict) :
             bgm2_sound.stop()
             Congratulation.Con_Screen()
             
