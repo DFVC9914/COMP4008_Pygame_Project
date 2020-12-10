@@ -14,7 +14,7 @@ Gem_easy = 0
 Gem_normal = 0
 Gem_hard = 0
 Gem_ultimate = 0 
-Restrict = 100
+Restrict = 2
 def Modes_Screen():
     global screen,font,Best_Score
     pygame.init()
