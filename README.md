@@ -18,7 +18,6 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
 
 ****
 ## Contents
-* pycache
 * Images
 * Sounds
 
