@@ -1,0 +1,11 @@
+Code
+-- In Main_Game.py, mainly completed some of the character's attribute related settings, and completed the character movement related settings, and the problem of the characters colliding with gems and the gems disappearing after collision has been solved.
+-- The code in the Game_ modes is basically wrote by me.
+
+Materials
+-- In terms of material, it provides some game sound effects, characters/Roles and pictures for game over.
+
+Inspiration
+-- https://www.pygame.org/docs/
+-- Barriers: http://programarcadegames.com/index.php?chapter=introduction_to_sprites
+-- Roles:https://www.aigei.com/
