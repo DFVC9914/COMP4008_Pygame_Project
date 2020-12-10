@@ -58,6 +58,7 @@ Open the cmd and copy and execute :
 $ python -m pip install pygame --user
 ```
 The PIP will then automatically download and install Pygame.
+
 Once the installation is complete, you will be prompted with a successful installation.
 
 #### [Important tips]
@@ -67,8 +68,9 @@ Alternatively, run:
 $ pip install pygame
 ```
 #### To check if Pygame is installed successfully
-1, open cmd and type python
-2, type import pygame. if no error is reported, the installation is successful and the Pygame version number will be indicated.
+1. Open cmd and type python
+
+2. Type import pygame. if no error is reported, the installation is successful and the Pygame version number will be indicated.
 
 ## Instruction
 After completing the environment configuration and dependency installation, you can run the Open.py File mode to run the project.
