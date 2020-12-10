@@ -153,16 +153,18 @@ class Gems():
         Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def getScore(self) :
-# Gems that have been bumped are replaced by the Nothing_1 image and no points are added if the player bumped this image. Instead, the number of gems is increased by one when the player eats the gems.
+        # Gems that have been bumped are replaced by the Nothing_1 image and no points are added if the player bumped this image.
         if self.Gems_Images == "Images/Barriers/Nothing_1.png" :
             return 0
         else :
+            # When the player eats a gem, the number of gems is increased by one and Gem + 1 is displayed above the character's head.
             Start_Screen.Show(Screen,"Gem + 1",Role.rect.x + 15 , Role.rect.y - 10)
             Get_Score.play()
             Temporary_Score = self.Score
             self.Score = 0
             return Temporary_Score
 
+# Set a range of parameters to facilitate the selection of game levels.
 def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
         Game_Run_Sound,Get_Score,Screen,Background_Images,Role
@@ -170,14 +172,18 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     Screen_Height = P_Screen_Height
     Highest_y = P_Highest_y
     Lowest_y = P_Lowest_y    
-    # Local variables
     Jump_Speed = 8  
     Gems_number = 0
     Distance = 0
-    Gem_Lists = []
-    Barriers_Time = 0 
-    Barriers_List = []
+    # Time to produce gems
     Gem_Time = 0
+    # Store the objects generated for each Gems()
+    Gem_Lists = []
+    # Time to produce barriers
+    Barriers_Time = 0 
+    # Store the objects generated for each Barriers()
+    Barriers_List = []
+    # Easy to load pictures of different role's movements
     Role_Image_Time = -1
     # Initialising pygame
     pygame.init()
@@ -191,23 +197,29 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     Role_Image_Action = ["Images/Roles/Role_Run_1.png","Images/Roles/Role_Run_2.png","Images/Roles/Role_Run_3.png"\
                          ,"Images/Roles/Role_Run_4.png","Images/Roles/Role_Run_5.png","Images/Roles/Role_Jump.png"]
     Game_Over_Image = pygame.image.load("Images/Game_Over.png").convert_alpha()
+    # Calling the Button class in Start_Screen
     Return_Button = Start_Screen.Button("Play Again", (255,255,255), Screen_Width/2 , Lowest_y)
     # Creat the display with Screen_Width and Screen_Height
     Screen = pygame.display.set_mode((Screen_Width,Screen_Height))
     # Set the title of the game
     pygame.display.set_caption("CWG's Game")   
+    # Instantiating the Game_Role()
     Role = Game_Role(Role_Image_Action)
+    # Controlling the frame rate
     Fps_Flash = pygame.time.Clock()
-    Bg = Game_Map(0,0,P_Background)  
+    # Instantiating the Game_Map()
+    Bg = Game_Map(0,0,P_Background)
+    # Setting the music loop
     Game_Run_Sound.play(-1,0)
+    # Determines if the game is over, True is the end of the game
     Game_Over = False  
-    
     while True : 
         if Game_Over == False : 
             Distance += 1
             Role_Image_Time += 1
             Bg.Map_Move()
             Role.Action_Move()  
+            # Make the role move by loading different pictures
             if Role_Image_Time == 0 :
                 Role.Draw_Role(0)
             elif Role_Image_Time == 1 :
