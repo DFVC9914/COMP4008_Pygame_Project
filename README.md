@@ -84,7 +84,7 @@ python
 ```
 
 ### Mac OS X Compiling Info
-#### if anaconda is installed¶
+#### if anaconda is installed
 please deactivate base by:
 ```cmd
 conda deactivate
