@@ -23,21 +23,8 @@ def Con_Screen():
     cong = pygame.mixer.Sound("Sounds/happy.mp3")
     cong.play()
     
-    b1x,b1y=670,400
-    back_button = Start_Screen.Button('Back', Orange, b1x, b1y)
-    back_button.display()
-    pygame.display.update()
-    
-    while True:
-        if not back_button.check_click(pygame.mouse.get_pos()):                
-            pygame.mixer.music.play()
-            
-        if back_button.check_click(pygame.mouse.get_pos()):              
-            back_button = Start_Screen.Button('Back', Blue, b1x, b1y)                        
-        else:            
-            back_button = Start_Screen.Button('Back', Orange, b1x, b1y)
-
-        back_button.display()
+    while True:                  
+        
         pygame.display.update()
         
         for event in pygame.event.get():
@@ -45,10 +32,4 @@ def Con_Screen():
                         pygame.quit()
                         os._exit(0)
 
-        if pygame.mouse.get_pressed()[0]:            
-            if back_button.check_click(pygame.mouse.get_pos()):
-                cong.stop()
-                Start_Screen.Firstscreen()
-                pygame.quit()                
-                os._exit(0)
-                break
+       
