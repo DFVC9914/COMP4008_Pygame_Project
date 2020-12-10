@@ -5,7 +5,7 @@ import pygame,os,Game_Modes,How_to_play
 # -*- coding: utf-8 -*-
 """
 Created on Sun Nov 29 09:24:39 2020
-@author: NANDI GUO
+@author: CHAO CUI, HAO WU, NANDI GUO
 """
 
 pygame.init()
