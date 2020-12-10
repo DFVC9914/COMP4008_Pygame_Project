@@ -67,6 +67,33 @@ Alternatively, run:
 ```cmd
 $ pip install pygame
 ```
+## Install pygame in MacOS
+### Recent versions of Mac OS X require pygame 2
+If your examples aren't running and you are using a recent version of Mac OS X; try this line to install pygame instead:
+```cmd
+python3 -m pip install -U pygame --user
+```
+### Anaconda Mac
+Use
+```cmd
+pythonw
+```
+instead of
+```cmd
+python
+```
+
+### Mac OS X Compiling Info
+#### if anaconda is installed¶
+please deactivate base by:
+```cmd
+conda deactivate
+```
+then :
+```cmd
+python3 -m pygame.examples.aliens
+```
+
 #### To check if Pygame is installed successfully
 1. Open cmd and type python
 
