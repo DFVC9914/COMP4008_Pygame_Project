@@ -4,7 +4,7 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: CHAO CUI, HAO WU, NANDI GUO
 """
-import pygame,os,Game_Modes,Start_Screen
+import pygame,os,Start_Screen
 
 
 Orange = (119,0,255)
@@ -46,7 +46,6 @@ def Con_Screen():
                         os._exit(0)
 
         if pygame.mouse.get_pressed()[0]:            
-                         
             if back_button.check_click(pygame.mouse.get_pos()):
                 cong.stop()
                 Start_Screen.Firstscreen()
