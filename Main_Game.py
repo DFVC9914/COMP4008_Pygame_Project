@@ -124,9 +124,9 @@ class Gems():
         self.rect.size = self.Image.get_size()
         self.Score = 1   
         
-    def Draw_Golds(self) :
-        if pygame.sprite.collide_rect(Role,self) :
-            self.Gems_Images = "Images/Barriers/Nothing_1.png"
+    def Draw_Gem(self) :
+        if self.Gems_Images == "Images/Barriers/Nothing_1.png" :
+            pass
         else :
             Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
@@ -140,7 +140,7 @@ class Gems():
 
 def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Role
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Role,Barriers_List
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Highest_y = P_Highest_y
@@ -176,9 +176,9 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
     Bg = Game_Map(0,0,P_Background)  
     Game_Run_Sound.play(-1,0)
     Game_Over = False  
-
+    
     while True : 
-        if Game_Over == False :    
+        if Game_Over == False : 
             Distance += 1
             Role_Image_Time += 1
             Bg.Map_Move()
@@ -201,14 +201,16 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                     Gem = Gems(P_Gems_Images) 
                     Gem_Lists += [Gem]
                     Gem_Time = 0
-            for i in range(len(Gem_Lists)) :
-                Gem_Lists[i].Move()            
-                Gem_Lists[i].Draw_Golds()               
-                if pygame.sprite.collide_rect(Role,Gem_Lists[i]) :
+                    
+            for i in range(len(Gem_Lists)) :   
+                Gem_Lists[i].Move() 
+                Gem_Lists[i].Draw_Gem()
+                if pygame.sprite.collide_rect(Role,Gem_Lists[i]):
                     Get_Score.play()
+                    Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png")
                     Gems_number += Gem_Lists[i].getScore()
-                    Start_Screen.Show(Screen,"Gem + 1",Role.rect.x + 15 , Role.rect.y - 10)                
- 
+                    Start_Screen.Show(Screen,"Gem + 1",Role.rect.x + 15 , Role.rect.y - 10)  
+                      
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
