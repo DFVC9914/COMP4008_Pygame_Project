@@ -61,7 +61,7 @@ $ python -m pip install pygame --user
 ```
 * The PIP will then automatically download and install Pygame.
 * Once the installation is complete, you will be prompted with a successful installation.
-** [Important tips]
+* **[Important tips]
 * If typing "python -m pip install pygame --user" does not solve the problem, try changing the code from pip to pip3, or removing --user.
 * Alternatively, run:
 ```cmd
