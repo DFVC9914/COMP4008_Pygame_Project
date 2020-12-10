@@ -45,9 +45,23 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
 
 ## Instruction
 After completing the environment configuration and dependency installation, you can run the Open.py File mode to run the project.
+## Install pygame in Window 10 
+# Step 1: PIP installation and upgrade
+* Checking if PIP is installed
+Type PIP into cmd and if a large field of characters appears, it means that PIP is installed.
+* Raise and lower pip to the latest
+```cmd
+$ python -m install pip --upgrade pip
+```
+
+# Step 2: Install Pygame
+* Open the cmd and copy and execute :
+```cmd
+$ python -m pip install pygame --user
+```
+* The PIP will then automatically download and install Pygame.
+* Once the installation is complete, you will be prompted with a successful installation.
 #### Command:
-## Window 10
-* 
 ```cmd
 $ pip install pygame
 ```
