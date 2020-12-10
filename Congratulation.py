@@ -19,8 +19,8 @@ def Con_Screen():
     pygame.display.set_caption("Game Modes")
     background = pygame.image.load("Images/Backgrounds/Congratulation_1.png")
     screen.blit(background, (0,0))
-    bgm2_sound = pygame.mixer.Sound("Sounds/Modes_Bgm.mp3")
-    bgm2_sound.play()
+    cong = pygame.mixer.Sound("Sounds/happy.mp3")
+    cong.play()
     
     while True:
         pygame.display.update()
