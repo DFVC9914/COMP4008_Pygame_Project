@@ -22,9 +22,9 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
 * Sounds
 
 ****
-* CONTRIB.pdf
+* CONTRIB.txt
   * Individual contribution to the project
-* DISTRIPTION.pdf
+* DISTRIPTION.txt
   * Discription of the game
 * README.md
   * Installation instructions
