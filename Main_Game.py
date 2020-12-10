@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 19 09:24:39 2020
-@author: Chao Cui
+@author: CHAO CUI, HAO WU, NANDI GUO
 """
 
 import pygame,os,random,Game_Modes,Start_Screen,itertools 
