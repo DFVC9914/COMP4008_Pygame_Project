@@ -84,7 +84,7 @@ def Modes_Screen():
         else :
             screen.blit(background1, (0,0))
             
-        if (Gem_easy == Restrict) or (Gem_normal == Restrict) or (Gem_hard == Restrict) or (Gem_ultimate == Restrict) :
+        if (Gem_easy == 1) or (Gem_normal == 1) or (Gem_hard == 1) or (Gem_ultimate == 1) :
             bgm2_sound.stop()
             Congratulation.Con_Screen()
             
