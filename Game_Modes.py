@@ -30,12 +30,7 @@ def Modes_Screen():
     b3x,b3y=155,320
     b4x,b4y=550,320
     b5x,b5y=350,165   
-    if Gem_easy < Restrict and Gem_normal < Restrict and Gem_hard < Restrict :
-        screen.blit(background, (0,0))
-    else :
-        screen.blit(background1, (0,0))
-    if Gem_easy == Restrict and Gem_normal == Restrict and Gem_hard == Restrict and Gem_ultimate == Restrict :
-        Congratulation.Con_Screen()
+
     pygame.mixer.music.load('Sounds/Button_Click.mp3')
     Easy,Normal,Hard,Ultimate,Back = 'Easy','Normal','Hard','Locked','Back'
     play_button = Start_Screen.Button(Easy, White, b1x, b1y)
@@ -50,7 +45,7 @@ def Modes_Screen():
     back_button.display()
     pygame.display.update() 
     Start_Screen.Show(screen,f"Green gem = {Gem_easy}, Yellow gem = {Gem_normal}, Red gem = {Gem_hard}, Blue gem = {Gem_ultimate}",0,0) 
-    
+                
     while True:  
         if not (play_button.check_click(pygame.mouse.get_pos()) or \
                 play2_button.check_click(pygame.mouse.get_pos()) or \
@@ -83,6 +78,16 @@ def Modes_Screen():
             back_button = Start_Screen.Button(Back, Blue, b5x, b5y)                        
         else:            
             back_button = Start_Screen.Button(Back, Orange, b5x, b5y)
+        
+        if Gem_easy < Restrict and Gem_normal < Restrict and Gem_hard < Restrict :
+            screen.blit(background, (0,0))
+        else :
+            screen.blit(background1, (0,0))
+            
+        if (Gem_easy == Restrict) or (Gem_normal == Restrict) or (Gem_hard == Restrict) or (Gem_ultimate == Restrict) :
+            bgm2_sound.stop()
+            Congratulation.Con_Screen()
+            
             
         play_button.display()
         play2_button.display()
