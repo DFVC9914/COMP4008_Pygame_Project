@@ -4,7 +4,7 @@ Created on Fri Dec 4 22:09:30 2020
 
 @author: CHAO CUI, HAO WU, NANDI GUO
 """
-import pygame,os,Start_Screen
+import pygame,os
 
 
 Orange = (119,0,255)
@@ -23,13 +23,11 @@ def Con_Screen():
     cong = pygame.mixer.Sound("Sounds/happy.mp3")
     cong.play()
     
-    while True:                  
-        
+    while True:                    
         pygame.display.update()
-        
         for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        os._exit(0)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                os._exit(0)
 
        
