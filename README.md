@@ -9,7 +9,7 @@
 ****
 
 ## Background
-The game is a parkour type game, developed in python and uses mainly pygame content.
+The game is a parkour type game, developed in python and uses mainly pygame content. For learning, practicing pygame related knowledge.
 
 ## Environment
 * macOS or Windows
