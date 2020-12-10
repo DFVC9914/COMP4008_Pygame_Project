@@ -105,3 +105,8 @@ python3 -m pygame.examples.aliens
 ## Instruction
 After completing the environment configuration and dependency installation, you can run the Open.py File mode to run the project.
 
+### Further Questions
+Please don't hesitate to email us：
+HAO WU: psyhw3@nottingham.ac.uk
+Chao Cui: psxcc7@nottingham.ac.uk
+Nandi Guo: eeyng3@nottingham.ac.uk
