@@ -65,7 +65,7 @@ class Game_Role():
 # The barriers of the game
 class Barriers() :
     def __init__(self,Barriers_Images) :   
-        self.rect = pygame.Rect(800,0,0,0)  
+        self.rect = pygame.Rect(800,0,0,0)
         self.Barriers_Images = Barriers_Images
         Random_Number =  random.randint(0,3)
         if Random_Number == 0 :         
@@ -113,7 +113,10 @@ class Gems():
     def __init__(self,Gems_Images) :   
         self.rect = pygame.Rect(750,0,0,0)  
         self.Gems_Images = Gems_Images
-        self.active = True  
+        self.active = True 
+        self.con = False
+        if Gems_Images == "Images/Barriers/Nothing_1.png" :
+            self.con = True
         Random_Number =  random.randint(0,1)
         if Random_Number == 0 :         
             self.Image = pygame.image.load(self.Gems_Images).convert_alpha()
@@ -125,22 +128,24 @@ class Gems():
         self.Score = 1   
         
     def Draw_Gem(self) :
-        if self.Gems_Images == "Images/Barriers/Nothing_1.png" :
-            pass
-        else :
-            Screen.blit(self.Image, (self.rect.x, self.rect.y))
+        Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
     def Move(self) :
         self.rect.x -= 8
     
     def getScore(self):
-        Temporary_Score = self.Score
-        self.Score = 0
-        return Temporary_Score
+        if self.con == True :
+            return 0
+        else :
+            Start_Screen.Show(Screen,"Gem + 1",Role.rect.x + 15 , Role.rect.y - 10)
+            Get_Score.play()
+            Temporary_Score = self.Score
+            self.Score = 0
+            return Temporary_Score
 
 def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Background,P_Background_Sound,P_Barriers_Images,P_Gems_Images,Mode):
     global  Screen_Width,Screen_Height,Jump_Speed,Highest_y,Lowest_y,Jump_Sound,\
-        Game_Run_Sound,Get_Score,Screen,Background_Images,Role,Barriers_List
+        Game_Run_Sound,Get_Score,Screen,Background_Images,Role
     Screen_Width = P_Screen_Width
     Screen_Height = P_Screen_Height
     Highest_y = P_Highest_y
@@ -199,24 +204,30 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                 r=random.randint(0,100)
                 if r <= 10 :
                     Gem = Gems(P_Gems_Images) 
+                    # for i in range(len(Barriers_List)) :
+                    #     if pygame.sprite.collide_rect(Gem,Barriers_List[i]) :
+                    #         Gem_Lists += None
+                    #         continue
+                    #     else :
                     Gem_Lists += [Gem]
                     Gem_Time = 0
                     
             for i in range(len(Gem_Lists)) :   
                 Gem_Lists[i].Move() 
-                Gem_Lists[i].Draw_Gem()
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]):
-                    Get_Score.play()
-                    Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png")
+                   
                     Gems_number += Gem_Lists[i].getScore()
-                    Start_Screen.Show(Screen,"Gem + 1",Role.rect.x + 15 , Role.rect.y - 10)  
-                      
+                    Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
+                else :
+                    Gem_Lists[i].Draw_Gem()
+                    
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
                 if r <= 40 :
                     Barrier = Barriers( P_Barriers_Images)
                     Barriers_List += [Barrier]
-                    Barriers_Time = 0              
+                    Barriers_Time = 0     
+                    
             for i in range(len(Barriers_List)) :
                 Barriers_List[i].Move() 
                 Barriers_List[i].Draw_Barriers()              
