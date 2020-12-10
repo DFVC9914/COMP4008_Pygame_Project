@@ -107,6 +107,6 @@ After completing the environment configuration and dependency installation, you 
 
 ### Further Questions
 Please don't hesitate to email us：
-HAO WU: psyhw3@nottingham.ac.uk
-Chao Cui: psxcc7@nottingham.ac.uk
-Nandi Guo: eeyng3@nottingham.ac.uk
+* HAO WU: psyhw3@nottingham.ac.uk
+* Chao Cui: psxcc7@nottingham.ac.uk
+* Nandi Guo: eeyng3@nottingham.ac.uk
