@@ -46,6 +46,8 @@ The game is a parkour type game, developed in python and uses mainly pygame cont
 ## Instruction
 After completing the environment configuration and dependency installation, you can run the Open.py File mode to run the project.
 #### Command:
+## Window 10
+* 
 ```cmd
 $ pip install pygame
 ```
