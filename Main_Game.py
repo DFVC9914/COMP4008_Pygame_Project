@@ -9,43 +9,56 @@ import pygame,os,random,Game_Modes,Start_Screen,itertools
 
 # The background of the game
 class Game_Map() :
+    # Initialise map background and coordinates
     def __init__(self,x,y,Background_Image) :
         self.x = x
         self.y = y
         self.Background_Image = Background_Image
 
-    def Map_Move(self):
-        if self.x < -(Screen_Width-8) :  
+    def Map_Move(self) :
+        if self.x < -(Screen_Width-8) :
+            # Reload the picture from the beginning after scrolling is complete
             self.x = 0   
-        else:
+        else :
+            # The map scrolls forward by 8 units
             self.x -= 8  
         Screen.blit(pygame.image.load(self.Background_Image).convert_alpha(),(self.x, self.y))
 
 # The role of the game
 class Game_Role():
     def __init__(self,Role_Image) :  
+        # Initialisation of the role rectangle
         self.rect = pygame.Rect(10,Lowest_y,0,0)
         self.Role_Image = Role_Image
+        # Highest position for the role jumps
         self.Jump_Height = Highest_y
+        # Minimum y-coordinate of the role
         self.Jump_Start_Position = Lowest_y
+        # Control whether the role jumps, True for jump
         self.Jump_Control = False
+        # Load pictures of the role in six different poses
         self.Image = (pygame.image.load(self.Role_Image[0]).convert_alpha()\
                       ,pygame.image.load(self.Role_Image[1]).convert_alpha()\
                           ,pygame.image.load(self.Role_Image[2]).convert_alpha()\
                               ,pygame.image.load(self.Role_Image[3]).convert_alpha()\
                                   ,pygame.image.load(self.Role_Image[4]).convert_alpha()\
                                      , pygame.image.load(self.Role_Image[5]).convert_alpha())
+        # Get the size of the role picture
         self.rect.size = self.Image[0].get_size()
+        # Reducing the height and width of the role+ to reduce the collision volume
         self.rect.width -= 30
         self.rect.height -= 30
+        # Prevent the role from jumping twice in the air
         self.Jump_Control_Twist = False
-        self.jumpValue = 0
     
+    # Change the jump state to True
     def Jump(self):
+        # Play the music of the jumping
         Jump_Sound.play()
         self.Jump_Control = True
-    
+
     def Action_Move(self) : 
+# If Jump_Control is True and Jump_Control_Twist is True, then Role is displaced upwards at the speed of Jump_Speed and automatically descends to the starting position when Jump_Height is reached.
         if self.Jump_Control == True and self.Jump_Control_Twist == False :
             self.rect.y -= Jump_Speed
             if self.rect.y <= self.Jump_Height :
@@ -57,6 +70,7 @@ class Game_Role():
                 self.Jump_Control_Twist = False
             
     def Draw_Role(self,i) :
+        # If the role is not on the ground, draw a jumping form, if on the ground, a running form
         if self.Jump_Start_Position <= self.rect.y :
             Screen.blit(self.Image[i],(self.rect.x, self.rect.y))  
         else  :
@@ -64,11 +78,14 @@ class Game_Role():
             
 # The barriers of the game
 class Barriers() :
-    def __init__(self,Barriers_Images) :   
+    def __init__(self,Barriers_Images) :  
+        # Initialisation of the barriers rectangle
         self.rect = pygame.Rect(800,0,0,0)
         self.Barriers_Images = Barriers_Images
+        # Generate random numbers, different numbers represent different obstacles
         Random_Number =  random.randint(0,3)
-        if Random_Number == 0 :         
+        if Random_Number == 0 :   
+            # Each obstacle has five different forms
             self.Image = (pygame.image.load(self.Barriers_Images[0][0]).convert_alpha()\
                           ,pygame.image.load(self.Barriers_Images[0][1]).convert_alpha()\
                               ,pygame.image.load(self.Barriers_Images[0][2]).convert_alpha()\
@@ -96,24 +113,29 @@ class Barriers() :
                                   ,pygame.image.load(self.Barriers_Images[3][3]).convert_alpha()\
                                       ,pygame.image.load(self.Barriers_Images[3][4]).convert_alpha())
             self.rect.y = Highest_y 
+        # Get the size of the barriers picture
         self.rect.size = self.Image[0].get_size()
+        # Reducing the height and width of the role+ to reduce the collision volume
         self.rect.width -= 50
         self.rect.height -= 40
+        # Set the index value of the obstacle in order to allow the obstacle to move
         self.Barriers_Index = itertools.cycle([0,1,2,3,4])
-        self.Score = 1
  
+    # The movement of barriers 
     def Move(self) :
         self.rect.x -= 8
         
     def Draw_Barriers(self) :
+        # Load the next picture from the obstacle list
         Index = next(self.Barriers_Index)
         Screen.blit(self.Image[Index], (self.rect.x, self.rect.y))
     
 class Gems():
     def __init__(self,Gems_Images) :   
+        # Initialisation of the gems rectangle
         self.rect = pygame.Rect(800,0,0,0)  
         self.Gems_Images = Gems_Images
-        self.active = True  
+        # Generate random numbers, different numbers represent different positions of the gem
         Random_Number =  random.randint(0,1)
         if Random_Number == 0 :         
             self.Image = pygame.image.load(self.Gems_Images).convert_alpha()
@@ -121,16 +143,17 @@ class Gems():
         elif Random_Number == 1 :
             self.Image = pygame.image.load(self.Gems_Images).convert_alpha()
             self.rect.y = Highest_y + 10
+        # Get the size of the gems picture
         self.rect.size = self.Image.get_size()
         self.Score = 1   
-        
-    def Draw_Gem(self) :
-        Screen.blit(self.Image, (self.rect.x, self.rect.y))
-    
+            
+    # The movement of gems and the painting of the gems
     def Move(self) :
         self.rect.x -= 8
+        Screen.blit(self.Image, (self.rect.x, self.rect.y))
     
-    def getScore(self):
+    def getScore(self) :
+# Gems that have been bumped are replaced by the Nothing_1 image and no points are added if the player bumped this image. Instead, the number of gems is increased by one when the player eats the gems.
         if self.Gems_Images == "Images/Barriers/Nothing_1.png" :
             return 0
         else :
@@ -212,8 +235,6 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]):   
                     Gems_number += Gem_Lists[i].getScore()
                     Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
-                else :
-                    Gem_Lists[i].Draw_Gem()
                     
             if Barriers_Time >= 1000 :
                 r=random.randint(0,100)
