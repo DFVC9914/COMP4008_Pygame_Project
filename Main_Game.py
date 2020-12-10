@@ -97,8 +97,8 @@ class Barriers() :
                                       ,pygame.image.load(self.Barriers_Images[3][4]).convert_alpha())
             self.rect.y = Highest_y 
         self.rect.size = self.Image[0].get_size()
-        self.rect.width -= 60
-        self.rect.height -= 50
+        self.rect.width -= 50
+        self.rect.height -= 40
         self.Barriers_Index = itertools.cycle([0,1,2,3,4])
         self.Score = 1
  
@@ -111,7 +111,7 @@ class Barriers() :
     
 class Gems():
     def __init__(self,Gems_Images) :   
-        self.rect = pygame.Rect(750,0,0,0)  
+        self.rect = pygame.Rect(800,0,0,0)  
         self.Gems_Images = Gems_Images
         self.active = True  
         Random_Number =  random.randint(0,1)
@@ -200,17 +200,16 @@ def Game_Main(P_Fps,P_Screen_Width,P_Screen_Height,P_Highest_y,P_Lowest_y,P_Back
             if Gem_Time >= 800 :
                 r=random.randint(0,100)
                 if r <= 10 :
-                    Gem = Gems(P_Gems_Images) 
-                    # for i in range(len(Barriers_List)) :
-                    #     if pygame.sprite.collide_rect(Gem,Barriers_List[i]) :
-                    #         Gem_Lists += None
-                    #         continue
-                    #     else :
+                    Gem = Gems(P_Gems_Images)
                     Gem_Lists += [Gem]
                     Gem_Time = 0
-                    
-            for i in range(len(Gem_Lists)) :   
+            
+                          
+            for i in range(len(Gem_Lists)) :
                 Gem_Lists[i].Move() 
+                for j in range(len(Barriers_List)) :
+                    if pygame.sprite.collide_rect(Barriers_List[j],Gem_Lists[i]) :
+                        Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
                 if pygame.sprite.collide_rect(Role,Gem_Lists[i]):   
                     Gems_number += Gem_Lists[i].getScore()
                     Gem_Lists[i] = Gems("Images/Barriers/Nothing_1.png") 
